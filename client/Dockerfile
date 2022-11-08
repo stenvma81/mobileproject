@@ -1,18 +1,11 @@
 #define node image to be used
-FROM node:17-alpine as builder
+FROM node:17-alpine
 #define working directory
+RUN mkdir -p /app
 WORKDIR /app
 #copy to container to be able to use npm commands
-COPY package.json .
-COPY package-lock.json .
+COPY package.json /app
+COPY package-lock.json /app
+COPY . /app
 RUN npm install
-COPY . .
-RUN  npm run build
-
-#server-side image
-FROM nginx:1.19.0
-WORKDIR /usr/share/nginx/html
-#remove default static nginx resources
-RUN rm -rf ./*
-COPY --from=builder /app/build .
-ENTRYPOINT ["nginx", "-g", "daemon off;"]
+CMD ["npm", "start"]
