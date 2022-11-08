@@ -1,0 +1,10 @@
+version: "4.13"
+
+services:
+  app:
+    container_name: react-client-container
+    image: docker-react-i
+    build:
+      context: ./client
+    ports:
+      - 8080:80 #hosting port:container port
