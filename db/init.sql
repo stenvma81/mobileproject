@@ -33,10 +33,6 @@ CREATE TABLE `sample` (
   `name` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `sample`
---
-
 INSERT INTO `sample` (`id`, `name`) VALUES
 (1, 'This'),
 (2, 'is'),
@@ -46,6 +42,51 @@ INSERT INTO `sample` (`id`, `name`) VALUES
 (6, 'for'),
 (7, 'our'),
 (8, 'app');
+
+CREATE TABLE `role` (
+  `id` int(10) NOT NULL PRIMARY KEY,
+  `description` varchar(20)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `posttype` (
+  `id` int(10) NOT NULL PRIMARY KEY,
+  `title` varchar(20)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `user` (
+  `id` int(10) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `employeeid` varchar(20),
+  `email` varchar(250),
+  `password` varchar(50),
+  `role` int(10) NOT NULL,
+  FOREIGN KEY(role) REFERENCES role(id)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- INSERT INTO user VALUES (employeeid=1, email="email", password="passwod", role=1);
+
+CREATE TABLE `post` (
+  `id` int(10) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `userid` int(10) NOT NULL,
+  FOREIGN KEY(userid) REFERENCES user(id),
+  `description` varchar(250),
+  `type` int(10) NOT NULL,
+  FOREIGN KEY(type) REFERENCES posttype(id),
+  `created_date` date,
+  `closed_date` date
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `message` (
+  `id` int(10) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `postid` int(10) NOT NULL,
+  FOREIGN KEY(postid) REFERENCES post(id),
+  `text` varchar(250),
+  `created_date` date,
+  `closed_date` date
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `sample`
+--
 
 --
 -- Indexes for dumped tables

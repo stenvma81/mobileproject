@@ -9,7 +9,6 @@ x-common-variables: &common-variables
 #define which docker images should be used/built
 #introduce env variables, designate ports etc.
 services:
-
   mysql-db:
     image: mysql:latest
     # Comment next line if running on Intel/AMD machine
@@ -31,7 +30,7 @@ services:
       - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
 
   phpmyadmin:
-  # defines dependency to above mysq-db - will not start before it
+    # defines dependency to above mysq-db - will not start before it
     depends_on:
       - mysql-db
     image: phpmyadmin:latest
@@ -74,4 +73,3 @@ services:
     links:
       - server
     command: npm start
-  
