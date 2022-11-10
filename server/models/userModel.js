@@ -1,6 +1,6 @@
 'use strict';
 
-const pool = require('..database/db');
+const pool = require('../database/db');
 const promisePool = pool.promise();
 
 // get user for login

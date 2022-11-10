@@ -2,10 +2,22 @@ const cors = require('cors');
 const express = require('express');
 const mysql = require('mysql');
 const pool = require('./database/db')
+const basicAuth = require('express-basic-auth');
 
 const app = express();
 
-app.use(cors());
+var corsOptions = {
+  origin: "http://localhost:8081"
+};
+
+app.use(cors(corsOptions));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// simple route
+app.get("/", (req, res) => {
+  res.json({ message: "Test message" });
+});
 
 app.listen(process.env.REACT_APP_SERVER_PORT, () => {
   console.log(`App server now listening on port ${process.env.REACT_APP_SERVER_PORT}`);
