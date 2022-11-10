@@ -1,12 +1,16 @@
-FROM node:12
+FROM node:16
 
-RUN mkdir -p /app
-WORKDIR /app
+# Create app directory
+WORKDIR /usr/src/app
 
-COPY package.json /app
-
-COPY . /app
+# Install app dependencies
+COPY package*.json ./
 
 RUN npm install
+# If you are building your code for production
+# RUN npm ci --only=production
 
-CMD ["npm", "start"]
+# Bundle app source
+COPY . .
+
+CMD [ "node", "index.js" ]
