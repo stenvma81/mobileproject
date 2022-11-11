@@ -1,4 +1,4 @@
-version: '3.4'
+version: "3.4"
 
 x-common-variables: &common-variables
   MYSQL_USER: testikayttaja
@@ -12,15 +12,16 @@ services:
   mysql-db:
     image: mysql:latest
     # Comment next line if running on Intel/AMD machine
-    platform: linux/arm64/v8
+    # platform: linux/arm64/v8
     container_name: mysql-db-container
     # TODO: figure out authentication issue between versions.
-    # This line allows the use of native db login
+    # This line allows the use of native db login (check for alternatives)
     command: --default-authentication-plugin=mysql_native_password
     environment:
       <<: *common-variables
       MYSQL_HOST: localhost
       MYSQL_ROOT_PASSWORD: root
+    #expose ports for DB access through localhost (localPort:containerPort)
     ports:
       - 3306:3306
     restart: unless-stopped
@@ -34,7 +35,7 @@ services:
     depends_on:
       - mysql-db
     image: phpmyadmin:latest
-    platform: linux/arm64/v8
+    # platform: linux/arm64/v8
     container_name: phpadmin_container
     environment:
       PMA_HOST: mysql-db
@@ -45,6 +46,7 @@ services:
     restart: always
 
   server:
+  # defines the folder (with a Dockerfile) from which the image will be built
     build: ./server
     container_name: node_server_container
     depends_on:
@@ -58,7 +60,7 @@ services:
       - ./server:/app
     links:
       - mysql-db
-    command: npm start
+    # command: npm start
 
   client:
     build: ./client
