@@ -71,7 +71,7 @@ CREATE TABLE `post` (
   `description` varchar(250),
   `type` int(10) NOT NULL,
   FOREIGN KEY(type) REFERENCES posttype(id),
-  `created_date` date,
+  `created_date` date DEFAULT(CURRENT_TIMESTAMP),
   `closed_date` date
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -80,7 +80,7 @@ CREATE TABLE `message` (
   `postid` int(10) NOT NULL,
   FOREIGN KEY(postid) REFERENCES post(id),
   `text` varchar(250),
-  `created_date` date,
+  `created_date` date DEFAULT(CURRENT_TIMESTAMP),
   `closed_date` date
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -88,6 +88,11 @@ CREATE TABLE `message` (
 -- Dumping data for table `sample`
 --
 
+-- Insert for test
+INSERT INTO `role` (`id`, `description`) VALUES (1, 'admin');
+INSERT INTO `posttype`(`id`, `title`) VALUES (1, 'valaistus');
+INSERT INTO `user`(employeeid, email, password, role) VALUES ('743833', 'user@test.com', 'somePW', 1);
+INSERT INTO `post` (userid, description, type) VALUES (1, 'Some desc', 1);
 --
 -- Indexes for dumped tables
 --
