@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import React from 'react'
-import { TestComponent } from './components';
+import { TestComponent, LoginForm } from './components';
 
 function App() {
   return (
