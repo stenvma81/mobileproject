@@ -88,11 +88,16 @@ CREATE TABLE `message` (
 -- Dumping data for table `sample`
 --
 
+INSERT INTO `role` (`id`, `description`) VALUES (1, 'admin'), (2, 'user');
+INSERT INTO `posttype`(`id`, `title`) VALUES 
+(1, 'feeback'),
+(2, 'service advice'), 
+(3, 'safety advice');
+
 -- Insert for test
-INSERT INTO `role` (`id`, `description`) VALUES (1, 'admin');
-INSERT INTO `posttype`(`id`, `title`) VALUES (1, 'valaistus');
 INSERT INTO `user`(employeeid, email, password, role) VALUES ('743833', 'user@test.com', 'somePW', 1);
 INSERT INTO `post` (userid, description, type) VALUES (1, 'Some desc', 1);
+INSERT INTO message(postid, text) VALUES (1, "This is a message");
 --
 -- Indexes for dumped tables
 --
