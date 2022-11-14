@@ -1,4 +1,4 @@
-const { addPost, getAllPosts } = require('../models/postModel');
+const { addPost, getAllPosts, closePost } = require('../models/postModel');
 
 const post_post = async (req, res) => {
   try {
@@ -22,7 +22,20 @@ const posts_get = async (req, res) => {
   }
 };
 
+const post_close = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const post = await closePost(id);
+    if (post) {
+      res.json({ message: `Post closed` });
+    }
+  } catch (error) {
+    console.error(`postController: ${error.message}`);
+  }
+};
+
 module.exports = {
   post_post,
   posts_get,
+  post_close,
 };

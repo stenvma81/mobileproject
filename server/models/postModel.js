@@ -24,7 +24,20 @@ const getAllPosts = async () => {
   }
 };
 
+const closePost = async (id) => {
+  try {
+    const [rows] = await promisePool.execute(
+      `UPDATE post SET closed_date = CURRENT_TIMESTAMP WHERE id = ?`,
+      [id]
+    );
+    return rows.affectedRows === 1;
+  } catch (error) {
+    console.error('postModel closePost', error.message);
+  }
+};
+
 module.exports = {
   addPost,
   getAllPosts,
+  closePost,
 };
