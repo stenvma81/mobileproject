@@ -1,14 +1,18 @@
 const cors = require('cors');
 const express = require('express');
 const mysql = require('mysql');
-const pool = require('./database/db')
+const pool = require('./database/db');
 
 const app = express();
 
 app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.listen(process.env.REACT_APP_SERVER_PORT, () => {
-  console.log(`App server now listening on port ${process.env.REACT_APP_SERVER_PORT}`);
+  console.log(
+    `App server now listening on port ${process.env.REACT_APP_SERVER_PORT}`
+  );
 });
 
 /*
@@ -52,5 +56,7 @@ app.get('/test', (req, res) => {
     */
 
 const testRoute = require('./routes/testRoute');
+const postRoute = require('./routes/postRoute');
 
 app.use('/test', testRoute);
+app.use('/post', postRoute);
