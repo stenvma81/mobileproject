@@ -5,8 +5,8 @@ const promisePool = pool.promise();
 const addPost = async (post) => {
   try {
     const [rows] = await promisePool.execute(
-      'INSERT INTO post (userid, description, type) VALUES (?, ?, ?)',
-      [post.userid, post.description, post.type]
+      'INSERT INTO post (userid, description, type, title, location) VALUES (?, ?, ?, ?, ?)',
+      [post.userid, post.description, post.type, post.title, post.location]
     );
     return rows.insertid;
   } catch (error) {

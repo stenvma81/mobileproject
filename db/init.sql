@@ -68,7 +68,9 @@ CREATE TABLE `post` (
   `id` int(10) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `userid` int(10) NOT NULL,
   FOREIGN KEY(userid) REFERENCES user(id),
+  `title` varchar(50),
   `description` varchar(250),
+  `location` varchar(50),
   `type` int(10) NOT NULL,
   FOREIGN KEY(type) REFERENCES posttype(id),
   `created_date` date DEFAULT(CURRENT_TIMESTAMP),
@@ -96,7 +98,7 @@ INSERT INTO `posttype`(`id`, `title`) VALUES
 
 -- Insert for test
 INSERT INTO `user`(employeeid, email, password, role) VALUES ('743833', 'user@test.com', 'somePW', 1);
-INSERT INTO `post` (userid, description, type) VALUES (1, 'Some desc', 1);
+INSERT INTO `post` (userid, description, type, title, location) VALUES (1, 'Some desc', 1, "Vessa rikki", "Vessa kerros 2");
 INSERT INTO message(postid, text) VALUES (1, "This is a message");
 --
 -- Indexes for dumped tables

@@ -3,9 +3,8 @@ const { addPost, getAllPosts } = require('../models/postModel');
 const post_post = async (req, res) => {
   try {
     const post = req.body;
-    await addPost(post);
+    const id = await addPost(post);
     res.json({ message: `Post created with id: ${id}`, id: id });
-    return;
   } catch (error) {
     console.error('controller postPost', error.message);
   }
