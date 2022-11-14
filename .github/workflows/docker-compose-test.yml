@@ -18,23 +18,23 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v1
 
+    - name: Start containers
+      run: docker-compose -f "docker-compose.yml" up -d --build
+      
     - name: Collect docker logs on failure
       if: "!success()"
       uses: jwalton/gh-docker-logs@v1
       with:
         dest: './logs-docs'
-
-    - name: Start containers
-      run: docker-compose -f "docker-compose.yml" up -d --build
-
-    - name: Stop containers
-      if: always()
-      run: docker-compose -f "docker-compose.yml" down
-
+        
     - name: Upload logs to GitHub
       if: "!success()"
       uses: actions/upload-artifact@main
       with:
         name: logs-docs.tgz
         path: ./logs/logs-docs.tgz
+
+    - name: Stop containers
+      if: always()
+      run: docker-compose -f "docker-compose.yml" down
 
