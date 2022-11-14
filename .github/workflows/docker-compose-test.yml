@@ -33,7 +33,7 @@ jobs:
 
     - name: Upload logs to GitHub
       if: "!success()"
-      uses: actions/upload-artifact@master
+      uses: actions/upload-artifact@main
       with:
         name: logs-docs.tgz
         path: ./logs/logs-docs.tgz
