@@ -4,7 +4,12 @@ import logo from './logo.svg';
 import './App.css';
 
 function callServer() {
+  console.log("Token: ", sessionStorage.getItem('token'));
   axios.get(`http://localhost:${process.env.REACT_APP_SERVER_PORT}/test`, {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
+    },
     params: {
       table: 'sample',
     },
