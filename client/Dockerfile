@@ -1,5 +1,5 @@
 #define node image to be used
-FROM node:17-alpine
+FROM node:18-alpine
 #define working directory
 RUN mkdir -p /app
 WORKDIR /app
