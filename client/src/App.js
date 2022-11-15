@@ -1,8 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
-import React from 'react'
+import React, { useState } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { TestComponent, Preferences, Dashboard } from './components';
+import { TestComponent, Preferences, Dashboard, Login } from './components';
 
 /*
 function App() {
@@ -29,12 +29,17 @@ function App() {
 */
 
 function App() {
+  const [token, setToken] = useState();
+
+  if(!token) {
+    return <Login setToken={setToken} />
+  }
+
   return (
     <div className="wrapper">
       <h1>Application</h1>
       <BrowserRouter>
         <Routes>
-        <Route path="/" element= {<TestComponent/>}/>
           <Route path="/dashboard" element= {<Dashboard/>}/>
           <Route path="/preferences" element= {<Preferences/>}/>
         </Routes>
