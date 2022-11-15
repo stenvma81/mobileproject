@@ -55,11 +55,16 @@ const testRoute = require('./routes/testRoute');
 const postRoute = require('./routes/postRoute');
 app.use('/post', postRoute);
 
+const messageRoute = require('./routes/messageRoute');
+app.use('/message', messageRoute);
+
 const authRoute = require('./routes/authRoute');
 
 app.use('/test', testRoute);
 app.use('/auth', authRoute);
 
 app.listen(process.env.REACT_APP_SERVER_PORT, () => {
-  console.log(`App server now listening on port ${process.env.REACT_APP_SERVER_PORT}`);
+  console.log(
+    `App server now listening on port ${process.env.REACT_APP_SERVER_PORT}`
+  );
 });
