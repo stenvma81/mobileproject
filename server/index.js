@@ -1,7 +1,7 @@
 const cors = require('cors');
 const express = require('express');
 const mysql = require('mysql');
-const pool = require('./database/db')
+const pool = require('./database/db');
 
 const app = express();
 
@@ -51,6 +51,10 @@ app.get('/test', (req, res) => {
 
 const passport = require('./utils/pass');
 const testRoute = require('./routes/testRoute');
+
+const postRoute = require('./routes/postRoute');
+app.use('/post', postRoute);
+
 const authRoute = require('./routes/authRoute');
 
 app.use('/test', testRoute);
