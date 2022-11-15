@@ -69,6 +69,18 @@ const getPostsByUser = async (userid) => {
   }
 };
 
+const getPostsByState = async (stateid) => {
+  try {
+    const [rows] = await promisePool.execute(
+      `${getPostsSql} WHERE post.state = ?`,
+      [stateid]
+    );
+    return rows;
+  } catch (error) {
+    console.error('getPostsByUser', error.message);
+  }
+};
+
 const closePost = async (id) => {
   try {
     const [rows] = await promisePool.execute(
@@ -108,4 +120,5 @@ module.exports = {
   getPostById,
   getPostsByType,
   getPostsByUser,
+  getPostsByState,
 };
