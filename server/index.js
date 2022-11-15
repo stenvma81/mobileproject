@@ -6,10 +6,8 @@ const pool = require('./database/db')
 const app = express();
 
 app.use(cors());
-
-app.listen(process.env.REACT_APP_SERVER_PORT, () => {
-  console.log(`App server now listening on port ${process.env.REACT_APP_SERVER_PORT}`);
-});
+app.use(express.json()); // for parsing application/json
+app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 /*
 app.get('/test', (req, res) => {
@@ -52,5 +50,17 @@ app.get('/test', (req, res) => {
     */
 
 const testRoute = require('./routes/testRoute');
+const authRoute = require('./routes/authRoute');
 
 app.use('/test', testRoute);
+app.use('/auth', authRoute);
+app.use('/login', (req, res) => {
+  console.log("index.js /login: ", req.params)
+  res.send({
+    token: 'this_is_a_mock_token'
+  });
+});
+
+app.listen(process.env.REACT_APP_SERVER_PORT, () => {
+  console.log(`App server now listening on port ${process.env.REACT_APP_SERVER_PORT}`);
+});
