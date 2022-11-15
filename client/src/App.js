@@ -1,8 +1,10 @@
 import logo from './logo.svg';
 import './App.css';
 import React from 'react'
-import { TestComponent } from './components';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { TestComponent, Preferences, Dashboard } from './components';
 
+/*
 function App() {
   return (
     <div className="App">
@@ -21,6 +23,22 @@ function App() {
           Learn React to be a king
         </a>
       </header>
+    </div>
+  );
+}
+*/
+
+function App() {
+  return (
+    <div className="wrapper">
+      <h1>Application</h1>
+      <BrowserRouter>
+        <Routes>
+        <Route path="/" element= {<TestComponent/>}/>
+          <Route path="/dashboard" element= {<Dashboard/>}/>
+          <Route path="/preferences" element= {<Preferences/>}/>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
