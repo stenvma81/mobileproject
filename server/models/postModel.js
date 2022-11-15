@@ -15,15 +15,17 @@ const addPost = async (post) => {
   }
 };
 
+const getPostsSql = `
+    SELECT post.id, user.employeeid as user, description, post.title, location, poststate.title as state, posttype.title as type, created_date, closed_date 
+    FROM post
+    INNER JOIN user ON userid = user.id 
+    INNER JOIN posttype ON type = posttype.id
+    INNER JOIN poststate ON state = poststate.id
+`;
+
 const getAllPosts = async () => {
   try {
-    const [rows] = await promisePool.execute(
-      `SELECT post.id, user.employeeid as user, description, post.title, location, poststate.title as state, posttype.title as type, created_date, closed_date 
-        FROM post
-        INNER JOIN user ON userid = user.id 
-        INNER JOIN posttype ON type = posttype.id
-        INNER JOIN poststate ON state = poststate.id`
-    );
+    const [rows] = await promisePool.execute(getPostsSql);
     console.log('postModel getAllPosts: ', rows);
     return rows;
   } catch (e) {
@@ -34,19 +36,24 @@ const getAllPosts = async () => {
 const getPostById = async (id) => {
   try {
     const [rows] = await promisePool.execute(
-      `
-        SELECT post.id, user.employeeid as user, description, poststate.title as state, post.title, location, posttype.title as type, created_date, closed_date 
-        FROM post
-        INNER JOIN user ON userid = user.id 
-        INNER JOIN posttype ON type = posttype.id
-        INNER JOIN poststate ON state = poststate.id
-        WHERE post.id = ?
-        `,
+      `${getPostsSql} WHERE post.id = ?`,
       [id]
     );
     return rows[0];
   } catch (error) {
     console.error('getPostById', error.message);
+  }
+};
+
+const getPostsByType = async (typeid) => {
+  try {
+    const [rows] = await promisePool.execute(
+      `${getPostsSql} WHERE post.type = ?`,
+      [typeid]
+    );
+    return rows;
+  } catch (error) {
+    console.error('getPostsByType', error.message);
   }
 };
 
@@ -87,4 +94,5 @@ module.exports = {
   closePost,
   modifyPost,
   getPostById,
+  getPostsByType,
 };

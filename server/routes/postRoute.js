@@ -8,6 +8,7 @@ const {
   post_close,
   post_modify,
   post_get_by_id,
+  posts_get_by_type,
 } = require('../controllers/postController');
 const router = express.Router();
 
@@ -19,7 +20,7 @@ router.route('/close/:id').put(post_close);
 
 // router.route('/user/id').get(posts_get).post(post_post);
 
-// router.route('/type').get(posts_get);
+router.route('/type/:id').get(posts_get_by_type);
 
 // router.route('/state').get(posts_get).post(post_post);
 
