@@ -57,6 +57,18 @@ const getPostsByType = async (typeid) => {
   }
 };
 
+const getPostsByUser = async (userid) => {
+  try {
+    const [rows] = await promisePool.execute(
+      `${getPostsSql} WHERE post.userid = ?`,
+      [userid]
+    );
+    return rows;
+  } catch (error) {
+    console.error('getPostsByUser', error.message);
+  }
+};
+
 const closePost = async (id) => {
   try {
     const [rows] = await promisePool.execute(
@@ -95,4 +107,5 @@ module.exports = {
   modifyPost,
   getPostById,
   getPostsByType,
+  getPostsByUser,
 };
