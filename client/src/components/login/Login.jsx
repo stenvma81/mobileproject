@@ -2,12 +2,16 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 async function loginUser(credentials) {
+    console.log("loginUser: ", credentials);
     return fetch(`http://localhost:8000/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(credentials)
+      body: JSON.stringify(credentials),
+      params: {
+        user: "kakkapylly"
+      }
     })
       .then(data => data.json())
    }
