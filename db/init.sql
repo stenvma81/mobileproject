@@ -53,6 +53,11 @@ CREATE TABLE `posttype` (
   `title` varchar(20)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+CREATE TABLE `poststate` (
+  `id` int(10) NOT NULL PRIMARY KEY,
+  `title` varchar(20)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 CREATE TABLE `user` (
   `id` int(10) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `employeeid` varchar(20),
@@ -73,6 +78,8 @@ CREATE TABLE `post` (
   `location` varchar(50),
   `type` int(10) NOT NULL,
   FOREIGN KEY(type) REFERENCES posttype(id),
+  `state` int DEFAULT(0),
+  FOREIGN KEY(state) REFERENCES poststate(id),
   `created_date` date DEFAULT(CURRENT_TIMESTAMP),
   `closed_date` date
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -95,6 +102,11 @@ INSERT INTO `posttype`(`id`, `title`) VALUES
 (1, 'feeback'),
 (2, 'service advice'), 
 (3, 'safety advice');
+
+INSERT INTO `poststate`(`id`, `title`) VALUES 
+(0, 'open'),
+(1, 'processing'), 
+(2, 'closed');
 
 -- Insert for test
 INSERT INTO `user`(employeeid, email, password, role) VALUES ('743833', 'user@test.com', 'somePW', 1);
