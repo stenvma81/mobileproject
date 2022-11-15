@@ -17,4 +17,10 @@ router.route('/:id').get(post_get_by_id).put(post_modify);
 
 router.route('/close/:id').put(post_close);
 
+// router.route('/user/id').get(posts_get).post(post_post);
+
+// router.route('/type').get(posts_get);
+
+// router.route('/state').get(posts_get).post(post_post);
+
 module.exports = router;

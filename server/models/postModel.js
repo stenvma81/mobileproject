@@ -18,10 +18,11 @@ const addPost = async (post) => {
 const getAllPosts = async () => {
   try {
     const [rows] = await promisePool.execute(
-      `SELECT post.id, user.employeeid as user, description, post.title, location, posttype.title as type, created_date, closed_date 
+      `SELECT post.id, user.employeeid as user, description, post.title, location, poststate.title as state, posttype.title as type, created_date, closed_date 
         FROM post
         INNER JOIN user ON userid = user.id 
-        INNER JOIN posttype ON type = posttype.id`
+        INNER JOIN posttype ON type = posttype.id
+        INNER JOIN poststate ON state = poststate.id`
     );
     console.log('postModel getAllPosts: ', rows);
     return rows;
@@ -34,10 +35,11 @@ const getPostById = async (id) => {
   try {
     const [rows] = await promisePool.execute(
       `
-        SELECT post.id, user.employeeid as user, description, post.title, location, posttype.title as type, created_date, closed_date 
+        SELECT post.id, user.employeeid as user, description, poststate.title as state, post.title, location, posttype.title as type, created_date, closed_date 
         FROM post
         INNER JOIN user ON userid = user.id 
         INNER JOIN posttype ON type = posttype.id
+        INNER JOIN poststate ON state = poststate.id
         WHERE post.id = ?
         `,
       [id]
@@ -63,8 +65,15 @@ const closePost = async (id) => {
 const modifyPost = async (post) => {
   try {
     const [rows] = await promisePool.execute(
-      `UPDATE post SET title = ?, description = ?, location = ?, type = ? WHERE id = ?`,
-      [post.title, post.description, post.location, post.type, post.id]
+      `UPDATE post SET title = ?, description = ?, location = ?, type = ?, state = ? WHERE id = ?`,
+      [
+        post.title,
+        post.description,
+        post.location,
+        post.type,
+        post.state,
+        post.id,
+      ]
     );
     return rows.affectedRows === 1;
   } catch (error) {

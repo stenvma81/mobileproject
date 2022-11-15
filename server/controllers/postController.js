@@ -37,10 +37,8 @@ const post_get_by_id = async (req, res, next) => {
 const post_close = async (req, res) => {
   try {
     const id = req.params.id;
-    const post = await closePost(id);
-    if (post) {
-      res.json({ message: `Post closed` });
-    }
+    const postClosed = await closePost(id);
+    res.json({ message: `Post closed: ${postClosed}` });
   } catch (error) {
     console.error(`postController: ${error.message}`);
   }
