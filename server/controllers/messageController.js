@@ -1,6 +1,10 @@
 'use strict';
 
-const { getMessagesByPost, addMessage } = require('../models/messageModel');
+const {
+  getMessagesByPost,
+  addMessage,
+  closeMessage,
+} = require('../models/messageModel');
 const { httpError } = require('../utils/errors');
 
 const messages_get_by_post = async (req, res, next) => {
@@ -19,4 +23,10 @@ const message_add = async (req, res) => {
   res.json({ message: `Message created with id: ${id}` });
 };
 
-module.exports = { messages_get_by_post, message_add };
+const message_close = async (req, res) => {
+  const messageid = req.params.id;
+  const messageClosed = await closeMessage(messageid);
+  res.json({ message: `Message closed: ${messageClosed}` });
+};
+
+module.exports = { messages_get_by_post, message_add, message_close };

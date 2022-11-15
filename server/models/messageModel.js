@@ -9,7 +9,6 @@ const getMessagesByPost = async (postid) => {
       `SELECT * FROM message WHERE postid = ?`,
       [postid]
     );
-    console.log(`id: ${postid} size: ${rows.length}`);
     return rows;
   } catch (error) {
     console.error('getMessagesByPost', error.message);
@@ -28,4 +27,16 @@ const addMessage = async (message) => {
   }
 };
 
-module.exports = { getMessagesByPost, addMessage };
+const closeMessage = async (messageid) => {
+  try {
+    const [rows] = await promisePool.execute(
+      `UPDATE message SET closed_date = CURRENT_TIMESTAMP WHERE id = ?`,
+      [messageid]
+    );
+    return rows.affectedRows === 1;
+  } catch (error) {
+    console.error('closeMessage', error.message);
+  }
+};
+
+module.exports = { getMessagesByPost, addMessage, closeMessage };
