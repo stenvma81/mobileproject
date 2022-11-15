@@ -6,14 +6,8 @@ const pool = require('./database/db');
 const app = express();
 
 app.use(cors());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-app.listen(process.env.REACT_APP_SERVER_PORT, () => {
-  console.log(
-    `App server now listening on port ${process.env.REACT_APP_SERVER_PORT}`
-  );
-});
+app.use(express.json()); // for parsing application/json
+app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 /*
 app.get('/test', (req, res) => {
@@ -55,8 +49,17 @@ app.get('/test', (req, res) => {
     });
     */
 
+const passport = require('./utils/pass');
 const testRoute = require('./routes/testRoute');
+
 const postRoute = require('./routes/postRoute');
+app.use('/post', postRoute);
+
+const authRoute = require('./routes/authRoute');
 
 app.use('/test', testRoute);
-app.use('/post', postRoute);
+app.use('/auth', authRoute);
+
+app.listen(process.env.REACT_APP_SERVER_PORT, () => {
+  console.log(`App server now listening on port ${process.env.REACT_APP_SERVER_PORT}`);
+});
