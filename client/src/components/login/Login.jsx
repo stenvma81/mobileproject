@@ -3,15 +3,13 @@ import PropTypes from 'prop-types';
 
 async function loginUser(credentials) {
     console.log("loginUser: ", credentials);
-    const userCredentials = serializeJson(credentials)
-    console.log("loginUser: ", userCredentials);
 
-    return fetch(`http://localhost:8000/login`, {
+    return fetch(`http://localhost:8000/auth/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(userCredentials),
+      body: JSON.stringify(credentials),
     })
       .then(data => data.json())
    }
