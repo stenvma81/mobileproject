@@ -3,6 +3,7 @@ import axios from 'axios';
 import logo from './logo.svg';
 import './App.css';
 import { usePosts } from '../../hooks/ApiHooks';
+import { useMessage } from '../../hooks/MessageHooks';
 
 const dormData = {
   userid: 2, description: null, type: 1, title: null, location: null, state: 2
@@ -41,6 +42,7 @@ function App() {
 
 export function TestComponent() {
   const { loadSinglePost, uploadPost, closePost, modifyPost, loadPostByUserId } = usePosts();
+  const { loadMessagesByPostId } = useMessage();
 
   return (
     <div className="App">
@@ -60,7 +62,7 @@ export function TestComponent() {
         >
         Learn React to be a king
        </a>
-       <button onClick={() => {loadPostByUserId(2)}}>
+       <button onClick={() => {loadPostByUserId(2); loadMessagesByPostId(1)}}>
         Click me
       </button>
       </header>

@@ -9,6 +9,7 @@ const getMessagesByPost = async (postid) => {
       `SELECT * FROM message WHERE postid = ?`,
       [postid]
     );
+    console.log("messageModel: getMessagesByPost ", rows)
     return rows;
   } catch (error) {
     console.error('getMessagesByPost', error.message);
