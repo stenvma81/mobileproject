@@ -5,7 +5,11 @@ import './App.css';
 import { usePosts } from '../../hooks/ApiHooks';
 
 const formData = {
-  userid: 1, description: null, type: 1, title: null, location: null
+  userid: 1, description: null, type: 1, title: null, location: null, state: 2
+};
+
+const updateData = {
+  description: null, type: 1, title: null, location: null, state: 2
 };
 
 /*
@@ -32,7 +36,7 @@ function App() {
 */
 
 export function TestComponent() {
-  const { loadSinglePost, uploadPost, closePost } = usePosts();
+  const { loadSinglePost, uploadPost, closePost, modifyPost } = usePosts();
 
   return (
     <div className="App">
@@ -52,7 +56,7 @@ export function TestComponent() {
         >
         Learn React to be a king
        </a>
-       <button onClick={() => {loadSinglePost(1); uploadPost(formData); closePost(2)}}>
+       <button onClick={() => {modifyPost(updateData, 8)}}>
         Click me
       </button>
       </header>

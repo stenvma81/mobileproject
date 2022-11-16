@@ -81,11 +81,33 @@ const usePosts = () => {
         }
       };
 
+      const modifyPost = async (formData, id) => {  
+        try {
+          setLoading(true);
+          const options = {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData),
+          };
+          console.log("ApiHooks: modifyPost ", options.body)
+          const result = await doFetch(postUrl + id, options);
+          return result;
+        } catch (e) {
+          console.log('modifyPost error', e);
+          throw new Error(e.message);
+        } finally {
+          setLoading(false);
+        }
+      };
+
     return {
         loadPosts,
         loadSinglePost,
         uploadPost,
-        closePost
+        closePost,
+        modifyPost
       };
 }
 

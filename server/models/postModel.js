@@ -96,6 +96,7 @@ const closePost = async (id) => {
 
 const modifyPost = async (post) => {
   try {
+    console.log("postModel: modifyPost ", post);
     const [rows] = await promisePool.execute(
       `UPDATE post SET title = ?, description = ?, location = ?, type = ?, state = ? WHERE id = ?`,
       [

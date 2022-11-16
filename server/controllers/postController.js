@@ -81,6 +81,7 @@ const post_close = async (req, res) => {
 const post_modify = async (req, res) => {
   try {
     const post = req.body;
+    console.log("postController: post_modify: ", post, req.params.id)
     post.id = req.params.id;
     const modified = await modifyPost(post);
     res.json({ message: `Post modified: ${modified}` });
