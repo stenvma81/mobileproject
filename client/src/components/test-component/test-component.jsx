@@ -4,10 +4,8 @@ import logo from './logo.svg';
 import './App.css';
 import { usePosts } from '../../hooks/ApiHooks';
 
-
-function GetPosts() {
-  const { loadPosts } = usePosts();
-  loadPosts();
+const formData = {
+  userid: 1, description: null, type: 1, title: null, location: null
 }
 
 /*
@@ -34,11 +32,12 @@ function App() {
 */
 
 export function TestComponent() {
+  const { loadSinglePost, uploadPost } = usePosts();
+
   return (
     <div className="App">
       <header className="App-header">
         <div>
-          {GetPosts()}
         This is not a sample component
         </div>
         <img src={logo} className="App-logo" alt="logo" />
@@ -53,6 +52,9 @@ export function TestComponent() {
         >
         Learn React to be a king
        </a>
+       <button onClick={() => {loadSinglePost(1); uploadPost(formData)}}>
+        Click me
+      </button>
       </header>
     </div>
   );

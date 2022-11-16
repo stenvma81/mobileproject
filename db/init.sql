@@ -81,7 +81,7 @@ CREATE TABLE `post` (
   `state` int DEFAULT(0),
   FOREIGN KEY(state) REFERENCES poststate(id),
   `created_date` date DEFAULT(CURRENT_TIMESTAMP),
-  `closed_date` date
+  `closed_date` date DEFAULT(NULL)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE `message` (

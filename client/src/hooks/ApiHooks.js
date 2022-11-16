@@ -32,24 +32,40 @@ const usePosts = () => {
             return {};
           }
         }; 
-    
-        const callServer = async () => {
-            console.log("Token: ", sessionStorage.getItem('token'));
-            axios.get(testUrl, {
-              headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
-              },
-              params: {
-                table: 'sample',
-              },
-            }).then((response) => {
-              console.log(response.data);
-            });
-          }
+
+    const loadSinglePost = async (id) => {
+    try {
+        const postData = await doFetch(postUrl + id);
+        console.log('Apihooks loadSinglePost: success', postData);
+        return postData;
+      } catch (e) {
+        console.log('ApiHooks: loadSinglePost: ', e.message);
+        return {};
+      }
+    };
+
+    const uploadPost = async (formData) => {
+        try {
+          setLoading(true);
+          const options = {
+            method: 'POST',
+            body: formData,
+          };
+          console.log("ApiHooks: uploadPost ", options.body)
+          const result = await doFetch(postUrl, options);
+          return result;
+        } catch (e) {
+          console.log('uploadMedia error', e);
+          throw new Error(e.message);
+        } finally {
+          setLoading(false);
+        }
+      };
 
     return {
-        loadPosts, callServer
+        loadPosts,
+        loadSinglePost,
+        uploadPost
       };
 }
 
