@@ -13,6 +13,7 @@ const {
 const { httpError } = require('../utils/errors');
 
 const post_post = async (req, res) => {
+  console.log("postController: post_post", req.method)
   const post = req.body;
   const id = await addPost(post);
   res.json({ message: `Post created with id: ${id}` });

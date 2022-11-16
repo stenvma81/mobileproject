@@ -45,11 +45,15 @@ const usePosts = () => {
     };
 
     const uploadPost = async (formData) => {
+        
         try {
           setLoading(true);
           const options = {
             method: 'POST',
-            body: formData,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData),
           };
           console.log("ApiHooks: uploadPost ", options.body)
           const result = await doFetch(postUrl, options);
@@ -60,6 +64,30 @@ const usePosts = () => {
         } finally {
           setLoading(false);
         }
+/*
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+        myHeaders.append("Cookie", "phpMyAdmin=2276f89b9efaf0f7899da4d66f31b1c6; pma_lang=en");
+
+        var urlencoded = new URLSearchParams();
+        urlencoded.append("userid", "1");
+        urlencoded.append("description", "kakakaka");
+        urlencoded.append("type", "1");
+        urlencoded.append("title", "hihihi");
+        urlencoded.append("location", "hohohoho");
+
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: urlencoded,
+            redirect: 'follow'
+};
+
+fetch("http://localhost:8000/post", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
+  */
       };
 
     return {

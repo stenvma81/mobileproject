@@ -6,7 +6,7 @@ import { usePosts } from '../../hooks/ApiHooks';
 
 const formData = {
   userid: 1, description: null, type: 1, title: null, location: null
-}
+};
 
 /*
 function App() {
