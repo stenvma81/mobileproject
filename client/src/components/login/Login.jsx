@@ -5,7 +5,7 @@ import {loginUrl} from '../../utils/variables'
 async function loginUser(credentials) {
     console.log("loginUser: ", credentials);
 
-    return fetch(`http://localhost:8000/auth/login`, {
+    return fetch(loginUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
