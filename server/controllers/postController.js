@@ -6,6 +6,9 @@ const {
   closePost,
   modifyPost,
   getPostById,
+  getPostsByType,
+  getPostsByUser,
+  getPostsByState,
 } = require('../models/postModel');
 const { httpError } = require('../utils/errors');
 
@@ -32,6 +35,36 @@ const post_get_by_id = async (req, res, next) => {
     return;
   }
   next(httpError('Post not found', 404));
+};
+
+const posts_get_by_type = async (req, res, next) => {
+  const typeid = req.params.id;
+  const posts = await getPostsByType(typeid);
+  if (posts.length > 0) {
+    res.json(posts);
+    return;
+  }
+  next(httpError('Posts not found', 404));
+};
+
+const posts_get_by_user = async (req, res, next) => {
+  const userid = req.params.id;
+  const posts = await getPostsByUser(userid);
+  if (posts.length > 0) {
+    res.json(posts);
+    return;
+  }
+  next(httpError('Posts not found', 404));
+};
+
+const posts_get_by_state = async (req, res, next) => {
+  const stateid = req.params.id;
+  const posts = await getPostsByState(stateid);
+  if (posts.length > 0) {
+    res.json(posts);
+    return;
+  }
+  next(httpError('Posts not found', 404));
 };
 
 const post_close = async (req, res) => {
@@ -61,4 +94,7 @@ module.exports = {
   post_close,
   post_modify,
   post_get_by_id,
+  posts_get_by_type,
+  posts_get_by_user,
+  posts_get_by_state,
 };
