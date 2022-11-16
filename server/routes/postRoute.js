@@ -14,7 +14,8 @@ const {
 } = require('../controllers/postController');
 const router = express.Router();
 
-router.route('/').get(posts_get).post(post_post);
+router.route('/').get(posts_get);
+router.post('/', post_post);
 
 router.route('/:id').get(post_get_by_id).put(post_modify);
 

@@ -2,21 +2,19 @@ import React from 'react';
 import axios from 'axios';
 import logo from './logo.svg';
 import './App.css';
+import { usePosts } from '../../hooks/ApiHooks';
 
-function callServer() {
-  console.log("Token: ", sessionStorage.getItem('token'));
-  axios.get(`http://localhost:${process.env.REACT_APP_SERVER_PORT}/test`, {
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
-    },
-    params: {
-      table: 'sample',
-    },
-  }).then((response) => {
-    console.log(response.data);
-  });
-}
+const dormData = {
+  userid: 2, description: null, type: 1, title: null, location: null, state: 2
+};
+
+const formData = {
+  userid: 2, description: null, type: 1, title: null, location: null, state: 2
+};
+
+const updateData = {
+  description: null, type: 1, title: null, location: null, state: 2
+};
 
 /*
 function App() {
@@ -42,12 +40,13 @@ function App() {
 */
 
 export function TestComponent() {
+  const { loadSinglePost, uploadPost, closePost, modifyPost, loadPostByUserId } = usePosts();
+
   return (
     <div className="App">
       <header className="App-header">
         <div>
         This is not a sample component
-        {callServer()}
         </div>
         <img src={logo} className="App-logo" alt="logo" />
         <p>
@@ -61,6 +60,9 @@ export function TestComponent() {
         >
         Learn React to be a king
        </a>
+       <button onClick={() => {loadPostByUserId(2)}}>
+        Click me
+      </button>
       </header>
     </div>
   );

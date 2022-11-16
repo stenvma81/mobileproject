@@ -81,7 +81,7 @@ CREATE TABLE `post` (
   `state` int DEFAULT(0),
   FOREIGN KEY(state) REFERENCES poststate(id),
   `created_date` date DEFAULT(CURRENT_TIMESTAMP),
-  `closed_date` date
+  `closed_date` date DEFAULT(NULL)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE `message` (
@@ -109,7 +109,8 @@ INSERT INTO `poststate`(`id`, `title`) VALUES
 (2, 'closed');
 
 -- Insert for test
-INSERT INTO `user`(employeeid, email, password, role) VALUES ('743833', 'user@test.com', 'somePW', 1);
+INSERT INTO `user`(employeeid, email, password, role) VALUES ('123456', 'user@test.com', 'somePW', 1);
+INSERT INTO `user`(employeeid, email, password, role) VALUES ('654321', 'user@test.com', 'somePW', 2);
 INSERT INTO `post` (userid, description, type, title, location) VALUES (1, 'Some desc', 1, "Vessa rikki", "Vessa kerros 2");
 INSERT INTO message(postid, text) VALUES (1, "This is a message");
 --
