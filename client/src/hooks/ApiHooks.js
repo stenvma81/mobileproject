@@ -44,6 +44,17 @@ const usePosts = () => {
       }
     };
 
+    const loadPostByUserId = async (userid) => {
+        try {
+            const postData = await doFetch(postUrl + 'user/' + userid);
+            console.log('Apihooks loadPostByUserId: success', postData);
+            return postData;
+          } catch (e) {
+            console.log('ApiHooks: loadPostByUserId: ', e.message);
+            return {};
+          }
+        };
+
     const uploadPost = async (formData) => {  
         try {
           setLoading(true);
@@ -103,11 +114,14 @@ const usePosts = () => {
       };
 
     return {
+        postArray,
+        loading,
         loadPosts,
         loadSinglePost,
         uploadPost,
         closePost,
-        modifyPost
+        modifyPost,
+        loadPostByUserId
       };
 }
 

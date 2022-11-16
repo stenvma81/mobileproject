@@ -110,6 +110,7 @@ INSERT INTO `poststate`(`id`, `title`) VALUES
 
 -- Insert for test
 INSERT INTO `user`(employeeid, email, password, role) VALUES ('123456', 'user@test.com', 'somePW', 1);
+INSERT INTO `user`(employeeid, email, password, role) VALUES ('654321', 'user@test.com', 'somePW', 2);
 INSERT INTO `post` (userid, description, type, title, location) VALUES (1, 'Some desc', 1, "Vessa rikki", "Vessa kerros 2");
 INSERT INTO message(postid, text) VALUES (1, "This is a message");
 --

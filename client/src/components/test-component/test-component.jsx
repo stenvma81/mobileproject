@@ -4,8 +4,12 @@ import logo from './logo.svg';
 import './App.css';
 import { usePosts } from '../../hooks/ApiHooks';
 
+const dormData = {
+  userid: 2, description: null, type: 1, title: null, location: null, state: 2
+};
+
 const formData = {
-  userid: 1, description: null, type: 1, title: null, location: null, state: 2
+  userid: 2, description: null, type: 1, title: null, location: null, state: 2
 };
 
 const updateData = {
@@ -36,7 +40,7 @@ function App() {
 */
 
 export function TestComponent() {
-  const { loadSinglePost, uploadPost, closePost, modifyPost } = usePosts();
+  const { loadSinglePost, uploadPost, closePost, modifyPost, loadPostByUserId } = usePosts();
 
   return (
     <div className="App">
@@ -56,7 +60,7 @@ export function TestComponent() {
         >
         Learn React to be a king
        </a>
-       <button onClick={() => {modifyPost(updateData, 8)}}>
+       <button onClick={() => {loadPostByUserId(2)}}>
         Click me
       </button>
       </header>
