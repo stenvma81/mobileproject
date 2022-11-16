@@ -27,4 +27,11 @@ router.route('/type/:id').get(posts_get_by_type);
 
 router.route('/state/:id').get(posts_get_by_state);
 
+router.post('/',
+    upload.single('media'),
+    testFile,
+    mediaController.make_thumbnail,
+    body('description').isLength({min: 3}).blacklist(';'),
+    mediaController.mediaPost_create);
+
 module.exports = router;

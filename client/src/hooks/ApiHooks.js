@@ -44,8 +44,7 @@ const usePosts = () => {
       }
     };
 
-    const uploadPost = async (formData) => {
-        
+    const uploadPost = async (formData) => {  
         try {
           setLoading(true);
           const options = {
@@ -59,41 +58,34 @@ const usePosts = () => {
           const result = await doFetch(postUrl, options);
           return result;
         } catch (e) {
-          console.log('uploadMedia error', e);
+          console.log('uploadPost error', e);
           throw new Error(e.message);
         } finally {
           setLoading(false);
         }
-/*
-        var myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
-        myHeaders.append("Cookie", "phpMyAdmin=2276f89b9efaf0f7899da4d66f31b1c6; pma_lang=en");
+      };
 
-        var urlencoded = new URLSearchParams();
-        urlencoded.append("userid", "1");
-        urlencoded.append("description", "kakakaka");
-        urlencoded.append("type", "1");
-        urlencoded.append("title", "hihihi");
-        urlencoded.append("location", "hohohoho");
-
-        var requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-            body: urlencoded,
-            redirect: 'follow'
-};
-
-fetch("http://localhost:8000/post", requestOptions)
-  .then(response => response.text())
-  .then(result => console.log(result))
-  .catch(error => console.log('error', error));
-  */
+      const closePost = async (id) => {  
+        try {
+          setLoading(true);
+          const options = {
+            method: 'PUT'
+          };
+          const result = await doFetch(postUrl + 'close/' + id, options);
+          return result;
+        } catch (e) {
+          console.log('closePost error', e);
+          throw new Error(e.message);
+        } finally {
+          setLoading(false);
+        }
       };
 
     return {
         loadPosts,
         loadSinglePost,
-        uploadPost
+        uploadPost,
+        closePost
       };
 }
 

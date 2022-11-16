@@ -32,7 +32,7 @@ function App() {
 */
 
 export function TestComponent() {
-  const { loadSinglePost, uploadPost } = usePosts();
+  const { loadSinglePost, uploadPost, closePost } = usePosts();
 
   return (
     <div className="App">
@@ -52,7 +52,7 @@ export function TestComponent() {
         >
         Learn React to be a king
        </a>
-       <button onClick={() => {loadSinglePost(1); uploadPost(formData)}}>
+       <button onClick={() => {loadSinglePost(1); uploadPost(formData); closePost(2)}}>
         Click me
       </button>
       </header>
