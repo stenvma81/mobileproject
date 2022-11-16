@@ -9,6 +9,10 @@ const dormData = {
   userid: 2, description: null, type: 1, title: null, location: null, state: 2
 };
 
+const messageData = {
+  postid: 1, text: "määhä tänne tekstiä laitan"
+};
+
 const formData = {
   userid: 2, description: null, type: 1, title: null, location: null, state: 2
 };
@@ -42,7 +46,7 @@ function App() {
 
 export function TestComponent() {
   const { loadSinglePost, uploadPost, closePost, modifyPost, loadPostByUserId } = usePosts();
-  const { loadMessagesByPostId } = useMessage();
+  const { loadMessagesByPostId, uploadMessage } = useMessage();
 
   return (
     <div className="App">
@@ -62,7 +66,7 @@ export function TestComponent() {
         >
         Learn React to be a king
        </a>
-       <button onClick={() => {loadPostByUserId(2); loadMessagesByPostId(1)}}>
+       <button onClick={() => {uploadMessage(messageData)}}>
         Click me
       </button>
       </header>

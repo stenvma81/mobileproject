@@ -21,6 +21,26 @@ const useMessage = () => {
         })();
       }, [update]);
 
+      const uploadMessage = async (formData) => {
+        try {
+            console.log("we get here");
+            setLoading(true);
+            const options = {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(formData),
+            };
+            console.log("ApiHooks: uploadMessage ", options.body);
+            const result = await doFetch(messageUrl, options);
+            return result;
+        } catch (e) {
+            console.log('uploadMessage error', e);
+            throw new Error(e.message);
+        }
+      }
+
       const loadMessagesByPostId = async (id) => {
         try {
             const messageData = await doFetch(messageUrl + 'post/' + id);
@@ -31,7 +51,8 @@ const useMessage = () => {
       };
 
     return {
-        loadMessagesByPostId
+        loadMessagesByPostId,
+        uploadMessage
     };
 };
 

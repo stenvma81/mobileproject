@@ -22,6 +22,7 @@ const addMessage = async (message) => {
       `INSERT INTO message(postid, text) VALUES (?, ?)`,
       [message.postid, message.text]
     );
+    console.log("messageModel: addMessage ", rows.insertId)
     return rows.insertId;
   } catch (error) {
     console.error('addMessage', error.message);
