@@ -77,7 +77,7 @@ const getPostsByState = async (stateid) => {
     );
     return rows;
   } catch (error) {
-    console.error('getPostsByUser', error.message);
+    console.error('getPostsByState', error.message);
   }
 };
 
