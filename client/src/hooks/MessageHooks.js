@@ -50,9 +50,26 @@ const useMessage = () => {
         }
       };
 
+      const closeMessage = async (id) => {  
+        try {
+          setLoading(true);
+          const options = {
+            method: 'PUT'
+          };
+          const result = await doFetch(messageUrl + 'close/' + id, options);
+          return result;
+        } catch (e) {
+          console.log('closeMessage error', e);
+          throw new Error(e.message);
+        } finally {
+          setLoading(false);
+        }
+      };
+
     return {
         loadMessagesByPostId,
-        uploadMessage
+        uploadMessage,
+        closeMessage
     };
 };
 

@@ -46,7 +46,7 @@ function App() {
 
 export function TestComponent() {
   const { loadSinglePost, uploadPost, closePost, modifyPost, loadPostByUserId } = usePosts();
-  const { loadMessagesByPostId, uploadMessage } = useMessage();
+  const { loadMessagesByPostId, uploadMessage, closeMessage } = useMessage();
 
   return (
     <div className="App">
@@ -66,7 +66,7 @@ export function TestComponent() {
         >
         Learn React to be a king
        </a>
-       <button onClick={() => {uploadMessage(messageData)}}>
+       <button onClick={() => {uploadMessage(messageData); closeMessage(1)}}>
         Click me
       </button>
       </header>
