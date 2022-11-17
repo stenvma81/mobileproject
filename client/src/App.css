@@ -32,6 +32,22 @@
   padding: 20px;
 }
 
+#message-textfield {
+  border-radius: 15px;
+  padding: 15px;
+  margin-bottom: 10px;
+  max-width: 500px;
+  width: 70%;
+  resize: none;
+}
+
+#send-msg-btn {
+  color: white;
+  background-color: #192B6B;
+  padding: 5px 20px 5px 20px;
+  border-radius: 10px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

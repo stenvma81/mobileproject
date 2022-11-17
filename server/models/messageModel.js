@@ -17,9 +17,12 @@ const getMessagesByPost = async (postid) => {
 
 const addMessage = async (message) => {
   try {
+    console.log(
+      `addMessage called userid: ${message.userid}, postid: ${message.postid}, text: ${message.text}`
+    );
     const [rows] = await promisePool.execute(
-      `INSERT INTO message(postid, text) VALUES (?, ?)`,
-      [message.postid, message.text]
+      `INSERT INTO message(userid, postid, text) VALUES (?, ?, ?)`,
+      [message.userid, message.postid, message.text]
     );
     return rows.insertId;
   } catch (error) {
