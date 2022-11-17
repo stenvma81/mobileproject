@@ -41,7 +41,8 @@ INSERT INTO `sample` (`id`, `name`) VALUES
 (5, 'database'),
 (6, 'for'),
 (7, 'our'),
-(8, 'app');
+(8, 'app'),
+(9, 'app');
 
 CREATE TABLE `role` (
   `id` int(10) NOT NULL PRIMARY KEY,
@@ -49,7 +50,7 @@ CREATE TABLE `role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE `posttype` (
-  `id` int(10) NOT NULL PRIMARY KEY,
+  `id` varchar(10) NOT NULL PRIMARY KEY,
   `title` varchar(20)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 

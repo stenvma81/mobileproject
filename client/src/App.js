@@ -2,25 +2,19 @@ import logo from './logo.svg';
 import './App.css';
 import React from 'react'
 import { TestComponent } from './components';
+// import { FormComponent } from './components/form-component/form-component';
+import { PostFormComponent } from './components/components/postform-component';
 
 function App() {
   return (
-    <div className="App">
+    <div style={{backgroundImage: "url(/nokia_espoo_campus.jpg)", 
+    backgroundRepeat:"no-repeat", 
+    backgroundSize:"cover",
+    height:'110vh',
+    paddingTop: '50px',
+    }}>
       <TestComponent />
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React to be a king
-        </a>
-      </header>
+      <PostFormComponent />
     </div>
   );
 }
