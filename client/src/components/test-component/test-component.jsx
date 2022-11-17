@@ -4,6 +4,8 @@ import logo from './logo.svg';
 import './App.css';
 import { usePosts } from '../../hooks/ApiHooks';
 import { useMessage } from '../../hooks/MessageHooks';
+import Card from '../singlepostcard/Card';
+
 
 const dormData = {
   userid: 2, description: null, type: 1, title: null, location: null, state: 2
@@ -69,7 +71,37 @@ export function TestComponent() {
        <button onClick={() => {uploadMessage(messageData); closeMessage(1)}}>
         Click me
       </button>
+      <SinglePost/>
       </header>
     </div>
   );
+}
+function SinglePost() {
+  const post = {
+      date: "3.2.2022",
+      title: "Liukas parkkipaikka",
+      argumentpoststate: "Tila: ",
+      poststate: "Päättynyt",
+      description: "Parkkipaikka on niin liukas, että pystyssä ei meninaa pysyä. Voisiko sitä hiekoittaa mahdollisimman pian.",
+      argumentplace: "Paikka: ",
+      place: "Karakaaren parkkipaikka",
+      argumentmessage: "Viesti:"
+  };
+
+return (
+  
+                          <Card
+                              argumenpoststate={post.argumentpoststate}
+                              posttate={post.poststate}
+                              title={post.title}
+                              date={post.date}
+                              description={post.description}
+                              argumentplace={post.argumentplace}
+                              place={post.place}
+                              argumentmessage={post.argumentmessage}
+
+                 />
+              
+  
+);
 }
