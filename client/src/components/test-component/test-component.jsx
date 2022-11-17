@@ -1,27 +1,14 @@
-import React from 'react';
-import axios from 'axios';
+import React, { Alert } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { usePosts } from '../../hooks/ApiHooks';
 import { SendMessage } from '../messages/SendMessage'
 import { PostForm } from '../posts/PostForm';
-import { useMessage } from '../../hooks/MessageHooks';
 
-const dormData = {
-  userid: 2, description: null, type: 1, title: null, location: null, state: 2
-};
-
-const messageData = {
-  postid: 1, text: "määhä tänne tekstiä laitan"
-};
-
-const formData = {
-  userid: 2, description: null, type: 1, title: null, location: null, state: 2
-};
-
-const updateData = {
-  description: null, type: 1, title: null, location: null, state: 2
-};
+const alert = () => {
+  return(
+    <Alert severity="info">This is an info alert — check it out!</Alert>
+  )
+}
 
 /*
 function App() {
@@ -47,9 +34,6 @@ function App() {
 */
 
 export function TestComponent() {
-  const { loadSinglePost, uploadPost, closePost, modifyPost, loadPostByUserId } = usePosts();
-  const { loadMessagesByPostId, uploadMessage, closeMessage } = useMessage();
-
   return (
     <div className="App">
       <header className="App-header">
@@ -68,7 +52,7 @@ export function TestComponent() {
         >
         Learn React to be a king
        </a>
-       <button onClick={() => {uploadMessage(messageData); closeMessage(1)}}>
+       <button onClick={() => {alert()}}>
         Click me
       </button>
       <SendMessage />
