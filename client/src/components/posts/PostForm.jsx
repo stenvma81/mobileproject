@@ -34,8 +34,9 @@ export function PostForm() {
 
             <label htmlFor="location">Location</label>
             <input type="text" name="location" id="location" value={location} onChange={(e) => setLocation(e.target.value)} />
+            <div>
             <input type="button" name="cardbutton" id="cardbutton" value="Choose on map" />
-
+            </div>
             <label htmlFor="posttype">Post type</label>
 
             <select name="posttype" id="posttype-select" value={posttype} onChange={(e) => setPosttype(e.target.value)}>
@@ -44,9 +45,9 @@ export function PostForm() {
             <option value="safety advice">Safety Advice</option>
             <option value="feedback">Feedback</option>
             </select>
-
+            <div>
             <input type="button" name="photobutton" id="photobutton" value="Add a photo" />
-    
+            </div>
             <button type="send" name="send" id="send">Send</button>
             </form>
         </div>

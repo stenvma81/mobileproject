@@ -1,8 +1,6 @@
 .container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    position: relative;
+    width: 300px;
     display: flex;
     flex-direction: column;
     align-items: baseline;
@@ -17,6 +15,7 @@ label {
     font-size: 18px;
     margin-bottom: 10px;
     font-family: sans-serif;
+    color: rgb(22, 27, 99)
 }
 
 input[type=text] {
