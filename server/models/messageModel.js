@@ -9,6 +9,7 @@ const getMessagesByPost = async (postid) => {
       `SELECT * FROM message WHERE postid = ?`,
       [postid]
     );
+    console.log("messageModel: getMessagesByPost ", rows)
     return rows;
   } catch (error) {
     console.error('getMessagesByPost', error.message);
@@ -24,6 +25,7 @@ const addMessage = async (message) => {
       `INSERT INTO message(userid, postid, text) VALUES (?, ?, ?)`,
       [message.userid, message.postid, message.text]
     );
+    console.log("messageModel: addMessage ", rows.insertId)
     return rows.insertId;
   } catch (error) {
     console.error('addMessage', error.message);
