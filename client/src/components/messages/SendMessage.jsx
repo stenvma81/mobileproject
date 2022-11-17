@@ -1,7 +1,9 @@
 import { useState } from 'react';
+import { useMessage } from '../../hooks/MessageHooks'
 
 export function SendMessage() {
   const [text, setText] = useState('empty');
+  const { uploadMessage } = useMessage();
 
   const addMessage = async () => {
     // const user = sessionStorage.getItem(token)
@@ -22,7 +24,9 @@ export function SendMessage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await addMessage();
+    const userInfo = JSON.parse(sessionStorage.getItem('token'));
+    const msg = { text: text, userid: userInfo.user.id, postid: 1 };
+    await uploadMessage(msg);
     setText('');
   };
 
