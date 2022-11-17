@@ -9,8 +9,6 @@ export function MessageList() {
 
   return (
     <div id="message-list">
-      <h1>Message List</h1>
-      <p>{messageArray.length}</p>
       <ul>
         {messageArray.map((message) => (
           <MessageListItem message={message} />
