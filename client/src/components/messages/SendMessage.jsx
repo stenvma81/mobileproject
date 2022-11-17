@@ -6,9 +6,7 @@ export function SendMessage() {
   const addMessage = async () => {
     // const user = sessionStorage.getItem(token)
     const userInfo = JSON.parse(sessionStorage.getItem('token'));
-    console.log(userInfo.user.id);
     const msg = { text: text, userid: userInfo.user.id, postid: 1 };
-    console.log(JSON.stringify(msg));
     try {
       await fetch(`http://localhost:8000/message`, {
         method: 'POST',
