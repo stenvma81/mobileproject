@@ -5,23 +5,6 @@ export function SendMessage() {
   const [text, setText] = useState('empty');
   const { uploadMessage } = useMessage();
 
-  const addMessage = async () => {
-    // const user = sessionStorage.getItem(token)
-    const userInfo = JSON.parse(sessionStorage.getItem('token'));
-    const msg = { text: text, userid: userInfo.user.id, postid: 1 };
-    try {
-      await fetch(`http://localhost:8000/message`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(msg),
-      });
-    } catch (error) {
-      console.error('addMessage/client', error.message);
-    }
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const userInfo = JSON.parse(sessionStorage.getItem('token'));
