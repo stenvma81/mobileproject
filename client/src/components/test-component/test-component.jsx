@@ -3,6 +3,7 @@ import axios from 'axios';
 import logo from './logo.svg';
 import './App.css';
 import { usePosts } from '../../hooks/ApiHooks';
+import { SendMessage } from '../messages/SendMessage'
 import { useMessage } from '../../hooks/MessageHooks';
 
 const dormData = {
@@ -69,6 +70,7 @@ export function TestComponent() {
        <button onClick={() => {uploadMessage(messageData); closeMessage(1)}}>
         Click me
       </button>
+      <SendMessage />
       </header>
     </div>
   );
