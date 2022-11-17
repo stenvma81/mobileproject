@@ -4,6 +4,7 @@ import logo from './logo.svg';
 import './App.css';
 import { usePosts } from '../../hooks/ApiHooks';
 import { SendMessage } from '../messages/SendMessage'
+import { PostForm } from '../posts/PostForm';
 import { useMessage } from '../../hooks/MessageHooks';
 
 const dormData = {
@@ -71,7 +72,10 @@ export function TestComponent() {
         Click me
       </button>
       <SendMessage />
+      <PostForm />
       </header>
+      <div>
+      </div>
     </div>
   );
 }
