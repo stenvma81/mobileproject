@@ -1,10 +1,13 @@
 import { useState } from 'react';
 
 export function SendMessage() {
-  const [text, setText] = useState();
+  const [text, setText] = useState('empty');
 
   const addMessage = async () => {
-    const msg = { text: text, userid: 1, postid: 1 };
+    // const user = sessionStorage.getItem(token)
+    const userInfo = JSON.parse(sessionStorage.getItem('token'));
+    console.log(userInfo.user.id);
+    const msg = { text: text, userid: userInfo.user.id, postid: 1 };
     console.log(JSON.stringify(msg));
     try {
       await fetch(`http://localhost:8000/message`, {

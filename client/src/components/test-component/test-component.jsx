@@ -3,6 +3,7 @@ import axios from 'axios';
 import logo from './logo.svg';
 import './App.css';
 import { usePosts } from '../../hooks/ApiHooks';
+import { SendMessage } from '../messages/SendMessage'
 
 const dormData = {
   userid: 2, description: null, type: 1, title: null, location: null, state: 2
@@ -63,6 +64,7 @@ export function TestComponent() {
        <button onClick={() => {loadPostByUserId(2)}}>
         Click me
       </button>
+      <SendMessage />
       </header>
     </div>
   );
