@@ -1,27 +1,15 @@
 import { useState } from 'react';
+import { useMessage } from '../../hooks/MessageHooks'
 
 export function SendMessage() {
-  const [text, setText] = useState();
-
-  const addMessage = async () => {
-    const msg = { text: text, userid: 1, postid: 1 };
-    console.log(JSON.stringify(msg));
-    try {
-      await fetch(`http://localhost:8000/message`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(msg),
-      });
-    } catch (error) {
-      console.error('addMessage/client', error.message);
-    }
-  };
+  const [text, setText] = useState('empty');
+  const { uploadMessage } = useMessage();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await addMessage();
+    const userInfo = JSON.parse(sessionStorage.getItem('token'));
+    const msg = { text: text, userid: userInfo.user.id, postid: 1 };
+    await uploadMessage(msg);
     setText('');
   };
 

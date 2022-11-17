@@ -19,7 +19,7 @@ const getMessagesByPost = async (postid) => {
 const addMessage = async (message) => {
   try {
     console.log(
-      `addMessage called userid: ${message.userid}, postid: ${message.postid}, text: ${message.text}`
+      `messageModel: addMessage called userid: ${message.userid}, postid: ${message.postid}, text: ${message.text}`
     );
     const [rows] = await promisePool.execute(
       `INSERT INTO message(userid, postid, text) VALUES (?, ?, ?)`,

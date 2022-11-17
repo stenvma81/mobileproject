@@ -1,8 +1,7 @@
 import {useContext, useEffect, useState} from 'react';
 import {MainContext} from '../context/MainContext';
 import {doFetch} from '../utils/http';
-import {baseUrl, postUrl, testUrl} from '../utils/variables';
-import axios from 'axios';
+import {postUrl} from '../utils/variables';
 
 const usePosts = () => {
     const [postArray, setPostArray] = useState([]);
