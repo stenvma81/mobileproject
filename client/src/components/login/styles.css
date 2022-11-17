@@ -4,11 +4,17 @@
     left: 50%;
     transform: translate(-50%, -50%);
     display: flex;
+    max-width: 350px;
+    min-width: 250px;
     flex-direction: column;
     align-items: center;
     box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
     border-radius: 2px;
     background-color: rgb(171, 171, 171);
+}
+
+.description {
+    align-self: center;
 }
 
 label {
@@ -17,9 +23,11 @@ label {
     color: rgb(22, 27, 99);
 }
 
-input {
+.inputfield {
+    position: relative;
     border: 1px solid rgb(37, 8, 28);
     width: 100%;
+    max-width: 300px;
     height: 34px;
     outline: none;
     margin-bottom: 5px;

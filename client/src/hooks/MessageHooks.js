@@ -12,7 +12,7 @@ const useMessage = () => {
         // https://scriptverse.academy/tutorials/js-self-invoking-functions.html
         (async () => {
           try {
-            const messages = await loadMessagesByPostId(1);
+            const messages = await loadMessagesByPostId();
             // allMedia.reverse();
             setMessageArray(messages);
           } catch (e) {
