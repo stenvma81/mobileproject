@@ -6,10 +6,11 @@ const promisePool = pool.promise();
 const getMessagesByPost = async (postid) => {
   try {
     const [rows] = await promisePool.execute(
-      `SELECT * FROM message WHERE postid = ?`,
+      `SELECT message.id, text, created_date, postid, user.employeeid as user FROM message
+      INNER JOIN user ON userid = user.id WHERE postid = ?`,
       [postid]
     );
-    console.log("messageModel: getMessagesByPost ", rows)
+    console.log('messageModel: getMessagesByPost ', rows);
     return rows;
   } catch (error) {
     console.error('getMessagesByPost', error.message);
@@ -19,13 +20,13 @@ const getMessagesByPost = async (postid) => {
 const addMessage = async (message) => {
   try {
     console.log(
-      `addMessage called userid: ${message.userid}, postid: ${message.postid}, text: ${message.text}`
+      `messageModel: addMessage called userid: ${message.userid}, postid: ${message.postid}, text: ${message.text}`
     );
     const [rows] = await promisePool.execute(
       `INSERT INTO message(userid, postid, text) VALUES (?, ?, ?)`,
       [message.userid, message.postid, message.text]
     );
-    console.log("messageModel: addMessage ", rows.insertId)
+    console.log('messageModel: addMessage ', rows.insertId);
     return rows.insertId;
   } catch (error) {
     console.error('addMessage', error.message);
