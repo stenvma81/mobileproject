@@ -80,8 +80,8 @@ CREATE TABLE `post` (
   FOREIGN KEY(type) REFERENCES posttype(id),
   `state` int DEFAULT(0),
   FOREIGN KEY(state) REFERENCES poststate(id),
-  `created_date` date DEFAULT(CURRENT_TIMESTAMP),
-  `closed_date` date DEFAULT(NULL)
+  `created_date` datetime DEFAULT(CURRENT_TIMESTAMP),
+  `closed_date` datetime
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE `message` (
@@ -91,8 +91,8 @@ CREATE TABLE `message` (
   `postid` int(10) NOT NULL,
   FOREIGN KEY(postid) REFERENCES post(id),
   `text` varchar(250),
-  `created_date` date DEFAULT(CURRENT_TIMESTAMP),
-  `closed_date` date
+  `created_date` datetime DEFAULT(CURRENT_TIMESTAMP),
+  `closed_date` datetime
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
