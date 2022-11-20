@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 
 export function MessageListItem({ message }) {
   return (
@@ -10,3 +11,7 @@ export function MessageListItem({ message }) {
     </div>
   );
 }
+
+MessageListItem.propTypes = {
+  message: PropTypes.object.isRequired,
+};
