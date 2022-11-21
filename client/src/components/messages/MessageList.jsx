@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { useMessage } from '../../hooks/MessageHooks';
 import { MessageListItem } from './MessageListItem';
 
-export function MessageList() {
-  const { messageArray } = useMessage();
+export function MessageList({ postid }) {
+  const { messageArray } = useMessage(postid);
 
   useEffect(() => {}, []);
 
@@ -17,3 +18,7 @@ export function MessageList() {
     </div>
   );
 }
+
+MessageList.propTypes = {
+  postid: PropTypes.number.isRequired,
+};

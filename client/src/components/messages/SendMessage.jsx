@@ -1,14 +1,15 @@
 import { useState } from 'react';
-import { useMessage } from '../../hooks/MessageHooks'
+import PropTypes from 'prop-types';
+import { useMessage } from '../../hooks/MessageHooks';
 
-export function SendMessage() {
+export function SendMessage({ postid }) {
   const [text, setText] = useState('empty');
-  const { uploadMessage } = useMessage();
+  const { uploadMessage } = useMessage(postid);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const userInfo = JSON.parse(sessionStorage.getItem('token'));
-    const msg = { text: text, userid: userInfo.user.id, postid: 1 };
+    const msg = { text: text, userid: userInfo.user.id, postid: postid };
     await uploadMessage(msg);
     setText('');
   };
@@ -35,3 +36,7 @@ export function SendMessage() {
     </div>
   );
 }
+
+SendMessage.propTypes = {
+  postid: PropTypes.number.isRequired,
+};
