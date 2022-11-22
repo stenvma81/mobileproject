@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { TestComponent, Preferences, Dashboard, Login } from './components';
 import useToken from './hooks/LoginHooks';
+import { AdminMainView } from './components/admin/main-view';
 
 function App() {
   const { token, setToken } = useToken();
@@ -17,6 +18,7 @@ function App() {
       <BrowserRouter>
         <Routes>
         <Route path="/" element= {<TestComponent/>}/>
+          <Route path="/adminmain" element={<AdminMainView/>}/>
           <Route path="/dashboard" element= {<Dashboard/>}/>
           <Route path="/preferences" element= {<Preferences/>}/>
         </Routes>
