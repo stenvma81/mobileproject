@@ -1,6 +1,27 @@
 import { useState } from 'react';
 
-export function useToken() {
+const useLogin = (callback) => {
+  const [inputs, setInputs] = useState({
+    username: '',
+    password: ''
+  })
+
+  const handleInputChange = (name, text) => {
+    // console.log(name, text);
+    setInputs((inputs) => {
+      return {
+        ...inputs,
+        [name]: text,
+      };
+    });
+  };
+  return {
+    handleInputChange,
+    inputs,
+  };
+}
+
+const useToken = () => {
   const getToken = () => {
     const tokenString = sessionStorage.getItem('token');
     const userToken = JSON.parse(tokenString);
@@ -21,4 +42,4 @@ export function useToken() {
   }
 }
 
-export default useToken;
+export {useToken, useLogin};

@@ -3,7 +3,7 @@ import './App.css';
 import React, { useState } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { TestComponent, Preferences, Dashboard, Login } from './components';
-import useToken from './hooks/LoginHooks';
+import {useToken} from './hooks/LoginHooks';
 
 function App() {
   const { token, setToken } = useToken();
