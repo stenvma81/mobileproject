@@ -24,7 +24,7 @@ export function PostForm() {
 
     return (
     <>
-        <div className="container">
+        <div className="form-container">
             <form onSubmit={handleSubmit}>
              <label htmlFor="title">Title</label>
              <input type="text" name="title" id="title" value={title} onChange={(e) => setTitle(e.target.value)} />

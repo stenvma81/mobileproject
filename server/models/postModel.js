@@ -4,7 +4,7 @@ const pool = require('../database/db');
 const promisePool = pool.promise();
 
 const addPost = async (post) => {
-  console.log("postModel: addPost", post)
+  console.log('postModel: addPost', post);
   try {
     const [rows] = await promisePool.execute(
       'INSERT INTO post (userid, description, type, title, location) VALUES (?, ?, ?, ?, ?)',
@@ -17,7 +17,7 @@ const addPost = async (post) => {
 };
 
 const getPostsSql = `
-    SELECT post.id, user.employeeid as user, description, post.title, location, poststate.title as state, posttype.title as type, created_date, closed_date 
+    SELECT post.id, user.employeeid as user, description, post.title, location, poststate.title as state, posttype.title as type, posttype.id as typeid,created_date, closed_date 
     FROM post
     INNER JOIN user ON userid = user.id 
     INNER JOIN posttype ON type = posttype.id
@@ -96,7 +96,7 @@ const closePost = async (id) => {
 
 const modifyPost = async (post) => {
   try {
-    console.log("postModel: modifyPost ", post);
+    console.log('postModel: modifyPost ', post);
     const [rows] = await promisePool.execute(
       `UPDATE post SET title = ?, description = ?, location = ?, type = ?, state = ? WHERE id = ?`,
       [
