@@ -24,9 +24,9 @@ export default function Card({ post }) {
   return (
     <div className="card" onClick={handleParentClick}>
       <div className="post-state">
-        <div className="argumenpoststate">
+        <div className="post-type">
           <TypeDot />
-          {post.type}
+          <div>{post.type}</div>
         </div>
         <div className="card-date">
           <Moment date={post.created_date} format="DD.MM.YYYY HH:mm" />
