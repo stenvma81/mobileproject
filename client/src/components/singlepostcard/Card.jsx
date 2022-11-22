@@ -8,10 +8,27 @@ import classes from './smallCard.css';
 
 export default function Card({ post }) {
   const [isOpen, setIsOpen] = useState(false);
+  const TypeDot = () => {
+    let color = 'red';
+    post.typeid === 1 && (color = 'blue');
+    post.typeid === 3 && (color = 'yellow');
+    return <div className="dot" style={{ backgroundColor: color }}></div>;
+  };
+  const handleParentClick = (event) => {
+    event.preventDefault();
+    if (event.target === event.currentTarget && isOpen) {
+      setIsOpen(!isOpen);
+      return;
+    }
+    setIsOpen(!isOpen);
+  };
   return (
-    <div className="card">
+    <div className="card" onClick={handleParentClick}>
       <div className="post-state">
-        <div className="argumenpoststate">{`State: ${post.state}`}</div>
+        <div className="argumenpoststate">
+          <TypeDot />
+          {post.type}
+        </div>
         <div className="card-date">
           <Moment date={post.created_date} format="DD.MM.YYYY HH:mm" />
         </div>
