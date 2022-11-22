@@ -14,7 +14,6 @@ function callServer() {
 export function TestComponent() {
   return (
     <div>
-      This is not a sample component
       {callServer()}
     </div>
   );
