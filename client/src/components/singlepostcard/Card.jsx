@@ -18,9 +18,8 @@ export default function Card({ post }) {
     event.preventDefault();
     if (event.target === event.currentTarget && isOpen) {
       setIsOpen(!isOpen);
-      return;
     }
-    setIsOpen(!isOpen);
+    !isOpen && setIsOpen(!isOpen);
   };
   return (
     <div className="card" onClick={handleParentClick}>
