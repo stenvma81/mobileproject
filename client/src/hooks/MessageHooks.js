@@ -51,6 +51,23 @@ const useMessage = (postid) => {
     }
   };
 
+  const modifyMessage = async (message) => {
+    try {
+      setLoading(true);
+      const options = {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(message),
+      };
+      const result = await doFetch(messageUrl + message.id, options);
+      return result;
+    } catch (error) {
+      console.error('modifyMessage', error);
+    }
+  };
+
   const closeMessage = async (id) => {
     try {
       setLoading(true);
@@ -71,6 +88,7 @@ const useMessage = (postid) => {
     loadMessagesByPostId,
     uploadMessage,
     closeMessage,
+    modifyMessage,
     messageArray,
   };
 };
