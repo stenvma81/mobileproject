@@ -20,7 +20,7 @@ const useMessage = (postid) => {
         console.log('usePosts useEffect error', e.message);
       }
     })();
-  }, [update]);
+  }, [postid, update]);
 
   const uploadMessage = async (formData) => {
     try {

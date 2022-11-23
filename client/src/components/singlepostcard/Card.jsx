@@ -22,7 +22,8 @@ export default function Card({ post }) {
     !isOpen && setIsOpen(!isOpen);
   };
   return (
-    <div className="card" onClick={handleParentClick}>
+    <div className="card" onClick={!isOpen ? handleParentClick : undefined}>
+      {isOpen && <button onClick={() => setIsOpen(false)}>Close</button>}
       <div className="post-state">
         <div className="post-type">
           <TypeDot />
