@@ -9,7 +9,6 @@ export function PostList() {
 
   return (
     <div id="post-list">
-      <p></p>
       <ul>
         {postArray.map((post) => (
           <Card post={post} />

@@ -2,7 +2,8 @@
     background-color: rgba(172, 176, 199, 1);
     box-shadow: 0 2px 8px rgba(0,0,0,0.26);
     border-radius: 15px;
-    max-width: 380px;
+    width: auto;
+    max-width: 500px;
     padding: 20px;
     margin-bottom: 20px;
     text-align: justify;
@@ -53,4 +54,10 @@ button{
     background-color: red;
     border-radius: 50%;
     display: inline-block;
+    margin-right: 10px;
+}
+
+.post-type {
+    display: flex;
+    align-items: center;
 }
