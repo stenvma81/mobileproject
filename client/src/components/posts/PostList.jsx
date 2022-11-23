@@ -10,7 +10,7 @@ export function PostList({ postArray }) {
     <div id="post-list">
       <ul>
         {postArray.map((post) => (
-          <Card post={post} />
+          <Card key={post.id} post={post} />
         ))}
       </ul>
     </div>

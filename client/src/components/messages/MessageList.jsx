@@ -12,7 +12,7 @@ export function MessageList({ postid }) {
     <div id="message-list">
       <ul>
         {messageArray.map((message) => (
-          <MessageListItem message={message} />
+          <MessageListItem key={message.id} message={message} />
         ))}
       </ul>
     </div>
