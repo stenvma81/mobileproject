@@ -4,6 +4,7 @@ const passport = require('../utils/pass');
 
 const login = (req, res) => {
   passport.authenticate('local', {session: false}, (err, user, info) => {
+    console.log('authController: ', user);
     if (err || !user) {
       return res.status(400).json({
         message: 'Unable to login',

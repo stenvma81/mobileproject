@@ -25,13 +25,14 @@ const useToken = () => {
 const useLogin = () => {
   const loginUser = async (credentials) => {
     console.log("loginUser: ", credentials);
+    const options = JSON.stringify(credentials);
 
     return fetch(loginUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(credentials),
+      body: options,
     })
       .then(data => data.json())
    }

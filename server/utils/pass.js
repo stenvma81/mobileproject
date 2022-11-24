@@ -10,7 +10,7 @@ const ExtractJWT = passportJWT.ExtractJwt;
 // local strategy for username password login
 passport.use(new Strategy(
     async (username, password, done) => {
-      const params = [username];
+      const params = [username, password];
       try {
         const [user] = await userModel.getUserLogin(params);
         console.log('Local strategy', user); // result is binary row
@@ -20,7 +20,7 @@ passport.use(new Strategy(
         if(!bcrypt.compare(password, user.password)) {
           return done(null, false, {message: 'Incorrect credentials.'});
         }
-        delete user.password; // poista salasana
+        delete user.password; // remove password from the return, we don't want to show it in app storage
         return done(null, {...user}, {message: 'Logged In Successfully'}); // use spread syntax to create shallow copy to get rid of binary row type
       } catch (err) {
         return done(err);

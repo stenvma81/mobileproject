@@ -1,21 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './styles.css';
-import {loginUrl} from '../../utils/variables';
 import {useLoginForm, useLogin} from '../../hooks/LoginHooks';
-
-async function loginUser(credentials) {
-    console.log("loginUser: ", credentials);
-
-    return fetch(loginUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(credentials),
-    })
-      .then(data => data.json())
-   }
 
 export function Login({ setToken }) {
   const {inputs, handleInputChange} = useLoginForm();
