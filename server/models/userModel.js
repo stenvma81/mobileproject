@@ -29,7 +29,7 @@ const getUserLogin = async (params) => {
   try {
     console.log(params);
     const [rows] = await promisePool.execute(
-        'SELECT * FROM user WHERE employeeid = ?;',
+        'SELECT * FROM user WHERE employeeid = ? AND password = ?;',
         params);
     return rows;
   } catch (e) {

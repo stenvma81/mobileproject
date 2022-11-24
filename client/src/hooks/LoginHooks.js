@@ -1,25 +1,6 @@
 import { useState } from 'react';
-
-const useLogin = (callback) => {
-  const [inputs, setInputs] = useState({
-    username: '',
-    password: ''
-  })
-
-  const handleInputChange = (name, text) => {
-    // console.log(name, text);
-    setInputs((inputs) => {
-      return {
-        ...inputs,
-        [name]: text,
-      };
-    });
-  };
-  return {
-    handleInputChange,
-    inputs,
-  };
-}
+import { doFetch } from '../utils/http';
+import { loginUrl } from '../utils/variables';
 
 const useToken = () => {
   const getToken = () => {
@@ -42,4 +23,52 @@ const useToken = () => {
   }
 }
 
-export {useToken, useLogin};
+const loginUser = async (credentials) => {
+  console.log("loginUser: ", credentials);
+
+  try {
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(credentials),
+    };
+    const result = await doFetch(loginUrl, options);
+    return result;
+  } catch (e) {
+    console.log('loginUser', e);
+  }
+
+  return fetch(loginUrl, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(credentials),
+  })
+    .then(data => data.json())
+ }
+
+
+const useLoginForm = (callback) => {
+  const [inputs, setInputs] = useState({
+    username: '',
+    password: '',
+  });
+
+  const handleInputChange = (name, text) => {
+    setInputs((inputs) => {
+      return {
+        ...inputs,
+        [name]: text,
+      };
+    });
+  };
+  return {
+    handleInputChange,
+    inputs,
+  }
+};
+
+export {useToken, useLoginForm};
