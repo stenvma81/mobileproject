@@ -2,15 +2,30 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './styles.css';
 import {loginUrl} from '../../utils/variables'
-import {useLoginForm} from '../../hooks/LoginHooks'
+
+async function loginUser(credentials) {
+    console.log("loginUser: ", credentials);
+
+    return fetch(loginUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(credentials),
+    })
+      .then(data => data.json())
+   }
 
 export function Login({ setToken }) {
-  const {inputs, handleInputChange} = useLoginForm();
-  cont
+  const [username, setUserName] = useState();
+  const [password, setPassword] = useState();
 
   const handleSubmit = async e => {
     e.preventDefault();
-    const token = await loginUser(inputs);
+    const token = await loginUser({
+      username,
+      password
+    });
     setToken(token);
   }
 
@@ -21,11 +36,11 @@ export function Login({ setToken }) {
       <form onSubmit={handleSubmit}>
         <label>
           <p>Username</p>
-          <input className="inputfield" onChange={e => handleInputChange('username', e.target.value)}/>
+          <input className="inputfield" onChange={e => setUserName(e.target.value)}/>
         </label>
         <label>
           <p>Password</p>
-          <input type="password" className="inputfield" onChange={e => handleInputChange('password', e.target.value)}/>
+          <input type="password" className="inputfield" onChange={e => setPassword(e.target.value)}/>
         </label>
         <div>
           <button type="submit">Submit</button>
