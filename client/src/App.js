@@ -13,7 +13,6 @@ function App() {
   }
 
   return (
-    <div className="wrapper">
       <BrowserRouter>
         <Routes>
           <Route
