@@ -1,7 +1,55 @@
+
 #container {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-right: 20px;
     padding-left: 20px;
+    
+}
+.button1{
+    position: absolute;
+    top: 350px;
+    left: 42px;
+    
+}
+.button2{
+    position: absolute;
+    top: 430px;
+    right: 42px;
+    
+    
+}
+.button3{
+    position: absolute;
+    top: 510px;
+    left: 42px;
+    
+    
+}
+.button4{
+    position: absolute;
+    top: 590px;
+    right: 42px;
+}
+button{
+    height: 57px;
+    box-shadow: 5px 5px 5px black;
+    background-color: rgba(255, 251, 251, 0.8);
+    margin-top: 15px;
+    opacity: 80%;
+    padding: 15px;
+    font-size: 20px;
+    color: black;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 340;
+}       
+.buttons_container{
+
+height: 300px;
+background-color: rgba(25, 43, 107, 1);
+}
+
+h3{
+    color: white;
 }

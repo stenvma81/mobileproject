@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "create-react-project": "^0.0.30"
+    "create-react-project": "^0.0.30",
+    "react-transition-group": "^4.4.5"
   }
 }
