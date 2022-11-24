@@ -101,14 +101,14 @@ CREATE TABLE `message` (
 
 INSERT INTO `role` (`id`, `description`) VALUES (1, 'admin'), (2, 'user');
 INSERT INTO `posttype`(`id`, `title`) VALUES 
-(1, 'feeback'),
-(2, 'service advice'), 
-(3, 'safety advice');
+(1, 'Feeback'),
+(2, 'Service advice'), 
+(3, 'Safety advice');
 
 INSERT INTO `poststate`(`id`, `title`) VALUES 
-(0, 'open'),
-(1, 'processing'), 
-(2, 'closed');
+(0, 'Open'),
+(1, 'Processing'), 
+(2, 'Closed');
 
 -- Insert for test
 INSERT INTO `user`(employeeid, email, password, role) VALUES ('123456', 'user@test.com', 'somePW', 1);

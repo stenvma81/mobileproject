@@ -61,3 +61,8 @@ button{
     display: flex;
     align-items: center;
 }
+
+#card-date {
+    display: flex;
+    flex-direction: column;
+}
