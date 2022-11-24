@@ -42,3 +42,7 @@
     height: 300px;
     width: 400px;
 }
+
+#posts-by-state {
+    width: 90%;
+}

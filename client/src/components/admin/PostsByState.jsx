@@ -1,8 +1,8 @@
 import { useContext, useState } from 'react';
 import { useEffect } from 'react';
-import { MainContext } from '../context/MainContext';
-import { usePosts } from '../hooks/ApiHooks';
-import { PostList } from './posts/PostList';
+import { MainContext } from '../../context/MainContext';
+import { usePosts } from '../../hooks/ApiHooks';
+import { PostList } from '../posts/PostList';
 
 export function PostsByState({ poststate }) {
   const { loadPostByState } = usePosts();
@@ -21,7 +21,7 @@ export function PostsByState({ poststate }) {
   }, [update]);
 
   return (
-    <div>
+    <div id="posts-by-state">
       <p>{poststate.title}</p>
       <PostList postArray={postArray} />
     </div>
