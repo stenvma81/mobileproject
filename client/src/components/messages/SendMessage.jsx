@@ -1,17 +1,24 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useMessage } from '../../hooks/MessageHooks';
+import { useContext } from 'react';
+import { MainContext } from '../../context/MainContext';
 
 export function SendMessage({ postid }) {
   const [text, setText] = useState('empty');
   const { uploadMessage } = useMessage(postid);
+  const { update, setUpdate } = useContext(MainContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    e.stopPropagation();
     const userInfo = JSON.parse(sessionStorage.getItem('token'));
     const msg = { text: text, userid: userInfo.user.id, postid: postid };
-    await uploadMessage(msg);
-    setText('');
+    const response = await uploadMessage(msg);
+    if (response) {
+      setText('');
+      setUpdate(update + 1);
+    }
   };
 
   return (

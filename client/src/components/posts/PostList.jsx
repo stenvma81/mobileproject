@@ -1,9 +1,8 @@
 import { useEffect } from 'react';
-import { usePosts } from '../../hooks/ApiHooks';
 import Card from '../singlepostcard/Card';
 
-export function PostList() {
-  const { postArray } = usePosts();
+export function PostList({ postArray }) {
+  // const { postArray } = usePosts();
 
   useEffect(() => {}, []);
 
@@ -11,7 +10,7 @@ export function PostList() {
     <div id="post-list">
       <ul>
         {postArray.map((post) => (
-          <Card post={post} />
+          <Card key={post.id} post={post} />
         ))}
       </ul>
     </div>
