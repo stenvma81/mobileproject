@@ -2,8 +2,9 @@ import './App.css';
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Preferences, Dashboard, Login, UserMainView } from './components';
-import { useToken }  from './hooks/LoginHooks';
+import { useToken } from './hooks/LoginHooks';
 import { MainProvider } from './context/MainContext';
+import { ContentView } from './components/ContentView';
 
 function App() {
   const { token, setToken } = useToken();
@@ -13,21 +14,21 @@ function App() {
   }
 
   return (
-      <BrowserRouter>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <MainProvider>
-                <UserMainView />
-              </MainProvider>
-            }
-          />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/preferences" element={<Preferences />} />
-        </Routes>
-      </BrowserRouter>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <MainProvider>
+              {/* <UserMainView /> */}
+              <ContentView />
+            </MainProvider>
+          }
+        />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/preferences" element={<Preferences />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
