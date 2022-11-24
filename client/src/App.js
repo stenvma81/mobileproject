@@ -14,7 +14,6 @@ function App() {
   }
 
   return (
-    <div className="wrapper">
       <BrowserRouter>
         <Routes>
         <Route path="/" element= {<TestComponent/>}/>
@@ -23,7 +22,6 @@ function App() {
           <Route path="/preferences" element= {<Preferences/>}/>
         </Routes>
       </BrowserRouter>
-    </div>
 
   );
   
