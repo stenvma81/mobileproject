@@ -1,5 +1,8 @@
 .App {
   text-align: center;
+  background-color: rgba(25, 43, 107, 1);
+  align-items: center;
+  height: 100vh;
 }
 
 .App-header {
@@ -18,7 +21,7 @@
 }
 
 .wrapper {
-  padding: 20px;
+  
 }
 
 #message-textfield {
@@ -38,6 +41,8 @@
 }
 
 #message-text {
+  display: flex;
+  justify-content: space-between;
   padding: 10px;
   width: 70%;
   max-width: 500px;

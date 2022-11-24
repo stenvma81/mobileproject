@@ -33,6 +33,18 @@ const addMessage = async (message) => {
   }
 };
 
+const modifyMessage = async (message) => {
+  try {
+    const [rows] = await promisePool.execute(
+      `UPDATE message SET text = ? WHERE id = ?`,
+      [message.text, message.id]
+    );
+    return rows.affectedRows === 1;
+  } catch (error) {
+    console.error('model: modifyMessage', error.message);
+  }
+};
+
 const closeMessage = async (messageid) => {
   try {
     const [rows] = await promisePool.execute(
@@ -45,4 +57,4 @@ const closeMessage = async (messageid) => {
   }
 };
 
-module.exports = { getMessagesByPost, addMessage, closeMessage };
+module.exports = { getMessagesByPost, addMessage, modifyMessage, closeMessage };

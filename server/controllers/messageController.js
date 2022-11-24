@@ -4,6 +4,7 @@ const {
   getMessagesByPost,
   addMessage,
   closeMessage,
+  modifyMessage,
 } = require('../models/messageModel');
 const { httpError } = require('../utils/errors');
 
@@ -23,10 +24,23 @@ const message_add = async (req, res) => {
   res.json({ message: `Message created with id: ${id}` });
 };
 
+const message_modify = async (req, res) => {
+  const messageid = req.params.id;
+  const message = req.body;
+  message.id = messageid;
+  const messageModified = await modifyMessage(message);
+  res.json({ message: `Message modified: ${messageModified}` });
+};
+
 const message_close = async (req, res) => {
   const messageid = req.params.id;
   const messageClosed = await closeMessage(messageid);
   res.json({ message: `Message closed: ${messageClosed}` });
 };
 
-module.exports = { messages_get_by_post, message_add, message_close };
+module.exports = {
+  messages_get_by_post,
+  message_add,
+  message_modify,
+  message_close,
+};
