@@ -1,16 +1,8 @@
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+  background-color: rgba(25, 43, 107, 1);
+  align-items: center;
+  height: 100vh;
 }
 
 .App-header {
@@ -27,7 +19,6 @@
 .App-link {
   color: #61dafb;
 }
-
 
 #message-textfield {
   border-radius: 15px;
@@ -46,19 +37,12 @@
 }
 
 #message-text {
+  display: flex;
+  justify-content: space-between;
   padding: 10px;
   width: 70%;
   max-width: 500px;
   color: white;
   background-color: #68739c;
   border-radius: 10px;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }

@@ -1,32 +1,34 @@
-import logo from './logo.svg';
 import './App.css';
-import React, { useState } from 'react'
+import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { TestComponent, Preferences, Dashboard, Login } from './components';
-import useToken from './hooks/LoginHooks';
-import { AdminMainView } from './components/admin/main-view';
+import { Preferences, Dashboard, Login, UserMainView } from './components';
+import { useToken }  from './hooks/LoginHooks';
+import { MainProvider } from './context/MainContext';
 
 function App() {
   const { token, setToken } = useToken();
 
-  if(!token) {
-    return <Login setToken={setToken} />
+  if (!token) {
+    return <Login setToken={setToken} />;
   }
 
   return (
       <BrowserRouter>
         <Routes>
-        <Route path="/" element= {<TestComponent/>}/>
-          <Route path="/adminmain" element={<AdminMainView/>}/>
-          <Route path="/dashboard" element= {<Dashboard/>}/>
-          <Route path="/preferences" element= {<Preferences/>}/>
+          <Route
+            path="/"
+            element={
+              <MainProvider>
+                <UserMainView />
+              </MainProvider>
+            }
+          />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/preferences" element={<Preferences />} />
         </Routes>
       </BrowserRouter>
-
+    </div>
   );
-  
 }
-
-
 
 export default App;

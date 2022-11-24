@@ -1,6 +1,6 @@
-.container {
-    position: relative;
-    width: 300px;
+.form-container {
+    /* position: relative; */
+    /* width: 300px; */
     display: flex;
     flex-direction: column;
     align-items: baseline;
@@ -61,4 +61,16 @@ input[type=button] {
     color: #fff;
     cursor: pointer;
     font-family: sans-serif;
+}
+
+#post-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+}
+
+ul {
+    width: 100%;
+    padding: 0;
 }

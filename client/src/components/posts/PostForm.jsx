@@ -1,5 +1,4 @@
 import React from 'react';
-// import axios from 'axios';
 import './styles.css';
 import { useState } from 'react';
 import { usePosts } from '../../hooks/ApiHooks'
@@ -24,7 +23,7 @@ export function PostForm() {
 
     return (
     <>
-        <div className="container">
+        <div className="form-container">
             <form onSubmit={handleSubmit}>
              <label htmlFor="title">Title</label>
              <input type="text" name="title" id="title" value={title} onChange={(e) => setTitle(e.target.value)} />

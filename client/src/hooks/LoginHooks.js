@@ -1,6 +1,7 @@
 import { useState } from 'react';
+import {loginUrl} from '../utils/variables';
 
-export function useToken() {
+const useToken = () => {
   const getToken = () => {
     const tokenString = sessionStorage.getItem('token');
     const userToken = JSON.parse(tokenString);
@@ -18,7 +19,46 @@ export function useToken() {
   return {
     setToken: saveToken,
     token
-  }
-}
+  };
+};
 
-export default useToken;
+const useLogin = () => {
+  const loginUser = async (credentials) => {
+    console.log("loginUser: ", credentials);
+    const options = JSON.stringify(credentials);
+
+    return fetch(loginUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: options,
+    })
+      .then(data => data.json())
+   }
+
+   return loginUser;
+};
+
+const useLoginForm = (callback) => {
+  const [inputs, setInputs] = useState({
+    username: '',
+    password: '',
+  });
+
+  const handleInputChange = (name, text) => {
+    // console.log(name, text);
+    setInputs((inputs) => {
+      return {
+        ...inputs,
+        [name]: text,
+      };
+    });
+  };
+  return {
+    handleInputChange,
+    inputs,
+  };
+};
+
+export {useToken, useLoginForm, useLogin};

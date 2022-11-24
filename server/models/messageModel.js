@@ -10,7 +10,7 @@ const getMessagesByPost = async (postid) => {
       INNER JOIN user ON userid = user.id WHERE postid = ?`,
       [postid]
     );
-    console.log('messageModel: getMessagesByPost ', rows);
+    // console.log('messageModel: getMessagesByPost ', rows);
     return rows;
   } catch (error) {
     console.error('getMessagesByPost', error.message);
@@ -26,10 +26,22 @@ const addMessage = async (message) => {
       `INSERT INTO message(userid, postid, text) VALUES (?, ?, ?)`,
       [message.userid, message.postid, message.text]
     );
-    console.log('messageModel: addMessage ', rows.insertId);
+    // console.log('messageModel: addMessage ', rows.insertId);
     return rows.insertId;
   } catch (error) {
     console.error('addMessage', error.message);
+  }
+};
+
+const modifyMessage = async (message) => {
+  try {
+    const [rows] = await promisePool.execute(
+      `UPDATE message SET text = ? WHERE id = ?`,
+      [message.text, message.id]
+    );
+    return rows.affectedRows === 1;
+  } catch (error) {
+    console.error('model: modifyMessage', error.message);
   }
 };
 
@@ -45,4 +57,4 @@ const closeMessage = async (messageid) => {
   }
 };
 
-module.exports = { getMessagesByPost, addMessage, closeMessage };
+module.exports = { getMessagesByPost, addMessage, modifyMessage, closeMessage };
