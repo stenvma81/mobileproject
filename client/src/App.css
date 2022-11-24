@@ -46,3 +46,17 @@
   background-color: #68739c;
   border-radius: 10px;
 }
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.wrapper{
+  max-width: 550px;
+  position: relative;
+
+}
