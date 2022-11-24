@@ -1,9 +1,8 @@
 import { useEffect } from 'react';
 import Card from '../singlepostcard/Card';
+import PropTypes from 'prop-types';
 
 export function PostList({ postArray }) {
-  // const { postArray } = usePosts();
-
   useEffect(() => {}, []);
 
   return (
@@ -16,3 +15,7 @@ export function PostList({ postArray }) {
     </div>
   );
 }
+
+PostList.propTypes = {
+  postArray: PropTypes.array.isRequired,
+};

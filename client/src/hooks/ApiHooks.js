@@ -5,7 +5,7 @@ import { postUrl } from '../utils/variables';
 
 const usePosts = () => {
   const [postArray, setPostArray] = useState([]);
-  const [postsByState, setPostsByState] = useState([]);
+  // const [postsByState, setPostsByState] = useState([]);
   const [usersPost, setUsersPost] = useState([]);
   const [loading, setLoading] = useState(false);
   const { update, user } = useContext(MainContext);
@@ -66,7 +66,7 @@ const usePosts = () => {
       return postdata;
     } catch (error) {
       console.error('ApiHooks: loadPostByState: ', error.message);
-      return {};
+      return [];
     }
   };
 
