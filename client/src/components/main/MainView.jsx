@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import React from 'react';
+import { usePosts } from '../../hooks/ApiHooks';
 import { PostForm } from '../posts/PostForm';
 import { PostList } from '../posts/PostList';
 import './styles.css';
@@ -7,6 +8,8 @@ import './styles.css';
 export function MainView() {
   useEffect(() => {}, []);
   const [FormIsOpen, setIsOpen] = useState(false);
+  const { usersPost } = usePosts();
+  
   const handleOpenForm = (event) => {
     event.preventDefault();
     if (event.target === event.currentTarget && FormIsOpen) {
@@ -36,7 +39,7 @@ export function MainView() {
         <PostForm/>)
       }
       <h3>Previous posts:</h3>
-      <PostList />
+      <PostList postArray={usersPost} />
     </div>
   );
 }

@@ -4,7 +4,7 @@ const pool = require('../database/db');
 const promisePool = pool.promise();
 
 const addPost = async (post) => {
-  console.log('postModel: addPost', post);
+  console.log("postModel: addPost", post)
   try {
     const [rows] = await promisePool.execute(
       'INSERT INTO post (userid, description, type, title, location) VALUES (?, ?, ?, ?, ?)',
@@ -27,7 +27,7 @@ const getPostsSql = `
 const getAllPosts = async () => {
   try {
     const [rows] = await promisePool.execute(getPostsSql);
-    console.log('postModel getAllPosts: ', rows);
+    // console.log('postModel getAllPosts: ', rows);
     return rows;
   } catch (e) {
     console.error('testModel:', e.message);
