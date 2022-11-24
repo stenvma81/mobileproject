@@ -1,5 +1,4 @@
 import React from 'react';
-// import axios from 'axios';
 import './styles.css';
 import { useState } from 'react';
 import { usePosts } from '../../hooks/ApiHooks'
