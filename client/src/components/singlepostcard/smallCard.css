@@ -1,0 +1,63 @@
+.card{
+    background-color: rgba(172, 176, 199, 1);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.26);
+    border-radius: 15px;
+    width: auto;
+    max-width: 500px;
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: justify;
+}
+button{
+    background-color: rgba(25, 43, 107, 1);
+    border-radius: 15px;
+    border: 0px;
+    height: 38px;
+    padding: 10px;
+    color: white;
+    min-width: 142px;
+
+}
+.post-state {
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.post-text{
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.post-place{
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.post-message{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.post-modify{
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.dot{
+    height: 16px;
+    width: 16px;
+    background-color: red;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.post-type {
+    display: flex;
+    align-items: center;
+}

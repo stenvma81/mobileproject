@@ -1,20 +1,33 @@
-import logo from './logo.svg';
 import './App.css';
-import React from 'react'
-import { TestComponent } from './components';
-// import { FormComponent } from './components/form-component/form-component';
-import { PostFormComponent } from './components/components/postform-component';
+import React from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Preferences, Dashboard, Login, UserMainView } from './components';
+import useToken from './hooks/LoginHooks';
+import { MainProvider } from './context/MainContext';
 
 function App() {
+  const { token, setToken } = useToken();
+
+  if (!token) {
+    return <Login setToken={setToken} />;
+  }
+
   return (
-    <div style={{backgroundImage: "url(/nokia_espoo_campus.jpg)", 
-    backgroundRepeat:"no-repeat", 
-    backgroundSize:"cover",
-    height:'110vh',
-    paddingTop: '50px',
-    }}>
-      <TestComponent />
-      <PostFormComponent />
+    <div className="wrapper">
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <MainProvider>
+                <UserMainView />
+              </MainProvider>
+            }
+          />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/preferences" element={<Preferences />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }

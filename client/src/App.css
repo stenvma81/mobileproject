@@ -1,5 +1,8 @@
 .App {
   text-align: center;
+  background-color: rgba(25, 43, 107, 1);
+  align-items: center;
+  height: 100vh;
 }
 
 .App-logo {
@@ -26,6 +29,37 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.wrapper {
+  
+}
+
+#message-textfield {
+  border-radius: 15px;
+  padding: 15px;
+  margin-bottom: 10px;
+  max-width: 500px;
+  width: 70%;
+  resize: none;
+}
+
+#send-msg-btn {
+  color: white;
+  background-color: #192B6B;
+  padding: 5px 20px 5px 20px;
+  border-radius: 10px;
+}
+
+#message-text {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  width: 70%;
+  max-width: 500px;
+  color: white;
+  background-color: #68739c;
+  border-radius: 10px;
 }
 
 @keyframes App-logo-spin {
