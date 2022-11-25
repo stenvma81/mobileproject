@@ -29,8 +29,11 @@ export default function Card({ post }) {
           <TypeDot />
           <div>{post.type}</div>
         </div>
-        <div className="card-date">
+        <div id="card-date">
           <Moment date={post.created_date} format="DD.MM.YYYY HH:mm" />
+          {post.closed_date !== null && (
+            <Moment date={post.closed_date} format="DD.MM.YYYY HH:mm" />
+          )}
         </div>
       </div>
       <div className="post-text">
