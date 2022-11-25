@@ -20,7 +20,7 @@ export function PostForm() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const userInfo = JSON.parse(sessionStorage.getItem('token'));
-        const msg = { userid: userInfo.user.id, type: 1, title: title, description: description, location: location, areamarker: "{top: 10, left: 50,}" };
+        const msg = { userid: userInfo.user.id, type: 1, title: title, description: description, location: location, areamarker: JSON.stringify(markers[0]) };
         console.log(msg)
         await uploadPost(msg);
         setDescription('');

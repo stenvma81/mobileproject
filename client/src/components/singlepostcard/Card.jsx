@@ -14,14 +14,19 @@ export default function Card({ post }) {
   const [markers, setMarkers] = useState([]);
 
   function openModal() {
-      setShowModal(!showModal);
+    console.log(post);
+    const marker = JSON.parse(post.areamarker);
+    setMarkers([...markers.splice(0, marker), marker]);
+    setShowModal(!showModal);
   };
+
   const TypeDot = () => {
     let color = 'red';
     post.typeid === 1 && (color = 'blue');
     post.typeid === 3 && (color = 'yellow');
     return <div className="dot" style={{ backgroundColor: color }}></div>;
   };
+
   const handleParentClick = (event) => {
     event.preventDefault();
     if (event.target === event.currentTarget && isOpen) {
@@ -53,7 +58,7 @@ export default function Card({ post }) {
           <div className="post-place">
             <div className="place">{`Location: ${post.location}`}</div>
             <div><button onClick={openModal}>Show location</button></div>
-            <MapModal toggle={showModal} action={openModal} areamarker="" markers={[post.areamarker]} setMarkers={setMarkers}/>
+            <MapModal toggle={showModal} action={openModal} markers={markers} setMarkers={setMarkers}/>
             </div>
           <div className="post-modify">
             <button id="modify-button">Muokkaa ilmoitusta</button>

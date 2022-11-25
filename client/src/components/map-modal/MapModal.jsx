@@ -5,7 +5,6 @@ import ImageMarker from 'react-image-marker';
 export default function MapModal(props) {
     const modalState = props.toggle;
     const closeModal = props.action;
-    const areaMarker = props.areamarker;
     const markers = props.markers;
     const setMarkers = props.setMarkers;
 
