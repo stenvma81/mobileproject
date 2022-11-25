@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useMessage } from '../../hooks/MessageHooks';
 import { MessageListItem } from './MessageListItem';

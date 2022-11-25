@@ -1,8 +1,8 @@
-.container {
-    position: fixed;
+.modal_container {
+    position: absolute;
     display: flex;
-    top:0;
-    left:0px;
+    top: 80%;
+    left: 25%;
     justify-content: center;
     align-items: center;
     visibility: hidden;

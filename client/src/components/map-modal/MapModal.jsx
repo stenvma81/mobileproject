@@ -1,22 +1,16 @@
-// adapted from https://github.com/trananhtuat/react-modal
-
-import { useEffect, useState, useRef } from 'react';
 import './modal.scss';
 import logo from '../header/images/nokia.jpg';
-import PropTypes from 'prop-types';
 import ImageMarker from 'react-image-marker';
 
 export default function MapModal(props) {
     const modalState = props.toggle;
     const closeModal = props.action;
-
-    const [markers, setMarkers] = useState([        {
-        top: 10,
-        left: 50,
-    },]);
+    const areaMarker = props.areamarker;
+    const markers = props.markers;
+    const setMarkers = props.setMarkers;
 
     return (
-        <div className={`${"container"} ${modalState ? "active" : ''}`}>
+        <div className={`${"modal_container"} ${modalState ? "active" : ''}`}>
             <div className="modal">
                 <ImageMarker
                     src={logo}

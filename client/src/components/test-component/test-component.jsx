@@ -1,7 +1,5 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import { SendMessage } from '../messages/SendMessage';
 import { PostForm } from '../posts/PostForm';
 import Card from '../singlepostcard/Card';
 import { PostList } from '../posts/PostList';

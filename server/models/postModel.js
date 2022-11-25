@@ -7,7 +7,7 @@ const addPost = async (post) => {
   console.log("postModel: addPost", post)
   try {
     const [rows] = await promisePool.execute(
-      'INSERT INTO post (userid, description, type, title, location) VALUES (?, ?, ?, ?, ?)',
+      'INSERT INTO post (userid, description, type, title, location, areamarker) VALUES (?, ?, ?, ?, ?, ?)',
       [post.userid, post.description, post.type, post.title, post.location]
     );
     return rows.insertId;

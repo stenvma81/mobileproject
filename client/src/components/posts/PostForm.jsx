@@ -11,6 +11,7 @@ export function PostForm() {
     const [posttype, setPosttype] = useState('');
     const { uploadPost } = usePosts();
     const [showModal, setShowModal] = useState(false);
+    const [markers, setMarkers] = useState([]);
 
     function openModal() {
         setShowModal(!showModal);
@@ -19,7 +20,7 @@ export function PostForm() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const userInfo = JSON.parse(sessionStorage.getItem('token'));
-        const msg = { userid: userInfo.user.id, type: 1, title: title, description: description, location: location };
+        const msg = { userid: userInfo.user.id, type: 1, title: title, description: description, location: location, areamarker: markers };
         console.log(msg)
         await uploadPost(msg);
         setDescription('');
@@ -40,7 +41,7 @@ export function PostForm() {
             <label htmlFor="location">Location</label>
             <input type="text" name="location" id="location" value={location} onChange={(e) => setLocation(e.target.value)} />
             <div>
-            <MapModal toggle={showModal} action={openModal}/>
+            <MapModal toggle={showModal} action={openModal} areamarker="" markers={markers} setMarkers={setMarkers}/>
             <input type="button" name="cardbutton" id="cardbutton" value="Choose on map" onClick={openModal}/>
             </div>
             <label htmlFor="posttype">Post type</label>

@@ -4,7 +4,6 @@ import 'moment-timezone';
 import { MessageList } from '../messages/MessageList';
 import { SendMessage } from '../messages/SendMessage';
 import PropTypes from 'prop-types';
-import classes from './smallCard.css';
 
 export default function Card({ post }) {
   const [isOpen, setIsOpen] = useState(false);
