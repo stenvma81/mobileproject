@@ -2,6 +2,7 @@ import React from 'react';
 import './styles.css';
 import { useState } from 'react';
 import { usePosts } from '../../hooks/ApiHooks'
+import MapModal from '../map-modal/MapModal';
 
 export function PostForm() {
     const [title, setTitle] = useState('');
@@ -9,6 +10,11 @@ export function PostForm() {
     const [location, setLocation] = useState('');
     const [posttype, setPosttype] = useState('');
     const { uploadPost } = usePosts();
+    const [showModal, setShowModal] = useState(false);
+
+    function openModal() {
+        setShowModal(!showModal);
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -24,7 +30,8 @@ export function PostForm() {
     return (
     <>
         <div className="form-container">
-            <form onSubmit={handleSubmit}>
+            <form>
+            {showModal.toString()}
              <label htmlFor="title">Title</label>
              <input type="text" name="title" id="title" value={title} onChange={(e) => setTitle(e.target.value)} />
             
@@ -34,7 +41,8 @@ export function PostForm() {
             <label htmlFor="location">Location</label>
             <input type="text" name="location" id="location" value={location} onChange={(e) => setLocation(e.target.value)} />
             <div>
-            <input type="button" name="cardbutton" id="cardbutton" value="Choose on map" />
+            <MapModal toggle={showModal} action={openModal}/>
+            <input type="button" name="cardbutton" id="cardbutton" value="Choose on map" onClick={openModal}/>
             </div>
             <label htmlFor="posttype">Post type</label>
 
@@ -47,7 +55,7 @@ export function PostForm() {
             <div>
             <input type="button" name="photobutton" id="photobutton" value="Add a photo" />
             </div>
-            <button type="send" name="send" id="send">Send</button>
+            <button type="send" name="send" id="send" onClick={handleSubmit}>Send</button>
             </form>
         </div>
     </>

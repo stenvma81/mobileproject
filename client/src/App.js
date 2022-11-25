@@ -20,8 +20,8 @@ function App() {
           path="/"
           element={
             <MainProvider>
-              {/* <UserMainView /> */}
-              <ContentView />
+              <UserMainView />
+              {/*<ContentView />*/}
             </MainProvider>
           }
         />
