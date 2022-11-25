@@ -31,7 +31,6 @@ export function PostForm() {
     <>
         <div className="form-container">
             <form>
-            {showModal.toString()}
              <label htmlFor="title">Title</label>
              <input type="text" name="title" id="title" value={title} onChange={(e) => setTitle(e.target.value)} />
             
