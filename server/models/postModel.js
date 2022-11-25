@@ -8,7 +8,7 @@ const addPost = async (post) => {
   try {
     const [rows] = await promisePool.execute(
       'INSERT INTO post (userid, description, type, title, location, areamarker) VALUES (?, ?, ?, ?, ?, ?)',
-      [post.userid, post.description, post.type, post.title, post.location]
+      [post.userid, post.description, post.type, post.title, post.location, post.areamarker]
     );
     return rows.insertId;
   } catch (error) {
@@ -17,7 +17,7 @@ const addPost = async (post) => {
 };
 
 const getPostsSql = `
-    SELECT post.id, user.employeeid as user, description, post.title, location, poststate.title as state, posttype.title as type, posttype.id as typeid,created_date, closed_date 
+    SELECT post.id, user.employeeid as user, description, post.title, location, poststate.title as state, posttype.title as type, posttype.id as typeid,created_date, closed_date, areamarker 
     FROM post
     INNER JOIN user ON userid = user.id 
     INNER JOIN posttype ON type = posttype.id

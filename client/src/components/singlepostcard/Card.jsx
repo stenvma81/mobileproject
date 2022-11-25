@@ -4,9 +4,18 @@ import 'moment-timezone';
 import { MessageList } from '../messages/MessageList';
 import { SendMessage } from '../messages/SendMessage';
 import PropTypes from 'prop-types';
+import logo from '../header/images/nokia.jpg';
+import MapModal from '../map-modal/MapModal';
+import classes from './smallCard.css';
 
 export default function Card({ post }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [markers, setMarkers] = useState([]);
+
+  function openModal() {
+      setShowModal(!showModal);
+  };
   const TypeDot = () => {
     let color = 'red';
     post.typeid === 1 && (color = 'blue');
@@ -43,7 +52,9 @@ export default function Card({ post }) {
         <div>
           <div className="post-place">
             <div className="place">{`Location: ${post.location}`}</div>
-          </div>
+            <div><button onClick={openModal}>Show location</button></div>
+            <MapModal toggle={showModal} action={openModal} areamarker="" markers={[post.areamarker]} setMarkers={setMarkers}/>
+            </div>
           <div className="post-modify">
             <button id="modify-button">Muokkaa ilmoitusta</button>
           </div>
