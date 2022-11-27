@@ -11,6 +11,7 @@ const {
   posts_get_by_type,
   posts_get_by_user,
   posts_get_by_state,
+  post_modify_state,
 } = require('../controllers/postController');
 const router = express.Router();
 
@@ -25,6 +26,6 @@ router.route('/user/:id').get(posts_get_by_user);
 
 router.route('/type/:id').get(posts_get_by_type);
 
-router.route('/state/:id').get(posts_get_by_state);
+router.route('/state/:id').get(posts_get_by_state).put(post_modify_state);
 
 module.exports = router;
