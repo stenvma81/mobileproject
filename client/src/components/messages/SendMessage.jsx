@@ -18,6 +18,7 @@ export function SendMessage({ postid }) {
     if (response) {
       setText('');
       setUpdate(update + 1);
+      alert('Message has been submitted');
     }
   };
 
@@ -28,6 +29,9 @@ export function SendMessage({ postid }) {
           <p>Message:</p>
           <textarea
             id="message-textfield"
+            required
+            minLength="1"
+            maxLength="250"
             name="text"
             rows="6"
             value={text}
