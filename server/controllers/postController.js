@@ -9,11 +9,12 @@ const {
   getPostsByType,
   getPostsByUser,
   getPostsByState,
+  modifyPostState,
 } = require('../models/postModel');
 const { httpError } = require('../utils/errors');
 
 const post_post = async (req, res) => {
-  console.log("postController: post_post", req.method)
+  console.log('postController: post_post', req.method);
   const post = req.body;
   const id = await addPost(post);
   res.json({ message: `Post created with id: ${id}` });
@@ -78,10 +79,17 @@ const post_close = async (req, res) => {
   }
 };
 
+const post_modify_state = async (req, res) => {
+  const post = req.body;
+  post.id = req.params.id;
+  const stateModified = await modifyPostState(post);
+  res.json({ message: `Post state modified: ${stateModified}` });
+};
+
 const post_modify = async (req, res) => {
   try {
     const post = req.body;
-    console.log("postController: post_modify: ", post, req.params.id)
+    console.log('postController: post_modify: ', post, req.params.id);
     post.id = req.params.id;
     const modified = await modifyPost(post);
     res.json({ message: `Post modified: ${modified}` });
@@ -94,6 +102,7 @@ module.exports = {
   post_post,
   posts_get,
   post_close,
+  post_modify_state,
   post_modify,
   post_get_by_id,
   posts_get_by_type,

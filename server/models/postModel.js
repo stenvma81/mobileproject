@@ -4,7 +4,7 @@ const pool = require('../database/db');
 const promisePool = pool.promise();
 
 const addPost = async (post) => {
-  console.log("postModel: addPost", post)
+  console.log('postModel: addPost', post);
   try {
     const [rows] = await promisePool.execute(
       'INSERT INTO post (userid, description, type, title, location, areamarker) VALUES (?, ?, ?, ?, ?, ?)',
@@ -17,7 +17,8 @@ const addPost = async (post) => {
 };
 
 const getPostsSql = `
-    SELECT post.id, user.employeeid as user, description, post.title, location, poststate.title as state, posttype.title as type, posttype.id as typeid,created_date, closed_date, areamarker 
+    SELECT post.id, user.employeeid as user, description, post.title, location, poststate.id as stateid, 
+    poststate.title as state, posttype.title as type, posttype.id as typeid,created_date, closed_date, areamarker 
     FROM post
     INNER JOIN user ON userid = user.id 
     INNER JOIN posttype ON type = posttype.id
@@ -85,12 +86,25 @@ const getPostsByState = async (stateid) => {
 const closePost = async (id) => {
   try {
     const [rows] = await promisePool.execute(
-      `UPDATE post SET closed_date = CURRENT_TIMESTAMP WHERE id = ?`,
+      `UPDATE post SET closed_date = CURRENT_TIMESTAMP, state = 2 WHERE id = ?`,
       [id]
     );
     return rows.affectedRows === 1;
   } catch (error) {
     console.error('postModel closePost', error.message);
+  }
+};
+
+const modifyPostState = async (post) => {
+  let sql = `UPDATE post SET state = ?, closed_date = NULL WHERE id = ?`;
+  if (post.state === '2') {
+    sql = `UPDATE post SET state = ?, closed_date = CURRENT_TIMESTAMP WHERE id = ?`;
+  }
+  try {
+    const [rows] = await promisePool.execute(sql, [post.state, post.id]);
+    return rows.affectedRows === 1;
+  } catch (error) {
+    console.error('postModel modifyPostState', error.message);
   }
 };
 
@@ -118,6 +132,7 @@ module.exports = {
   addPost,
   getAllPosts,
   closePost,
+  modifyPostState,
   modifyPost,
   getPostById,
   getPostsByType,

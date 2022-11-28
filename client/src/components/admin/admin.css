@@ -46,3 +46,8 @@
 #posts-by-state {
     width: 90%;
 }
+
+.column {
+    display: flex;
+    flex-direction: column;
+}

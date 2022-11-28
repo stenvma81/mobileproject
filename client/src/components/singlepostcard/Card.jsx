@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import logo from '../header/images/nokia.jpg';
 import MapModal from '../map-modal/MapModal';
 import classes from './smallCard.css';
+import { ModifyPostState } from '../admin/ModifyPostState';
 
 export default function Card({ post }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -33,6 +34,10 @@ export default function Card({ post }) {
       setIsOpen(!isOpen);
     }
     !isOpen && setIsOpen(!isOpen);
+  };
+  const isAdmin = () => {
+    const userInfo = JSON.parse(sessionStorage.getItem('token'));
+    return userInfo.user.role === 1;
   };
   return (
     <div className="card" onClick={!isOpen ? handleParentClick : undefined}>
@@ -63,6 +68,7 @@ export default function Card({ post }) {
           <div className="post-modify">
             <button id="modify-button">Muokkaa ilmoitusta</button>
           </div>
+          {isAdmin && <ModifyPostState post={post} />}
           <SendMessage postid={post.id} />
           <MessageList postid={post.id} />
         </div>

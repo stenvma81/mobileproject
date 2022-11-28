@@ -107,6 +107,27 @@ const usePosts = () => {
     }
   };
 
+  const modifyPostState = async (postid, stateid) => {
+    try {
+      setLoading(true);
+      const options = {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ state: stateid }),
+      };
+      console.log('ApiHooks: modifyPostState ', options.body);
+      const result = await doFetch(`${postUrl}state/${postid}`, options);
+      return result;
+    } catch (e) {
+      console.log('modifyPostState error', e);
+      throw new Error(e.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const modifyPost = async (formData, id) => {
     try {
       setLoading(true);
@@ -136,6 +157,7 @@ const usePosts = () => {
     loadPostByState,
     uploadPost,
     closePost,
+    modifyPostState,
     modifyPost,
     loadPostByUserId,
     usersPost,
