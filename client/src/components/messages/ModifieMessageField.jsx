@@ -16,6 +16,7 @@ export function ModifieMessageField({ message, setIsModifying }) {
     if (response) {
       setUpdate(update + 1);
       setIsModifying(false);
+      alert('Message has been modified');
     }
   };
 
