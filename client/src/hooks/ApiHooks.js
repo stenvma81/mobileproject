@@ -32,7 +32,7 @@ const usePosts = () => {
       return postData;
     } catch (e) {
       console.log('Apihooks loadPosts: ', e.message);
-      return {};
+      return [];
     }
   };
 
@@ -56,7 +56,7 @@ const usePosts = () => {
       return postData;
     } catch (e) {
       console.log('ApiHooks: loadPostByUserId: ', e.message);
-      return {};
+      return [];
     }
   };
 
