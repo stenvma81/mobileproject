@@ -117,7 +117,7 @@ INSERT INTO `user`(employeeid, email, password, role) VALUES ('234567', 'user2@t
 INSERT INTO `user`(employeeid, email, password, role) VALUES ('345678', 'user3@test.com', 'somePW', 1);
 INSERT INTO `user`(employeeid, email, password, role) VALUES ('654321', 'user@test.com', 'somePW', 2);
 
-INSERT INTO `post` (userid, description, type, title, location, areamarker) VALUES (1, 'Some desc', 1, "Vessa rikki", "Vessa kerros 2"), "{}";
+INSERT INTO `post` (userid, description, type, title, location, areamarker) VALUES (1, 'Some desc', 1, "Vessa rikki", "Vessa kerros 2", "{}");
 
 INSERT INTO message(userid, postid, text) VALUES (1, 1, "This is a message");
 --
