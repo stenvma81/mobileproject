@@ -1,6 +1,4 @@
 import React from 'react';
-import { MessageList } from '../messages/MessageList';
-import { SendMessage } from '../messages/SendMessage';
 import PropTypes from 'prop-types';
 
 export default function Postlistcard({ post }) {

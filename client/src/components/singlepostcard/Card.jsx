@@ -4,17 +4,30 @@ import 'moment-timezone';
 import { MessageList } from '../messages/MessageList';
 import { SendMessage } from '../messages/SendMessage';
 import PropTypes from 'prop-types';
+import logo from '../header/images/nokia.jpg';
+import MapModal from '../map-modal/MapModal';
 import classes from './smallCard.css';
 import { ModifyPostState } from '../admin/ModifyPostState';
 
 export default function Card({ post }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [markers, setMarkers] = useState([]);
+
+  function openModal() {
+    console.log(post);
+    const marker = JSON.parse(post.areamarker);
+    setMarkers([...markers.splice(0, marker), marker]);
+    setShowModal(!showModal);
+  };
+
   const TypeDot = () => {
     let color = 'red';
     post.typeid === 1 && (color = 'blue');
     post.typeid === 3 && (color = 'yellow');
     return <div className="dot" style={{ backgroundColor: color }}></div>;
   };
+
   const handleParentClick = (event) => {
     event.preventDefault();
     if (event.target === event.currentTarget && isOpen) {
@@ -49,7 +62,9 @@ export default function Card({ post }) {
         <div>
           <div className="post-place">
             <div className="place">{`Location: ${post.location}`}</div>
-          </div>
+            <div><button onClick={openModal}>Show location</button></div>
+            <MapModal toggle={showModal} action={openModal} markers={markers} setMarkers={setMarkers}/>
+            </div>
           <div className="post-modify">
             <button id="modify-button">Muokkaa ilmoitusta</button>
           </div>

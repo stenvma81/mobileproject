@@ -80,6 +80,7 @@ CREATE TABLE `post` (
   FOREIGN KEY(type) REFERENCES posttype(id),
   `state` int DEFAULT(0),
   FOREIGN KEY(state) REFERENCES poststate(id),
+  `areamarker` varchar(100),
   `created_date` datetime DEFAULT(CURRENT_TIMESTAMP),
   `closed_date` datetime
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -111,9 +112,13 @@ INSERT INTO `poststate`(`id`, `title`) VALUES
 (2, 'Closed');
 
 -- Insert for test
-INSERT INTO `user`(employeeid, email, password, role) VALUES ('123456', 'user@test.com', 'somePW', 1);
+INSERT INTO `user`(employeeid, email, password, role) VALUES ('123456', 'user1@test.com', 'somePW', 1);
+INSERT INTO `user`(employeeid, email, password, role) VALUES ('234567', 'user2@test.com', 'somePW', 1);
+INSERT INTO `user`(employeeid, email, password, role) VALUES ('345678', 'user3@test.com', 'somePW', 1);
 INSERT INTO `user`(employeeid, email, password, role) VALUES ('654321', 'user@test.com', 'somePW', 2);
-INSERT INTO `post` (userid, description, type, title, location) VALUES (1, 'Some desc', 1, "Vessa rikki", "Vessa kerros 2");
+
+INSERT INTO `post` (userid, description, type, title, location, areamarker) VALUES (1, 'Some desc', 1, "Vessa rikki", "Vessa kerros 2"), "{}";
+
 INSERT INTO message(userid, postid, text) VALUES (1, 1, "This is a message");
 --
 -- Indexes for dumped tables
