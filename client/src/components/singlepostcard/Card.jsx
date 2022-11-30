@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Moment from 'react-moment';
 import 'moment-timezone';
 import { MessageList } from '../messages/MessageList';
@@ -11,6 +11,7 @@ import { ModifyPostState } from '../admin/ModifyPostState';
 
 export default function Card({ post }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isAdmin, setIsAdmin] = useState();
   const [showModal, setShowModal] = useState(false);
   const [markers, setMarkers] = useState([]);
 
@@ -19,7 +20,7 @@ export default function Card({ post }) {
     const marker = JSON.parse(post.areamarker);
     setMarkers([...markers.splice(0, marker), marker]);
     setShowModal(!showModal);
-  };
+  }
 
   const TypeDot = () => {
     let color = 'red';
@@ -35,10 +36,12 @@ export default function Card({ post }) {
     }
     !isOpen && setIsOpen(!isOpen);
   };
-  const isAdmin = () => {
+
+  useEffect(() => {
     const userInfo = JSON.parse(sessionStorage.getItem('token'));
-    return userInfo.user.role === 1;
-  };
+    setIsAdmin(userInfo.user.role === 1);
+  }, []);
+
   return (
     <div className="card" onClick={!isOpen ? handleParentClick : undefined}>
       {isOpen && <button onClick={() => setIsOpen(false)}>Close</button>}
@@ -62,9 +65,16 @@ export default function Card({ post }) {
         <div>
           <div className="post-place">
             <div className="place">{`Location: ${post.location}`}</div>
-            <div><button onClick={openModal}>Show location</button></div>
-            <MapModal toggle={showModal} action={openModal} markers={markers} setMarkers={setMarkers}/>
+            <div>
+              <button onClick={openModal}>Show location</button>
             </div>
+            <MapModal
+              toggle={showModal}
+              action={openModal}
+              markers={markers}
+              setMarkers={setMarkers}
+            />
+          </div>
           <div className="post-modify">
             <button id="modify-button">Muokkaa ilmoitusta</button>
           </div>
