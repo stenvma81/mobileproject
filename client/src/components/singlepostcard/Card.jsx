@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
-import Moment from 'react-moment';
-import 'moment-timezone';
-import { MessageList } from '../messages/MessageList';
-import { SendMessage } from '../messages/SendMessage';
-import PropTypes from 'prop-types';
-import logo from '../header/images/nokia.jpg';
-import MapModal from '../map-modal/MapModal';
-import classes from './smallCard.css';
-import { ModifyPostState } from '../admin/ModifyPostState';
+import React, { useState } from "react";
+import Moment from "react-moment";
+import "moment-timezone";
+import { MessageList } from "../messages/MessageList";
+import { SendMessage } from "../messages/SendMessage";
+import PropTypes from "prop-types";
+import logo from "../header/images/nokia.jpg";
+import MapModal from "../map-modal/MapModal";
+import classes from "./smallCard.css";
+import { ModifyPostState } from "../admin/ModifyPostState";
+import { FaTimes, FaPen } from "react-icons/fa";
 
 export default function Card({ post }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,12 +20,12 @@ export default function Card({ post }) {
     const marker = JSON.parse(post.areamarker);
     setMarkers([...markers.splice(0, marker), marker]);
     setShowModal(!showModal);
-  };
+  }
 
   const TypeDot = () => {
-    let color = 'red';
-    post.typeid === 1 && (color = 'blue');
-    post.typeid === 3 && (color = 'yellow');
+    let color = "red";
+    post.typeid === 1 && (color = "rgba(0,135,255,1)");
+    post.typeid === 3 && (color = "yellow");
     return <div className="dot" style={{ backgroundColor: color }}></div>;
   };
 
@@ -36,12 +37,12 @@ export default function Card({ post }) {
     !isOpen && setIsOpen(!isOpen);
   };
   const isAdmin = () => {
-    const userInfo = JSON.parse(sessionStorage.getItem('token'));
+    const userInfo = JSON.parse(sessionStorage.getItem("token"));
     return userInfo.user.role === 1;
   };
   return (
     <div className="card" onClick={!isOpen ? handleParentClick : undefined}>
-      {isOpen && <button onClick={() => setIsOpen(false)}>Close</button>}
+      {isOpen && <FaTimes onClick={() => setIsOpen(false)} />}
       <div className="post-state">
         <div className="post-type">
           <TypeDot />
@@ -60,13 +61,20 @@ export default function Card({ post }) {
       </div>
       {isOpen && (
         <div>
-          <div className="post-place">
-            <div className="place">{`Location: ${post.location}`}</div>
-            <div><button onClick={openModal}>Show location</button></div>
-            <MapModal toggle={showModal} action={openModal} markers={markers} setMarkers={setMarkers}/>
+          <div className="place">{`Location: ${post.location}`}</div>
+          <div className="post-buttons">
+            <div>
+              <button onClick={openModal}>Show location</button>
             </div>
-          <div className="post-modify">
-            <button id="modify-button">Muokkaa ilmoitusta</button>
+            <MapModal
+              toggle={showModal}
+              action={openModal}
+              markers={markers}
+              setMarkers={setMarkers}
+            />
+            <div className="post-modify">
+              <button id="modify-button" >Modify <FaPen id="pen-icon"/> </button>
+            </div>
           </div>
           {isAdmin && <ModifyPostState post={post} />}
           <SendMessage postid={post.id} />
