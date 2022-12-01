@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { ModifieMessageField } from './ModifieMessageField';
+import { FaPen } from 'react-icons/fa';
 
 export function MessageListItem({ message }) {
   const [isModifying, setIsModifying] = useState(false);
@@ -23,7 +24,7 @@ export function MessageListItem({ message }) {
           <p>{message.text}</p>
         )}
         {userCanModify && (
-          <button onClick={() => setIsModifying(true)}>Modify</button>
+          <FaPen className='modify-pen' onClick={() => setIsModifying(true)}/>
         )}
       </div>
     </div>

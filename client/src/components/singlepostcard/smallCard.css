@@ -26,11 +26,12 @@ button{
     font-size: large;
 }
 .post-text{
-    padding-bottom: 10px;
+    padding-bottom: 5px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     font-size: large;
+    color: rgb(42, 42, 48, 1);
 }
 .post-place{
     padding-bottom: 10px;
@@ -101,7 +102,7 @@ svg {
 }
 
 .place{
-    font-size: large;
+    font-size: larger;
     margin-bottom: 15px;
 }
 
@@ -114,6 +115,8 @@ svg {
 
 .card-title{
     margin-bottom: 10px;
+    font-weight: bold;
+    font-size: x-large;
 }
 
 #send-arrow{
@@ -121,4 +124,14 @@ svg {
     width: 16px;
     padding-left: 12px;
     color: aliceblue;
+}
+
+.card-text{
+    margin-bottom: 10px;
+}
+
+.modify-pen{
+    height: 25px;
+    width: 25px;
+    padding-left: 0px;
 }
