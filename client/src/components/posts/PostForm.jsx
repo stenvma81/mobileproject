@@ -6,20 +6,6 @@ import MapModal from "../map-modal/MapModal";
 import { FaTimes } from "react-icons/fa";
 
 export function PostForm() {
-  const [title, setTitle] = useState("");
-  const [FormIsOpen, setIsOpen] = useState(false);
-  const [description, setDescription] = useState("");
-  const [location, setLocation] = useState("");
-  const [posttype, setPosttype] = useState('');
-
-import React from 'react';
-import './styles.css';
-import { useState } from 'react';
-import { usePosts } from '../../hooks/ApiHooks';
-import MapModal from '../map-modal/MapModal';
-import { FaTimes } from "react-icons/fa";
-
-export function PostForm() {
   const [title, setTitle] = useState('');
   const [FormIsOpen, setIsOpen] = useState(false);
   const [description, setDescription] = useState('');
