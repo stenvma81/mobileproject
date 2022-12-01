@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from "react";
 import "./styles.css";
 import { useState } from "react";
@@ -10,6 +11,19 @@ export function PostForm() {
   const [FormIsOpen, setIsOpen] = useState(false);
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
+=======
+import React from 'react';
+import './styles.css';
+import { useState } from 'react';
+import { usePosts } from '../../hooks/ApiHooks';
+import MapModal from '../map-modal/MapModal';
+
+export function PostForm() {
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [location, setLocation] = useState('');
+  const [posttype, setPosttype] = useState('');
+>>>>>>> c2728f3e0576121794b6ebd14a4d3dc6511dc777
   const { uploadPost } = usePosts();
   const [showModal, setShowModal] = useState(false);
   const [markers, setMarkers] = useState([]);
@@ -20,7 +34,7 @@ export function PostForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const userInfo = JSON.parse(sessionStorage.getItem("token"));
+    const userInfo = JSON.parse(sessionStorage.getItem('token'));
     const msg = {
       userid: userInfo.user.id,
       type: 1,
@@ -31,9 +45,10 @@ export function PostForm() {
     };
     console.log(msg);
     await uploadPost(msg);
-    setDescription("");
-    setTitle("");
-    setLocation("");
+    setDescription('');
+    setTitle('');
+    setLocation('');
+    alert('Post has been submitted');
   };
 
   const handleOpenForm = (event) => {
@@ -50,7 +65,12 @@ export function PostForm() {
         <form>
           <FaTimes onClick={handleOpenForm} />
           <h1>Create a post</h1>
+<<<<<<< HEAD
           {/* <select
+=======
+
+          <select
+>>>>>>> c2728f3e0576121794b6ebd14a4d3dc6511dc777
             name="posttype"
             id="posttype-select"
             value={posttype}
@@ -104,6 +124,7 @@ export function PostForm() {
               onClick={openModal}
             />
           </div>
+
           <div>
             <input
               type='button'

@@ -1,0 +1,15 @@
+.admin_image_header{
+    background-size: cover;
+    height: 286px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content:flex-end;
+    align-items: center;
+    color: white;
+    
+    
+}
+#bigger{
+    margin-block-end: 0;
+}
