@@ -52,10 +52,11 @@
     display: flex;
     flex-direction: column;
     margin-top: 8px;
+}
 #allcont{
     display: block;
     margin-left: auto;
-    margin-right: ;
+    margin-right: auto;
     align-content: center;
     align-items: center;
 }
