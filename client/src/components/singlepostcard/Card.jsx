@@ -1,17 +1,18 @@
-import React, { useState } from "react";
-import Moment from "react-moment";
-import "moment-timezone";
-import { MessageList } from "../messages/MessageList";
-import { SendMessage } from "../messages/SendMessage";
-import PropTypes from "prop-types";
-import logo from "../header/images/nokia.jpg";
-import MapModal from "../map-modal/MapModal";
-import classes from "./smallCard.css";
-import { ModifyPostState } from "../admin/ModifyPostState";
+import React, { useEffect, useState } from 'react';
+import Moment from 'react-moment';
+import 'moment-timezone';
+import { MessageList } from '../messages/MessageList';
+import { SendMessage } from '../messages/SendMessage';
+import PropTypes from 'prop-types';
+import logo from '../header/images/nokia.jpg';
+import MapModal from '../map-modal/MapModal';
+import classes from './smallCard.css';
+import { ModifyPostState } from '../admin/ModifyPostState';
 import { FaTimes, FaPen } from "react-icons/fa";
 
 export default function Card({ post }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isAdmin, setIsAdmin] = useState();
   const [showModal, setShowModal] = useState(false);
   const [markers, setMarkers] = useState([]);
 
@@ -36,10 +37,13 @@ export default function Card({ post }) {
     }
     !isOpen && setIsOpen(!isOpen);
   };
-  const isAdmin = () => {
-    const userInfo = JSON.parse(sessionStorage.getItem("token"));
-    return userInfo.user.role === 1;
-  };
+
+
+  useEffect(() => {
+    const userInfo = JSON.parse(sessionStorage.getItem('token'));
+    setIsAdmin(userInfo.user.role === 1);
+  }, []);
+
   return (
     <div className="card" onClick={!isOpen ? handleParentClick : undefined}>
       {isOpen && <FaTimes onClick={() => setIsOpen(false)} />}
@@ -75,6 +79,7 @@ export default function Card({ post }) {
             <div className="post-modify">
               <button id="modify-button" >Modify <FaPen id="pen-icon"/> </button>
             </div>
+
           </div>
           {isAdmin && <ModifyPostState post={post} />}
           <SendMessage postid={post.id} />

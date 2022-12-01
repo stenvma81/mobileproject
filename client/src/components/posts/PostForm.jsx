@@ -1,14 +1,14 @@
-import React from "react";
-import "./styles.css";
-import { useState } from "react";
-import { usePosts } from "../../hooks/ApiHooks";
-import MapModal from "../map-modal/MapModal";
+import React from 'react';
+import './styles.css';
+import { useState } from 'react';
+import { usePosts } from '../../hooks/ApiHooks';
+import MapModal from '../map-modal/MapModal';
 
 export function PostForm() {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [location, setLocation] = useState("");
-  const [posttype, setPosttype] = useState("");
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [location, setLocation] = useState('');
+  const [posttype, setPosttype] = useState('');
   const { uploadPost } = usePosts();
   const [showModal, setShowModal] = useState(false);
   const [markers, setMarkers] = useState([]);
@@ -19,7 +19,7 @@ export function PostForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const userInfo = JSON.parse(sessionStorage.getItem("token"));
+    const userInfo = JSON.parse(sessionStorage.getItem('token'));
     const msg = {
       userid: userInfo.user.id,
       type: 1,
@@ -30,9 +30,10 @@ export function PostForm() {
     };
     console.log(msg);
     await uploadPost(msg);
-    setDescription("");
-    setTitle("");
-    setLocation("");
+    setDescription('');
+    setTitle('');
+    setLocation('');
+    alert('Post has been submitted');
   };
 
   return (
@@ -40,6 +41,7 @@ export function PostForm() {
       <div className="form-container">
         <form>
           <h1>Create a post</h1>
+
           <select
             name="posttype"
             id="posttype-select"
@@ -94,6 +96,7 @@ export function PostForm() {
               onClick={openModal}
             />
           </div>
+
           <div>
             <input
               type="button"

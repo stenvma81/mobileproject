@@ -19,6 +19,7 @@ export function SendMessage({ postid }) {
     if (response) {
       setText("");
       setUpdate(update + 1);
+      alert('Message has been submitted');
     }
   };
 
@@ -41,6 +42,7 @@ export function SendMessage({ postid }) {
               <FaAngleDoubleRight id="send-arrow" />
             </button>
           </div>
+
         </label>
       </form>
     </div>
