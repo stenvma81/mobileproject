@@ -57,11 +57,11 @@ export default function Card({ post }) {
       </div>
       <div className="post-text">
         <div className="card-title">{post.title}</div>
-        {isOpen && <div className="card-text">{post.description}</div>}
+        {isOpen && <div className="card-text">{`Location: ${post.location}`}</div>}
       </div>
       {isOpen && (
         <div>
-          <div className="place">{`Location: ${post.location}`}</div>
+          <div className="place">{`${post.description}`}</div>
           <div className="post-buttons">
             <div>
               <button onClick={openModal}>Show location</button>

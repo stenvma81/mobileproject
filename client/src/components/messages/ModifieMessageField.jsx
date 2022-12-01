@@ -3,6 +3,7 @@ import { useContext } from 'react';
 import { useState } from 'react';
 import { MainContext } from '../../context/MainContext';
 import { useMessage } from '../../hooks/MessageHooks';
+import { FaTimes, FaCheck } from 'react-icons/fa';
 
 export function ModifieMessageField({ message, setIsModifying }) {
   const [text, setText] = useState('');
@@ -22,11 +23,12 @@ export function ModifieMessageField({ message, setIsModifying }) {
   return (
     <div>
       <textarea
+        rows="4"
         defaultValue={message.text}
         onChange={(e) => setText(e.target.value)}
       />
-      <button onClick={handleSubmit}>Apply</button>
-      <button onClick={() => setIsModifying(false)}>Cancel</button>
+      <FaCheck onClick={handleSubmit} />
+      <FaTimes onClick={() => setIsModifying(false)} />
     </div>
   );
 }

@@ -28,12 +28,11 @@ export function SendMessage({ postid }) {
         <label>
           <p>Message:</p>
           <div id="send-message-div">
-            <input
+            <textarea
               placeholder="message"
               id="message-textfield"
               name="text"
               rows="6"
-              value={text}
               onChange={(e) => setText(e.target.value)}
             />
             <button id="send-msg-btn" type="send">
