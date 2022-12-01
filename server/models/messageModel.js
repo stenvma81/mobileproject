@@ -71,10 +71,23 @@ const getViewedMessages = async (userid, postid) => {
   }
 };
 
+const addToViewedMessages = async (userid, messageid) => {
+  try {
+    const [rows] = await promisePool.execute(
+      `INSERT INTO message_user_viewed(userid, messageid) VALUES (?, ?)`,
+      [userid, messageid]
+    );
+    return rows.insertId;
+  } catch (error) {
+    console.error('addToViewedMessages', error.message);
+  }
+};
+
 module.exports = {
   getMessagesByPost,
   addMessage,
   modifyMessage,
   closeMessage,
   getViewedMessages,
+  addToViewedMessages,
 };
