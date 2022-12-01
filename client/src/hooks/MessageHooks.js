@@ -84,12 +84,27 @@ const useMessage = (postid) => {
     }
   };
 
+  const getViewedMessages = async (postid) => {
+    try {
+      const userdata = JSON.parse(sessionStorage.getItem('token'));
+      const userid = userdata.user.id;
+      const result = await doFetch(`${messageUrl}viewed/${postid}/${userid}`);
+      return result;
+    } catch (e) {
+      console.log('closeMessage error', e);
+      throw new Error(e.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return {
     loadMessagesByPostId,
     uploadMessage,
     closeMessage,
     modifyMessage,
     messageArray,
+    getViewedMessages,
   };
 };
 

@@ -8,9 +8,12 @@ import logo from '../header/images/nokia.jpg';
 import MapModal from '../map-modal/MapModal';
 import classes from './smallCard.css';
 import { ModifyPostState } from '../admin/ModifyPostState';
-import { FaTimes, FaPen } from "react-icons/fa";
+import { FaTimes, FaPen } from 'react-icons/fa';
+import { useMessage } from '../../hooks/MessageHooks';
 
 export default function Card({ post }) {
+  const { getViewedMessages, messageArray } = useMessage(post.id);
+  const [newMessages, setNewMessages] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [isAdmin, setIsAdmin] = useState();
   const [showModal, setShowModal] = useState(false);
@@ -24,9 +27,9 @@ export default function Card({ post }) {
   }
 
   const TypeDot = () => {
-    let color = "red";
-    post.typeid === 1 && (color = "rgba(0,135,255,1)");
-    post.typeid === 3 && (color = "yellow");
+    let color = 'red';
+    post.typeid === 1 && (color = 'rgba(0,135,255,1)');
+    post.typeid === 3 && (color = 'yellow');
     return <div className="dot" style={{ backgroundColor: color }}></div>;
   };
 
@@ -38,10 +41,15 @@ export default function Card({ post }) {
     !isOpen && setIsOpen(!isOpen);
   };
 
-
   useEffect(() => {
+    const fetchViewedMessages = async () => {
+      const msg = await getViewedMessages(post.id);
+      msg && setNewMessages(msg);
+    };
     const userInfo = JSON.parse(sessionStorage.getItem('token'));
     setIsAdmin(userInfo.user.role === 1);
+
+    fetchViewedMessages();
   }, []);
 
   return (
@@ -51,6 +59,7 @@ export default function Card({ post }) {
         <div className="post-type">
           <TypeDot />
           <div>{post.type}</div>
+          <p>{messageArray.length - newMessages.length}</p>
         </div>
         <div id="card-date">
           <Moment date={post.created_date} format="DD.MM.YYYY HH:mm" />
@@ -77,9 +86,10 @@ export default function Card({ post }) {
               setMarkers={setMarkers}
             />
             <div className="post-modify">
-              <button id="modify-button" >Modify <FaPen id="pen-icon"/> </button>
+              <button id="modify-button">
+                Modify <FaPen id="pen-icon" />{' '}
+              </button>
             </div>
-
           </div>
           {isAdmin && <ModifyPostState post={post} />}
           <SendMessage postid={post.id} />
