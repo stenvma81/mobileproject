@@ -8,6 +8,7 @@ import logo from '../header/images/nokia.jpg';
 import MapModal from '../map-modal/MapModal';
 import classes from './smallCard.css';
 import { ModifyPostState } from '../admin/ModifyPostState';
+import { FaTimes, FaPen } from "react-icons/fa";
 
 export default function Card({ post }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,9 +24,9 @@ export default function Card({ post }) {
   }
 
   const TypeDot = () => {
-    let color = 'red';
-    post.typeid === 1 && (color = 'blue');
-    post.typeid === 3 && (color = 'yellow');
+    let color = "red";
+    post.typeid === 1 && (color = "rgba(0,135,255,1)");
+    post.typeid === 3 && (color = "yellow");
     return <div className="dot" style={{ backgroundColor: color }}></div>;
   };
 
@@ -37,6 +38,7 @@ export default function Card({ post }) {
     !isOpen && setIsOpen(!isOpen);
   };
 
+
   useEffect(() => {
     const userInfo = JSON.parse(sessionStorage.getItem('token'));
     setIsAdmin(userInfo.user.role === 1);
@@ -44,7 +46,7 @@ export default function Card({ post }) {
 
   return (
     <div className="card" onClick={!isOpen ? handleParentClick : undefined}>
-      {isOpen && <button onClick={() => setIsOpen(false)}>Close</button>}
+      {isOpen && <FaTimes onClick={() => setIsOpen(false)} />}
       <div className="post-state">
         <div className="post-type">
           <TypeDot />
@@ -63,8 +65,8 @@ export default function Card({ post }) {
       </div>
       {isOpen && (
         <div>
-          <div className="post-place">
-            <div className="place">{`Location: ${post.location}`}</div>
+          <div className="place">{`Location: ${post.location}`}</div>
+          <div className="post-buttons">
             <div>
               <button onClick={openModal}>Show location</button>
             </div>
@@ -74,9 +76,10 @@ export default function Card({ post }) {
               markers={markers}
               setMarkers={setMarkers}
             />
-          </div>
-          <div className="post-modify">
-            <button id="modify-button">Muokkaa ilmoitusta</button>
+            <div className="post-modify">
+              <button id="modify-button" >Modify <FaPen id="pen-icon"/> </button>
+            </div>
+
           </div>
           {isAdmin && <ModifyPostState post={post} />}
           <SendMessage postid={post.id} />
