@@ -1,5 +1,5 @@
 .card{
-    background-color: rgba(172, 176, 199, 1);
+    background-color: rgb(231,234,241, 0.99);
     box-shadow: 5px 5px 5px black;
     border-radius: 15px;
     width: auto;
@@ -23,18 +23,21 @@ button{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    font-size: large;
 }
 .post-text{
     padding-bottom: 10px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    font-size: large;
 }
 .post-place{
     padding-bottom: 10px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    font-size: large;
 }
 .post-message{
     display: flex;
@@ -46,6 +49,29 @@ button{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+}
+
+.post-buttons{
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.post-buttons button{
+    border: 1px solid rgb(22, 27, 99);
+    outline: none;
+    margin-bottom: 20px;
+    min-width: 120px;
+    height: 45px;
+    font-size: 16px;
+    font-weight: 100;
+    text-align: center;
+    background: rgb(22, 27, 99);
+    color: #fff;
+    cursor: pointer;
+    font-family: 'Open Sans', sans-serif;
+    margin: 5px;
 }
 
 .dot{
@@ -65,4 +91,34 @@ button{
 #card-date {
     display: flex;
     flex-direction: column;
+}
+
+svg {
+    color: rgb(58, 58, 78);
+    width: 35px;
+    height: 35px;
+    padding-left: 85%;
+}
+
+.place{
+    font-size: large;
+    margin-bottom: 15px;
+}
+
+#pen-icon{
+    height: 15px;
+    width: 15px;
+    padding-left: 12px;
+    color: aliceblue;
+}
+
+.card-title{
+    margin-bottom: 10px;
+}
+
+#send-arrow{
+    height: 16px;
+    width: 16px;
+    padding-left: 12px;
+    color: aliceblue;
 }

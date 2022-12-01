@@ -1,76 +1,105 @@
 .form-container {
-    /* position: relative; */
-    /* width: 300px; */
-    display: flex;
-    flex-direction: column;
-    align-items: baseline;
-    justify-content: center;
-    padding: 5%;
-    box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
-    border-radius: 20px;
-    background-color: #fff;
+  /* position: relative; */
+  /* width: 300px; */
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  justify-content: center;
+  padding: 5%;
+  box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
+  border-radius: 20px;
+  background-color: rgb(231, 234, 241, 0.99);
 }
 
 label {
-    font-size: 18px;
-    margin-bottom: 10px;
-    font-family: sans-serif;
-    color: rgb(22, 27, 99)
+  font-size: 18px;
+  margin-bottom: 10px;
+  font-family: sans-serif;
+  color: rgb(22, 27, 99);
 }
 
-input[type=text] {
-    border: 1px solid rgb(37, 8, 28);
-    width: 300px;
-    height: 34px;
-    outline: none;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-bottom: 15px;
-    font-size: 16px;
-    font-weight: 100;
-    border-radius: 5px;
-    font-family: sans-serif;
+input[type="text"] {
+  border: 1px solid rgb(37, 8, 28);
+  width: 300px;
+  height: 42px;
+  outline: none;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 100;
+  font-family: sans-serif;
 }
 
 select {
-    border: 1px solid rgb(37, 8, 28);
-    width: 300px;
-    height: 34px;
-    outline: none;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-bottom: 20px;
-    font-size: 16px;
-    font-weight: 100;
-    border-radius: 5px;
-    font-family: sans-serif;
+  border: 1px solid rgb(37, 8, 28);
+  width: 321px;
+  height: 42px;
+  outline: none;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  font-weight: 100;
+  border-radius: 10px;
+  font-family: sans-serif;
 }
 
-input[type=button] {
-    border: 1px solid rgb(22, 27, 99);
-    height: 34px;
-    outline: none;
-    padding-left: 20px;
-    padding-right: 20px;
-    margin-bottom: 20px;
-    font-size: 18px;
-    font-weight: 100;
-    border-radius: 5px;
-    text-align: center;
-    background: rgb(22, 27, 99);
-    color: #fff;
-    cursor: pointer;
-    font-family: sans-serif;
+input[type="button"] {
+  border: 1px solid rgb(22, 27, 99);
+  height: 34px;
+  outline: none;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-bottom: 20px;
+  font-size: 18px;
+  font-weight: 100;
+  text-align: center;
+  background: rgb(22, 27, 99);
+  color: #fff;
+  cursor: pointer;
+  border-radius: 10px;
+  font-family: sans-serif;
 }
 
 #post-list {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: baseline;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
 }
 
 ul {
-    width: 100%;
-    padding: 0;
+  width: 100%;
+  padding: 0;
+}
+
+#description {
+  height: 100px;
+}
+
+#sendbutton {
+  border: 1px solid rgb(22, 27, 99);
+  height: 57px;
+  min-width: 142px;
+  outline: none;
+  padding: 15px;
+  margin-bottom: 5px;
+  margin-left: 30%;
+  margin-top: 30px;
+  font-size: 20px;
+  font-weight: 100;
+  border-radius: 15px;
+  text-align: center;
+  background: rgb(22, 27, 99);
+  color: #fff;
+  cursor: pointer;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 340;
+}
+
+form h1 {
+  padding-left: 18%;
+  padding-bottom: 15px;
 }

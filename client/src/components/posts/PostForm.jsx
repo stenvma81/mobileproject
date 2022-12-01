@@ -40,38 +40,43 @@ export function PostForm() {
     <>
       <div className="form-container">
         <form>
-          <label htmlFor="title">Title</label>
+          <h1>Create a post</h1>
+
+          <select
+            name="posttype"
+            id="posttype-select"
+            value={posttype}
+            onChange={(e) => setPosttype(e.target.value)}
+          >
+            <option value="">Please choose the type</option>
+            <option value="service advice">Service Advice</option>
+            <option value="feedback">Feedback</option>
+            <option value="development proposal">Development Proposal</option>
+            <option value="question">Question</option>
+          </select>
           <input
+            placeholder="Title"
             type="text"
             name="title"
             id="title"
-            required
-            minLength="1"
-            maxLength="50"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
 
-          <label htmlFor="description">Description</label>
           <input
+            placeholder="Description"
             type="text"
             name="description"
             id="description"
-            required
-            minLength="1"
-            maxLength="250"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
 
-          <label htmlFor="location">Location</label>
           <input
+            placeholder="Location"
             type="text"
             name="location"
             id="location"
-            required
-            minLength="1"
-            maxLength="50"
             value={location}
             onChange={(e) => setLocation(e.target.value)}
           />
@@ -91,19 +96,7 @@ export function PostForm() {
               onClick={openModal}
             />
           </div>
-          <label htmlFor="posttype">Post type</label>
 
-          <select
-            name="posttype"
-            id="posttype-select"
-            value={posttype}
-            onChange={(e) => setPosttype(e.target.value)}
-          >
-            <option value="">Please choose the type</option>
-            <option value="service advice">Service Advice</option>
-            <option value="safety advice">Safety Advice</option>
-            <option value="feedback">Feedback</option>
-          </select>
           <div>
             <input
               type="button"
@@ -112,9 +105,13 @@ export function PostForm() {
               value="Add a photo"
             />
           </div>
-          <button type="send" name="send" id="send" onClick={handleSubmit}>
-            Send
-          </button>
+          <input
+              type="button"
+              name="sendbutton"
+              id="sendbutton"
+              value="Send"
+              onClick={handleSubmit}
+            />
         </form>
       </div>
     </>
