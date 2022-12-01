@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React from "react";
 import "./styles.css";
 import { useState } from "react";
@@ -11,19 +10,21 @@ export function PostForm() {
   const [FormIsOpen, setIsOpen] = useState(false);
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
-=======
+  const [posttype, setPosttype] = useState('');
+
 import React from 'react';
 import './styles.css';
 import { useState } from 'react';
 import { usePosts } from '../../hooks/ApiHooks';
 import MapModal from '../map-modal/MapModal';
+import { FaTimes } from "react-icons/fa";
 
 export function PostForm() {
   const [title, setTitle] = useState('');
+  const [FormIsOpen, setIsOpen] = useState(false);
   const [description, setDescription] = useState('');
   const [location, setLocation] = useState('');
   const [posttype, setPosttype] = useState('');
->>>>>>> c2728f3e0576121794b6ebd14a4d3dc6511dc777
   const { uploadPost } = usePosts();
   const [showModal, setShowModal] = useState(false);
   const [markers, setMarkers] = useState([]);
@@ -65,12 +66,7 @@ export function PostForm() {
         <form>
           <FaTimes onClick={handleOpenForm} />
           <h1>Create a post</h1>
-<<<<<<< HEAD
           {/* <select
-=======
-
-          <select
->>>>>>> c2728f3e0576121794b6ebd14a4d3dc6511dc777
             name="posttype"
             id="posttype-select"
             value={posttype}
