@@ -13,7 +13,7 @@ import { useMessage } from '../../hooks/MessageHooks';
 
 export default function Card({ post }) {
   const { getViewedMessages, messageArray } = useMessage(post.id);
-  const [newMessages, setNewMessages] = useState([]);
+  const [viewedMessages, setViewedMessages] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [isAdmin, setIsAdmin] = useState();
   const [showModal, setShowModal] = useState(false);
@@ -44,7 +44,7 @@ export default function Card({ post }) {
   useEffect(() => {
     const fetchViewedMessages = async () => {
       const msg = await getViewedMessages(post.id);
-      msg && setNewMessages(msg);
+      msg && setViewedMessages(msg);
     };
     const userInfo = JSON.parse(sessionStorage.getItem('token'));
     setIsAdmin(userInfo.user.role === 1);
@@ -59,7 +59,10 @@ export default function Card({ post }) {
         <div className="post-type">
           <TypeDot />
           <div>{post.type}</div>
-          <p>{messageArray.length - newMessages.length}</p>
+          <br></br>
+          <div id="new-message-count">
+            {messageArray.length - viewedMessages.length}New Messages
+          </div>
         </div>
         <div id="card-date">
           <Moment date={post.created_date} format="DD.MM.YYYY HH:mm" />
@@ -70,7 +73,9 @@ export default function Card({ post }) {
       </div>
       <div className="post-text">
         <div className="card-title">{post.title}</div>
-        {isOpen && <div className="card-text">{`Location: ${post.location}`}</div>}
+        {isOpen && (
+          <div className="card-text">{`Location: ${post.location}`}</div>
+        )}
       </div>
       {isOpen && (
         <div>

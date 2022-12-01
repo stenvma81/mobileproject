@@ -48,6 +48,7 @@ const useMessage = (postid) => {
       return messageData;
     } catch (e) {
       console.log('MessageHooks loadMessageById: ', e.message);
+      return [];
     }
   };
 
@@ -91,8 +92,8 @@ const useMessage = (postid) => {
       const result = await doFetch(`${messageUrl}viewed/${postid}/${userid}`);
       return result;
     } catch (e) {
-      console.log('closeMessage error', e);
-      throw new Error(e.message);
+      console.log('getViewedMessages error', e);
+      return [];
     } finally {
       setLoading(false);
     }

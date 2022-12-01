@@ -1,29 +1,15 @@
-<<<<<<< HEAD
-import React from "react";
-import "./styles.css";
-import { useState } from "react";
-import { usePosts } from "../../hooks/ApiHooks";
-import MapModal from "../map-modal/MapModal";
-import { FaTimes } from "react-icons/fa";
-
-export function PostForm() {
-  const [title, setTitle] = useState("");
-  const [FormIsOpen, setIsOpen] = useState(false);
-  const [description, setDescription] = useState("");
-  const [location, setLocation] = useState("");
-=======
 import React from 'react';
 import './styles.css';
 import { useState } from 'react';
 import { usePosts } from '../../hooks/ApiHooks';
 import MapModal from '../map-modal/MapModal';
+import { FaTimes } from 'react-icons/fa';
 
 export function PostForm() {
   const [title, setTitle] = useState('');
+  const [FormIsOpen, setIsOpen] = useState(false);
   const [description, setDescription] = useState('');
   const [location, setLocation] = useState('');
-  const [posttype, setPosttype] = useState('');
->>>>>>> c2728f3e0576121794b6ebd14a4d3dc6511dc777
   const { uploadPost } = usePosts();
   const [showModal, setShowModal] = useState(false);
   const [markers, setMarkers] = useState([]);
@@ -61,16 +47,11 @@ export function PostForm() {
 
   return (
     <>
-      <div className='form-container'>
+      <div className="form-container">
         <form>
           <FaTimes onClick={handleOpenForm} />
           <h1>Create a post</h1>
-<<<<<<< HEAD
           {/* <select
-=======
-
-          <select
->>>>>>> c2728f3e0576121794b6ebd14a4d3dc6511dc777
             name="posttype"
             id="posttype-select"
             value={posttype}
@@ -83,28 +64,28 @@ export function PostForm() {
             <option value="question">Question</option>
           </select> */}
           <input
-            placeholder='Title'
-            type='text'
-            name='title'
-            id='title'
+            placeholder="Title"
+            type="text"
+            name="title"
+            id="title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
 
           <input
-            placeholder='Description'
-            type='text'
-            name='description'
-            id='description'
+            placeholder="Description"
+            type="text"
+            name="description"
+            id="description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
 
           <input
-            placeholder='Location'
-            type='text'
-            name='location'
-            id='location'
+            placeholder="Location"
+            type="text"
+            name="location"
+            id="location"
             value={location}
             onChange={(e) => setLocation(e.target.value)}
           />
@@ -112,32 +93,32 @@ export function PostForm() {
             <MapModal
               toggle={showModal}
               action={openModal}
-              areamarker=''
+              areamarker=""
               markers={markers}
               setMarkers={setMarkers}
             />
             <input
-              type='button'
-              name='cardbutton'
-              id='cardbutton'
-              value='Choose on map'
+              type="button"
+              name="cardbutton"
+              id="cardbutton"
+              value="Choose on map"
               onClick={openModal}
             />
           </div>
 
           <div>
             <input
-              type='button'
-              name='photobutton'
-              id='photobutton'
-              value='Add a photo'
+              type="button"
+              name="photobutton"
+              id="photobutton"
+              value="Add a photo"
             />
           </div>
           <input
-            type='button'
-            name='sendbutton'
-            id='sendbutton'
-            value='Send'
+            type="button"
+            name="sendbutton"
+            id="sendbutton"
+            value="Send"
             onClick={handleSubmit}
           />
         </form>

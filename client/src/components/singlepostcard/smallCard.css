@@ -135,3 +135,7 @@ svg {
     width: 25px;
     padding-left: 0px;
 }
+
+#new-message-count {
+    background-color: red;
+}

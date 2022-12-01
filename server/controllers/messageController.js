@@ -39,7 +39,7 @@ const message_close = async (req, res) => {
   res.json({ message: `Message closed: ${messageClosed}` });
 };
 
-const message_get_viewed = async (req, res) => {
+const message_get_viewed = async (req, res, next) => {
   const postid = req.params.postid;
   const userid = req.params.userid;
   const data = await getViewedMessages(userid, postid);
