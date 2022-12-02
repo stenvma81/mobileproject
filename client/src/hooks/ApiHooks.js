@@ -62,7 +62,9 @@ const usePosts = () => {
 
   const loadPostByState = async (stateid) => {
     try {
+      console.log('loadPostsByState: ', stateid)
       const postdata = await doFetch(postUrl + 'state/' + stateid);
+      console.log('loadPostsByState: ', postdata)
       return postdata;
     } catch (error) {
       console.error('ApiHooks: loadPostByState: ', error.message);

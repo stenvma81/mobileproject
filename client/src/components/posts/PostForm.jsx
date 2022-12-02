@@ -51,6 +51,7 @@ export function PostForm() {
     setLocation('');
     setMarkers([]);
     setImage(null);
+    setIsOpen(!FormIsOpen);
     alert('Post has been submitted');
   };
 

@@ -18,7 +18,7 @@ const addPost = async (post) => {
 
 const getPostsSql = `
     SELECT post.id, user.employeeid as user, description, post.title, location, poststate.id as stateid, 
-    poststate.title as state, posttype.title as type, posttype.id as typeid,created_date, closed_date, areamarker 
+    poststate.title as state, posttype.title as type, posttype.id as typeid,created_date, closed_date, areamarker, mediafilename 
     FROM post
     INNER JOIN user ON userid = user.id 
     INNER JOIN posttype ON type = posttype.id
