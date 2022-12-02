@@ -6,7 +6,7 @@ import { messageUrl } from '../utils/variables';
 const useMessage = (postid) => {
   const [messageArray, setMessageArray] = useState([]);
   const [loading, setLoading] = useState(false);
-  const { update, user } = useContext(MainContext);
+  const { update } = useContext(MainContext);
 
   useEffect(() => {
     // https://scriptverse.academy/tutorials/js-self-invoking-functions.html
@@ -99,6 +99,24 @@ const useMessage = (postid) => {
     }
   };
 
+  const addToViewedMessages = async (messageid) => {
+    try {
+      const userdata = JSON.parse(sessionStorage.getItem('token'));
+      const userid = userdata.user.id;
+      const options = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ userid: userid }),
+      };
+      const result = await doFetch(messageUrl + messageid, options);
+      return result;
+    } catch (e) {
+      console.log('addToViewedMessages error', e);
+    }
+  };
+
   return {
     loadMessagesByPostId,
     uploadMessage,
@@ -106,6 +124,7 @@ const useMessage = (postid) => {
     modifyMessage,
     messageArray,
     getViewedMessages,
+    addToViewedMessages,
   };
 };
 

@@ -55,7 +55,7 @@ const message_add_viewed = async (req, res, next) => {
   const messageid = req.params.id;
   const userid = req.body.userid;
   const insertid = await addToViewedMessages(userid, messageid);
-  res.json({ message: `Message created with id: ${insertid}` });
+  res.json({ message: `Message added to viewed: ${insertid}` });
 };
 
 module.exports = {

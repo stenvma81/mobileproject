@@ -73,6 +73,10 @@ const getViewedMessages = async (userid, postid) => {
 
 const addToViewedMessages = async (userid, messageid) => {
   try {
+    await promisePool.execute(
+      `DELETE FROM message_user_viewed WHERE userid = ? AND messageid = ?`,
+      [userid, messageid]
+    );
     const [rows] = await promisePool.execute(
       `INSERT INTO message_user_viewed(userid, messageid) VALUES (?, ?)`,
       [userid, messageid]

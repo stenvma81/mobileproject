@@ -9,11 +9,9 @@ import MapModal from '../map-modal/MapModal';
 import classes from './smallCard.css';
 import { ModifyPostState } from '../admin/ModifyPostState';
 import { FaTimes, FaPen } from 'react-icons/fa';
-import { useMessage } from '../../hooks/MessageHooks';
+import { NewMessagesCount } from './NewMessagesCount';
 
 export default function Card({ post }) {
-  const { getViewedMessages, messageArray } = useMessage(post.id);
-  const [viewedMessages, setViewedMessages] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [isAdmin, setIsAdmin] = useState();
   const [showModal, setShowModal] = useState(false);
@@ -42,14 +40,8 @@ export default function Card({ post }) {
   };
 
   useEffect(() => {
-    const fetchViewedMessages = async () => {
-      const msg = await getViewedMessages(post.id);
-      msg && setViewedMessages(msg);
-    };
     const userInfo = JSON.parse(sessionStorage.getItem('token'));
     setIsAdmin(userInfo.user.role === 1);
-
-    fetchViewedMessages();
   }, []);
 
   return (
@@ -60,9 +52,7 @@ export default function Card({ post }) {
           <TypeDot />
           <div>{post.type}</div>
           <br></br>
-          <div id="new-message-count">
-            {messageArray.length - viewedMessages.length}New Messages
-          </div>
+          <NewMessagesCount post={post} />
         </div>
         <div id="card-date">
           <Moment date={post.created_date} format="DD.MM.YYYY HH:mm" />
