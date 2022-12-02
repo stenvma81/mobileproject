@@ -7,11 +7,13 @@ import { FaTimes } from "react-icons/fa";
 
 export function PostForm() {
   const [title, setTitle] = useState('');
+  const [image, setImage] = useState(null);
+  const [filetype, setFiletype] = useState('');
   const [FormIsOpen, setIsOpen] = useState(false);
   const [description, setDescription] = useState('');
   const [location, setLocation] = useState('');
   const [posttype, setPosttype] = useState('');
-  const { uploadPost } = usePosts();
+  const { uploadPost, uploadPost2 } = usePosts();
   const [showModal, setShowModal] = useState(false);
   const [markers, setMarkers] = useState([]);
 
@@ -19,9 +21,46 @@ export function PostForm() {
     setShowModal(!showModal);
   }
 
+  const doUpload = async () => {
+    const filename = image.data.uri.split('/').pop();
+    const userInfo = JSON.parse(sessionStorage.getItem('token'));
+    // Infer the type of the image
+    const match = /\.(\w+)$/.exec(filename);
+    let type = match ? `image/${match[1]}` : filetype;
+    if (filetype === 'video') {
+      type = match ? `video/${match[1]}` : filetype;
+    }
+    if (type === 'image/jpg') type = 'image/jpeg';
+    console.log('TYYPPI: ', type);
+    const formData = new FormData();
+    formData.append('file', {uri: image.uri, name: filename, type});
+    formData.append('title', title);
+    formData.append('description', description);
+    formData.append('location', location);
+    formData.append('areamarker', description);
+    formData.append('userid', userInfo.user.id);
+    formData.append('type', posttype);
+    // console.log('doUpload', formData);
+    try {
+      // console.log('doUpload', formData);
+      const result = await uploadPost2(formData);
+    } catch (e) {
+      console.log('doUpload error', e.message);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const userInfo = JSON.parse(sessionStorage.getItem('token'));
+    const formData = new FormData();
+    formData.append('media', image);
+    formData.append('title', title);
+    formData.append('description', description);
+    formData.append('location', location);
+    formData.append('areamarker', JSON.stringify(markers[0]));
+    formData.append('userid', userInfo.user.id);
+    formData.append('type', 1);
+    console.log('handleSubmit', image);
     const msg = {
       userid: userInfo.user.id,
       type: 1,
@@ -29,9 +68,12 @@ export function PostForm() {
       description: description,
       location: location,
       areamarker: JSON.stringify(markers[0]),
+      media: image.data,
     };
-    console.log(msg);
-    await uploadPost(msg);
+    for (let pair of formData.entries()) {
+      console.log(pair[0]+ ' - ' + pair[1]); 
+  }
+    await uploadPost(formData);
     setDescription('');
     setTitle('');
     setLocation('');
@@ -45,6 +87,14 @@ export function PostForm() {
     }
     !FormIsOpen && setIsOpen(!FormIsOpen);
   };
+
+  const handleFileChange = (e) => {
+    const img = {
+        preview: URL.createObjectURL(e.target.files[0]),
+        data: e.target.files[0],
+    }
+    setImage(e.target.files[0]);
+  }
 
   return (
     <>
@@ -106,14 +156,8 @@ export function PostForm() {
               onClick={openModal}
             />
           </div>
-
+          <input type="file" name="media" accept='image/*' multiple={false} onChange={handleFileChange}/>
           <div>
-            <input
-              type='button'
-              name='photobutton'
-              id='photobutton'
-              value='Add a photo'
-            />
           </div>
           <input
             type='button'

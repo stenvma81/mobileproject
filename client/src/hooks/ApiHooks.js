@@ -75,16 +75,30 @@ const usePosts = () => {
       setLoading(true);
       const options = {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
+        body: formData,
       };
       console.log('ApiHooks: uploadPost ', options.body);
       const result = await doFetch(postUrl, options);
       return result;
     } catch (e) {
       console.log('uploadPost error', e);
+      throw new Error(e.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const uploadPost2 = async (formData) => {
+    try {
+      setLoading(true);
+      const options = {
+        method: 'POST',
+        body: formData,
+      };
+      const result = await doFetch(postUrl, options);
+      return result;
+    } catch (e) {
+      console.log('uploadMedia error', e);
       throw new Error(e.message);
     } finally {
       setLoading(false);
@@ -161,6 +175,7 @@ const usePosts = () => {
     modifyPost,
     loadPostByUserId,
     usersPost,
+    uploadPost2,
   };
 };
 

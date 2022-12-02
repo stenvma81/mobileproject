@@ -50,19 +50,22 @@ app.get('/test', (req, res) => {
     */
 
 const passport = require('./utils/pass');
+
+// define routes for http connections
 const testRoute = require('./routes/testRoute');
-
-const postRoute = require('./routes/postRoute');
-app.use('/post', postRoute);
-
 const messageRoute = require('./routes/messageRoute');
-app.use('/message', messageRoute);
-
+const postRoute = require('./routes/postRoute');
 const authRoute = require('./routes/authRoute');
 
+app.use(express.static('uploads')); // Define uploads folder
+app.use('/thumbnails', express.static('thumbnails')); // Define thumbnails folder
+
+app.use('/post', postRoute);
+app.use('/message', messageRoute);
 app.use('/test', testRoute);
 app.use('/auth', authRoute);
 
+// define the port the server listens for outside connections
 app.listen(process.env.REACT_APP_SERVER_PORT, () => {
   console.log(
     `App server now listening on port ${process.env.REACT_APP_SERVER_PORT}`
