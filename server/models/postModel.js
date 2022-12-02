@@ -4,11 +4,11 @@ const pool = require('../database/db');
 const promisePool = pool.promise();
 
 const addPost = async (post) => {
-  console.log('postModel: addPost', post.media);
+  console.log('postModel: addPost', post);
   try {
     const [rows] = await promisePool.execute(
-      'INSERT INTO post (userid, description, type, title, location, areamarker) VALUES (?, ?, ?, ?, ?, ?)',
-      [post.userid, post.description, post.type, post.title, post.location, post.areamarker]
+      'INSERT INTO post (userid, description, type, title, location, areamarker, mediafilename) VALUES (?, ?, ?, ?, ?, ?, ?)',
+      [post.userid, post.description, post.type, post.title, post.location, post.areamarker, post.file.filename]
     );
     return rows.insertId;
   } catch (error) {

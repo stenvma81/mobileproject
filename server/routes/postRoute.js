@@ -21,14 +21,17 @@ const fileFilter = (req, file, cb) => {
   if (file.mimetype === 'image/jpeg' ||
       file.mimetype === 'image/png' ||
       file.mimetype === 'image/gif') {
-    cb(null, true);
+    console.log('fileFilter reporting true: ', req.body);
+    return cb(null, true);
   } else {
+    console.log('fileFilter reporting false');
     cb(null, false);
   }
 };
 
 const testFile = (req, res, next) => {
   if (req.file) {
+    console.log('testFile reporting: ', req.file);
     next();
   } else {
     res.status(400).json({errors: 'file is not image'});
@@ -38,7 +41,7 @@ const testFile = (req, res, next) => {
 const upload = multer({dest: 'uploads/', fileFilter});
 
 router.route('/').get(posts_get);
-router.post('/', upload.single('media'), testFile, make_thumbnail, post_post);
+router.post('/', upload.single('media'), body('description').isLength({min: 3}).blacklist(';'), post_post);
 
 router.route('/:id').get(post_get_by_id).put(post_modify);
 

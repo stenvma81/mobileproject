@@ -81,6 +81,7 @@ CREATE TABLE `post` (
   `state` int DEFAULT(0),
   FOREIGN KEY(state) REFERENCES poststate(id),
   `areamarker` varchar(100),
+  `mediafilename` text,
   `created_date` datetime DEFAULT(CURRENT_TIMESTAMP),
   `closed_date` datetime
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

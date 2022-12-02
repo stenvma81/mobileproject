@@ -15,9 +15,10 @@ const { httpError } = require('../utils/errors');
 const {makeThumbnail} = require('../utils/resize');
 
 const post_post = async (req, res) => {
-  console.log('postController: post_post', req.body);
+  console.log('postController: post_post', req.file);
   if(req.body != {}) {
     const post = req.body;
+    post.file = req.file;
     const id = await addPost(post);
     res.json({ message: `Post created with id: ${id}` });
   } else {
