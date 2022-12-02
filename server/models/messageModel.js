@@ -57,4 +57,41 @@ const closeMessage = async (messageid) => {
   }
 };
 
-module.exports = { getMessagesByPost, addMessage, modifyMessage, closeMessage };
+const getViewedMessages = async (userid, postid) => {
+  try {
+    const [rows] = await promisePool.execute(
+      `SELECT message_user_viewed.userid, messageid FROM message_user_viewed 
+      INNER JOIN message ON messageid = message.id
+      WHERE message_user_viewed.userid = ? AND message.postid = ?`,
+      [userid, postid]
+    );
+    return rows;
+  } catch (error) {
+    console.error('getViewedMessages', error.message);
+  }
+};
+
+const addToViewedMessages = async (userid, messageid) => {
+  try {
+    await promisePool.execute(
+      `DELETE FROM message_user_viewed WHERE userid = ? AND messageid = ?`,
+      [userid, messageid]
+    );
+    const [rows] = await promisePool.execute(
+      `INSERT INTO message_user_viewed(userid, messageid) VALUES (?, ?)`,
+      [userid, messageid]
+    );
+    return rows.insertId;
+  } catch (error) {
+    console.error('addToViewedMessages', error.message);
+  }
+};
+
+module.exports = {
+  getMessagesByPost,
+  addMessage,
+  modifyMessage,
+  closeMessage,
+  getViewedMessages,
+  addToViewedMessages,
+};

@@ -5,6 +5,8 @@ const {
   addMessage,
   closeMessage,
   modifyMessage,
+  getViewedMessages,
+  addToViewedMessages,
 } = require('../models/messageModel');
 const { httpError } = require('../utils/errors');
 
@@ -38,9 +40,29 @@ const message_close = async (req, res) => {
   res.json({ message: `Message closed: ${messageClosed}` });
 };
 
+const message_get_viewed = async (req, res, next) => {
+  const postid = req.params.postid;
+  const userid = req.params.userid;
+  const data = await getViewedMessages(userid, postid);
+  if (data.length > 0) {
+    res.json(data);
+    return;
+  }
+  next(httpError('Viewed messages not found', 404));
+};
+
+const message_add_viewed = async (req, res, next) => {
+  const messageid = req.params.id;
+  const userid = req.body.userid;
+  const insertid = await addToViewedMessages(userid, messageid);
+  res.json({ message: `Message added to viewed: ${insertid}` });
+};
+
 module.exports = {
   messages_get_by_post,
   message_add,
   message_modify,
   message_close,
+  message_get_viewed,
+  message_add_viewed,
 };
