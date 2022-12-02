@@ -97,6 +97,14 @@ CREATE TABLE `message` (
   `closed_date` datetime
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+CREATE TABLE `message_user_viewed` (
+  `id` int(10) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `userid` int(10) NOT NULL,
+  FOREIGN KEY(userid) REFERENCES user(id),
+  `messageid` int(10) NOT NULL,
+  FOREIGN KEY(messageid) REFERENCES message(id)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 --
 -- Dumping data for table `sample`
 --

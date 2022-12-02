@@ -1,9 +1,9 @@
-import React from "react";
-import "./styles.css";
-import { useState } from "react";
-import { usePosts } from "../../hooks/ApiHooks";
-import MapModal from "../map-modal/MapModal";
-import { FaTimes } from "react-icons/fa";
+import React from 'react';
+import './styles.css';
+import { useState } from 'react';
+import { usePosts } from '../../hooks/ApiHooks';
+import MapModal from '../map-modal/MapModal';
+import { FaTimes } from 'react-icons/fa';
 
 export function PostForm() {
   const [title, setTitle] = useState('');
@@ -11,7 +11,6 @@ export function PostForm() {
   const [FormIsOpen, setIsOpen] = useState(false);
   const [description, setDescription] = useState('');
   const [location, setLocation] = useState('');
-  const [posttype, setPosttype] = useState('');
   const { uploadPost } = usePosts();
   const [showModal, setShowModal] = useState(false);
   const [markers, setMarkers] = useState([]);
@@ -73,7 +72,7 @@ export function PostForm() {
 
   return (
     <>
-      <div className='form-container'>
+      <div className="form-container">
         <form>
           <FaTimes onClick={handleOpenForm} />
           <h1>Create a post</h1>
@@ -90,28 +89,28 @@ export function PostForm() {
             <option value="question">Question</option>
           </select> */}
           <input
-            placeholder='Title'
-            type='text'
-            name='title'
-            id='title'
+            placeholder="Title"
+            type="text"
+            name="title"
+            id="title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
 
           <input
-            placeholder='Description'
-            type='text'
-            name='description'
-            id='description'
+            placeholder="Description"
+            type="text"
+            name="description"
+            id="description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
 
           <input
-            placeholder='Location'
-            type='text'
-            name='location'
-            id='location'
+            placeholder="Location"
+            type="text"
+            name="location"
+            id="location"
             value={location}
             onChange={(e) => setLocation(e.target.value)}
           />
@@ -119,26 +118,32 @@ export function PostForm() {
             <MapModal
               toggle={showModal}
               action={openModal}
-              areamarker=''
+              areamarker=""
               markers={markers}
               setMarkers={setMarkers}
             />
             <input
-              type='button'
-              name='cardbutton'
-              id='cardbutton'
-              value='Choose on map'
+              type="button"
+              name="cardbutton"
+              id="cardbutton"
+              value="Choose on map"
               onClick={openModal}
             />
           </div>
           <input type="file" name="media" accept='image/*' multiple={false} onChange={handleFileChange}/>
           <div>
+            <input
+              type="button"
+              name="photobutton"
+              id="photobutton"
+              value="Add a photo"
+            />
           </div>
           <input
-            type='button'
-            name='sendbutton'
-            id='sendbutton'
-            value='Send'
+            type="button"
+            name="sendbutton"
+            id="sendbutton"
+            value="Send"
             onClick={handleSubmit}
           />
         </form>

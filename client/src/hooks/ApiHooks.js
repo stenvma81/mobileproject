@@ -8,7 +8,7 @@ const usePosts = () => {
   // const [postsByState, setPostsByState] = useState([]);
   const [usersPost, setUsersPost] = useState([]);
   const [loading, setLoading] = useState(false);
-  const { update, user } = useContext(MainContext);
+  const { update } = useContext(MainContext);
 
   useEffect(() => {
     // https://scriptverse.academy/tutorials/js-self-invoking-functions.html
@@ -179,15 +179,15 @@ const usePosts = () => {
   };
 };
 
-const usePostState = () => {
-  const [stateArray, setStateArray] = useState([]);
+// const usePostState = () => {
+//   const [stateArray, setStateArray] = useState([]);
 
-  const getPostStates = async () => {
-    try {
-    } catch (error) {
-      console.error('Hook: getPostStates', error.message);
-    }
-  };
-};
+//   const getPostStates = async () => {
+//     try {
+//     } catch (error) {
+//       console.error('Hook: getPostStates', error.message);
+//     }
+//   };
+// };
 
 export { usePosts };
