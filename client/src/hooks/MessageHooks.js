@@ -6,7 +6,7 @@ import { messageUrl } from '../utils/variables';
 const useMessage = (postid) => {
   const [messageArray, setMessageArray] = useState([]);
   const [loading, setLoading] = useState(false);
-  const { update } = useContext(MainContext);
+  const { update, user } = useContext(MainContext);
 
   useEffect(() => {
     // https://scriptverse.academy/tutorials/js-self-invoking-functions.html
@@ -87,8 +87,7 @@ const useMessage = (postid) => {
 
   const getViewedMessages = async (postid) => {
     try {
-      const userdata = JSON.parse(sessionStorage.getItem('token'));
-      const userid = userdata.user.id;
+      const userid = user.id;
       const result = await doFetch(`${messageUrl}viewed/${postid}/${userid}`);
       return result;
     } catch (e) {
@@ -101,8 +100,7 @@ const useMessage = (postid) => {
 
   const addToViewedMessages = async (messageid) => {
     try {
-      const userdata = JSON.parse(sessionStorage.getItem('token'));
-      const userid = userdata.user.id;
+      const userid = user.id;
       const options = {
         method: 'POST',
         headers: {
