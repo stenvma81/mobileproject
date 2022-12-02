@@ -28,7 +28,7 @@ const getPostsSql = `
 const getAllPosts = async () => {
   try {
     const [rows] = await promisePool.execute(getPostsSql);
-    // console.log('postModel getAllPosts: ', rows);
+    console.log('postModel getAllPosts: ', rows);
     return rows;
   } catch (e) {
     console.error('testModel:', e.message);
@@ -77,6 +77,7 @@ const getPostsByState = async (stateid) => {
       `${getPostsSql} WHERE post.state = ?`,
       [stateid]
     );
+    console.log('postModel getPostsByState: ', rows);
     return rows;
   } catch (error) {
     console.error('getPostsByState', error.message);
