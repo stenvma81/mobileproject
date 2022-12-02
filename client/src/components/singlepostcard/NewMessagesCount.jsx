@@ -11,17 +11,8 @@ export function NewMessagesCount({ post }) {
     const msg = await getViewedMessages(post.id);
     msg && setViewedMessages(msg);
     if (msg.length > 0) {
-      // Make a list of objects without IDs
-      const newList = msg.map(({ id, ...rest }) => ({ ...rest }));
-
-      // Create a set for getting rid of duplicates
-      const set = new Set();
-      for (let item in newList) {
-        // console.log(newList[item]);
-        set.add(JSON.stringify(newList[item]));
-      }
-
-      setViewedMessagesCount(set.size);
+      console.log(`msg length: ${msg.length}`);
+      setViewedMessagesCount(msg.length);
     }
   };
 
