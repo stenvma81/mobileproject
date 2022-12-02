@@ -10,6 +10,7 @@ import classes from './smallCard.css';
 import { ModifyPostState } from '../admin/ModifyPostState';
 import { FaTimes, FaPen } from 'react-icons/fa';
 import { NewMessagesCount } from './NewMessagesCount';
+// import { post_modify_state } from '../../../../server/controllers/postController';
 
 export default function Card({ post }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,6 +20,7 @@ export default function Card({ post }) {
 
   function openModal() {
     console.log(post);
+    console.log('mediamodelmadlem ', post.mediafilename)
     const marker = JSON.parse(post.areamarker);
     setMarkers([...markers.splice(0, marker), marker]);
     setShowModal(!showModal);
@@ -69,6 +71,7 @@ export default function Card({ post }) {
       </div>
       {isOpen && (
         <div>
+          <img src={'http://localhost:8000/thumbnails/' + post.mediafilename} />
           <div className="place">{`${post.description}`}</div>
           <div className="post-buttons">
             <div>

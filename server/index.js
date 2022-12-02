@@ -9,6 +9,7 @@ const messageRoute = require('./routes/messageRoute');
 const postRoute = require('./routes/postRoute');
 const authRoute = require('./routes/authRoute');
 
+app.use(express.static('public')); // Define public folder
 app.use(express.static('uploads')); // Define uploads folder
 app.use('/thumbnails', express.static('thumbnails')); // Define thumbnails folder
 
@@ -21,7 +22,7 @@ app.use('/message', messageRoute);
 app.use('/test', testRoute);
 app.use('/auth', authRoute);
 
-// define the port the server listens for outside connections
+// define the port the server listens for outside connection
 app.listen(process.env.REACT_APP_SERVER_PORT, () => {
   console.log(
     `App server now listening on port ${process.env.REACT_APP_SERVER_PORT}`

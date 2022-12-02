@@ -38,10 +38,19 @@ const testFile = (req, res, next) => {
   }
 };
 
-const upload = multer({dest: 'uploads/', fileFilter});
+const storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+      cb(null, './uploads');
+   },
+  filename: function (req, file, cb) {
+      cb(null , file.originalname);
+  }
+});
+
+const upload = multer({storage: storage});
 
 router.route('/').get(posts_get);
-router.post('/', upload.single('media'), body('description').isLength({min: 3}).blacklist(';'), post_post);
+router.post('/', upload.single('media'), testFile, make_thumbnail, body('description').isLength({min: 3}).blacklist(';'), post_post);
 
 router.route('/:id').get(post_get_by_id).put(post_modify);
 
