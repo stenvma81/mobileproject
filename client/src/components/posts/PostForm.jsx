@@ -3,6 +3,8 @@ import './styles.css';
 import { useState } from 'react';
 import { usePosts } from '../../hooks/ApiHooks';
 import MapModal from '../map-modal/MapModal';
+import { MdClose } from "react-icons/md"
+import FormIsOpen, { MainView } from '../main/MainView'
 
 export function PostForm() {
   const [title, setTitle] = useState('');
@@ -16,7 +18,7 @@ export function PostForm() {
   function openModal() {
     setShowModal(!showModal);
   }
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     const userInfo = JSON.parse(sessionStorage.getItem('token'));
@@ -40,6 +42,7 @@ export function PostForm() {
     <>
       <div className="form-container">
         <form>
+        <MdClose />
           <h1>Create a post</h1>
 
           <select
@@ -54,7 +57,7 @@ export function PostForm() {
             <option value="development proposal">Development Proposal</option>
             <option value="question">Question</option>
           </select>
-          <input
+          <textarea
             placeholder="Title"
             type="text"
             name="title"
@@ -63,7 +66,7 @@ export function PostForm() {
             onChange={(e) => setTitle(e.target.value)}
           />
 
-          <input
+          <textarea
             placeholder="Description"
             type="text"
             name="description"
@@ -72,7 +75,7 @@ export function PostForm() {
             onChange={(e) => setDescription(e.target.value)}
           />
 
-          <input
+          <textarea
             placeholder="Location"
             type="text"
             name="location"

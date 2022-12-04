@@ -5,9 +5,10 @@ import { PostForm } from '../posts/PostForm';
 import { PostList } from '../posts/PostList';
 import './styles.css';
 
+
 export function MainView() {
   useEffect(() => {}, []);
-  const [FormIsOpen, setIsOpen] = useState(false);
+ const [FormIsOpen, setIsOpen] = useState(false);
   const { usersPost } = usePosts();
   
   const handleOpenForm = (event) => {
@@ -43,3 +44,4 @@ export function MainView() {
     </div>
   );
 }
+
