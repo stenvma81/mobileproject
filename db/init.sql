@@ -120,14 +120,16 @@ INSERT INTO `poststate`(`id`, `title`) VALUES
 (2, 'Closed');
 
 -- Insert for test
-INSERT INTO `user`(employeeid, email, password, role) VALUES ('123456', 'user1@test.com', 'somePW', 1);
-INSERT INTO `user`(employeeid, email, password, role) VALUES ('234567', 'user2@test.com', 'somePW', 1);
-INSERT INTO `user`(employeeid, email, password, role) VALUES ('345678', 'user3@test.com', 'somePW', 1);
-INSERT INTO `user`(employeeid, email, password, role) VALUES ('654321', 'user@test.com', 'somePW', 2);
+INSERT INTO `user`(employeeid, email, password, role) VALUES ('Pirjo Mäkinen', 'user1@test.com', 'somePW', 1);
+INSERT INTO `user`(employeeid, email, password, role) VALUES ('Tatu Ihaksi', 'user2@test.com', 'somePW', 2);
+INSERT INTO `user`(employeeid, email, password, role) VALUES ('Matti Stenvall', 'user3@test.com', 'somePW', 2);
+INSERT INTO `user`(employeeid, email, password, role) VALUES ('Merili Elnadi', 'user@test.com', 'somePW', 2);
 
-INSERT INTO `post` (userid, description, type, title, location, areamarker) VALUES (1, 'Some desc', 1, "Vessa rikki", "Vessa kerros 2", "{}");
+INSERT INTO `post` (userid, description, type, title, location, areamarker, state) VALUES (2, 'Vessanpöntössä ei ole vettä.', 2, "Vessa rikki", "Vessa kerros 2", "{""top"":57.52162678350747,""left"":43.87596899224806}", 1);
+INSERT INTO `post` (userid, description, type, title, location, areamarker) VALUES (3, 'Keittiö on pysynyt siistinä viime viikon konferensista huolimatta.', 1, "Homma toimii!", "", "{""top"":57.52162678350747,""left"":43.87596899224806}");
+INSERT INTO `post` (userid, description, type, title, location, areamarker) VALUES (4, 'Aulassa olevan sähköpistokkeen johdot roikkuvat.', 3, "Aulan sähköpistoke", "Kerros 3 aula", "{""top"":57.52162678350747,""left"":43.87596899224806}");
 
-INSERT INTO message(userid, postid, text) VALUES (1, 1, "This is a message");
+INSERT INTO message(userid, postid, text) VALUES (1, 1, "Tarketaisitko, mikä vessa on kyseessä?");
 --
 -- Indexes for dumped tables
 --
