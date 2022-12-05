@@ -129,7 +129,7 @@ INSERT INTO `post` (userid, description, type, title, location, areamarker, stat
 INSERT INTO `post` (userid, description, type, title, location, areamarker) VALUES (3, 'Keittiö on pysynyt siistinä viime viikon konferensista huolimatta.', 1, "Homma toimii!", "", "{""top"":57.52162678350747,""left"":43.87596899224806}");
 INSERT INTO `post` (userid, description, type, title, location, areamarker) VALUES (4, 'Aulassa olevan sähköpistokkeen johdot roikkuvat.', 3, "Aulan sähköpistoke", "Kerros 3 aula", "{""top"":57.52162678350747,""left"":43.87596899224806}");
 
-INSERT INTO message(userid, postid, text) VALUES (1, 1, "Tarketaisitko, mikä vessa on kyseessä?");
+INSERT INTO message(userid, postid, text) VALUES (1, 1, "Tarkentaisitko, mikä vessa on kyseessä?");
 --
 -- Indexes for dumped tables
 --
