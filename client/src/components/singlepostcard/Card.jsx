@@ -8,7 +8,7 @@ import logo from '../header/images/nokia.jpg';
 import MapModal from '../map-modal/MapModal';
 import classes from './smallCard.css';
 import { ModifyPostState } from '../admin/ModifyPostState';
-import { MdClose } from "react-icons/md";
+import { MdClose } from 'react-icons/md';
 import { FaTimes, FaPen } from 'react-icons/fa';
 import { NewMessagesCount } from './NewMessagesCount';
 
@@ -49,12 +49,15 @@ export default function Card({ post }) {
     <div className="card" onClick={!isOpen ? handleParentClick : undefined}>
       {isOpen && <MdClose onClick={() => setIsOpen(false)} />}
       <div className="post-state">
-        <div className="post-type">
-          <TypeDot />
-          <div>{post.type}</div>
-          <br></br>
+        <div className="column">
           <NewMessagesCount post={post} />
+          <div className="post-type">
+            <TypeDot />
+            <div>{post.type}</div>
+            {/* <NewMessagesCount post={post} /> */}
+          </div>
         </div>
+
         <div id="card-date">
           <Moment date={post.created_date} format="DD.MM.YYYY HH:mm" />
           {post.closed_date !== null && (

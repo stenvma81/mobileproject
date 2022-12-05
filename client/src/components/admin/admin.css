@@ -21,8 +21,6 @@
     
 }
 
-
-
 .Postlistcontainer{
     height: 500px;
     margin-top: 20px;
@@ -51,7 +49,6 @@
 .column {
     display: flex;
     flex-direction: column;
-    margin-top: 8px;
 }
 #allcont{
     display: block;

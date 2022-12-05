@@ -137,5 +137,18 @@ svg {
 }
 
 #new-message-count {
-    background-color: red;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+#message-icon {
+    padding: 0%;
+    margin-left: 10px;
+    width: 25px;
+    height: 25px;
+}
+
+#new-messages-text {
+    margin: 0;
 }
