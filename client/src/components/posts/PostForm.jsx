@@ -5,12 +5,14 @@ import { usePosts } from '../../hooks/ApiHooks';
 import MapModal from '../map-modal/MapModal';
 import { MdClose } from "react-icons/md"
 import FormIsOpen, { MainView } from '../main/MainView'
+import { FaTimes } from 'react-icons/fa';
+
 
 export function PostForm() {
   const [title, setTitle] = useState('');
+  const [FormIsOpen, setIsOpen] = useState(false);
   const [description, setDescription] = useState('');
   const [location, setLocation] = useState('');
-  const [posttype, setPosttype] = useState('');
   const { uploadPost } = usePosts();
   const [showModal, setShowModal] = useState(false);
   const [markers, setMarkers] = useState([]);
@@ -38,25 +40,34 @@ export function PostForm() {
     alert('Post has been submitted');
   };
 
+  const handleOpenForm = (event) => {
+    event.preventDefault();
+    if (event.target === event.currentTarget && FormIsOpen) {
+      setIsOpen(!FormIsOpen);
+    }
+    !FormIsOpen && setIsOpen(!FormIsOpen);
+  };
+
   return (
     <>
       <div className="form-container">
         <form>
         <MdClose />
-          <h1>Create a post</h1>
+          <FaTimes onClick={handleOpenForm} />
 
-          <select
+          <h1>Create a post</h1>
+          {/* <select
             name="posttype"
             id="posttype-select"
             value={posttype}
             onChange={(e) => setPosttype(e.target.value)}
-          >
+            >
             <option value="">Please choose the type</option>
             <option value="service advice">Service Advice</option>
             <option value="feedback">Feedback</option>
             <option value="development proposal">Development Proposal</option>
             <option value="question">Question</option>
-          </select>
+          </select> */}
           <textarea
             placeholder="Title"
             type="text"
@@ -109,12 +120,12 @@ export function PostForm() {
             />
           </div>
           <input
-              type="button"
-              name="sendbutton"
-              id="sendbutton"
-              value="Send"
-              onClick={handleSubmit}
-            />
+            type="button"
+            name="sendbutton"
+            id="sendbutton"
+            value="Send"
+            onClick={handleSubmit}
+          />
         </form>
       </div>
     </>

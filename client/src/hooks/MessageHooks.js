@@ -48,6 +48,7 @@ const useMessage = (postid) => {
       return messageData;
     } catch (e) {
       console.log('MessageHooks loadMessageById: ', e.message);
+      return [];
     }
   };
 
@@ -84,12 +85,44 @@ const useMessage = (postid) => {
     }
   };
 
+  const getViewedMessages = async (postid) => {
+    try {
+      const userid = user.id;
+      const result = await doFetch(`${messageUrl}viewed/${postid}/${userid}`);
+      return result;
+    } catch (e) {
+      console.log('getViewedMessages error', e);
+      return [];
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const addToViewedMessages = async (messageid) => {
+    try {
+      const userid = user.id;
+      const options = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ userid: userid }),
+      };
+      const result = await doFetch(messageUrl + messageid, options);
+      return result;
+    } catch (e) {
+      console.log('addToViewedMessages error', e);
+    }
+  };
+
   return {
     loadMessagesByPostId,
     uploadMessage,
     closeMessage,
     modifyMessage,
     messageArray,
+    getViewedMessages,
+    addToViewedMessages,
   };
 };
 

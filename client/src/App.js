@@ -1,7 +1,7 @@
 import './App.css';
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { Preferences, Dashboard, Login, UserMainView } from './components';
+import { Preferences, Dashboard, Login } from './components';
 import { useToken } from './hooks/LoginHooks';
 import { MainProvider } from './context/MainContext';
 import { ContentView } from './components/ContentView';
@@ -20,7 +20,6 @@ function App() {
           path="/"
           element={
             <MainProvider>
-              { <UserMainView />  }
               <ContentView />
             </MainProvider>
           }

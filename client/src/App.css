@@ -59,6 +59,7 @@
 
 #send-message-div{
   flex-direction: row;
+  display: flex;
 }
 
 @keyframes App-logo-spin {

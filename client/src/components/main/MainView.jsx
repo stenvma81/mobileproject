@@ -1,9 +1,11 @@
+/* eslint-disable react/jsx-pascal-case */
 import { useEffect, useState } from 'react';
 import React from 'react';
 import { usePosts } from '../../hooks/ApiHooks';
 import { PostForm } from '../posts/PostForm';
 import { PostList } from '../posts/PostList';
 import './styles.css';
+import { FaTimes } from 'react-icons/fa';
 
 
 export function MainView() {
@@ -35,10 +37,8 @@ export function MainView() {
       <div className='button4'>
       <button onClick={handleOpenForm}>Question</button>
       </div>
-      </div>
-      {FormIsOpen && (
-        <PostForm/>)
-      }
+      </div> 
+      {(FormIsOpen && (<PostForm/>)) }
       <h3>Previous posts:</h3>
       <PostList postArray={usersPost} />
     </div>
