@@ -3,14 +3,11 @@ import './styles.css';
 import { useState } from 'react';
 import { usePosts } from '../../hooks/ApiHooks';
 import MapModal from '../map-modal/MapModal';
-import { MdClose } from "react-icons/md"
-import FormIsOpen, { MainView } from '../main/MainView'
-import { FaTimes } from 'react-icons/fa';
+import { MdClose } from 'react-icons/md';
 
-
-export function PostForm() {
+export function PostForm({ setFormIsOpen }) {
   const [title, setTitle] = useState('');
-  const [FormIsOpen, setIsOpen] = useState(false);
+  // const [FormIsOpen, setIsOpen] = useState(false);
   const [description, setDescription] = useState('');
   const [location, setLocation] = useState('');
   const { uploadPost } = usePosts();
@@ -20,7 +17,7 @@ export function PostForm() {
   function openModal() {
     setShowModal(!showModal);
   }
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const userInfo = JSON.parse(sessionStorage.getItem('token'));
@@ -40,20 +37,24 @@ export function PostForm() {
     alert('Post has been submitted');
   };
 
-  const handleOpenForm = (event) => {
-    event.preventDefault();
-    if (event.target === event.currentTarget && FormIsOpen) {
-      setIsOpen(!FormIsOpen);
-    }
-    !FormIsOpen && setIsOpen(!FormIsOpen);
-  };
+  // const handleOpenForm = (event) => {
+  //   event.preventDefault();
+  //   if (event.target === event.currentTarget && FormIsOpen) {
+  //     setIsOpen(!FormIsOpen);
+  //   }
+  //   !FormIsOpen && setIsOpen(!FormIsOpen);
+  //   setFormIsOpena(false);
+  // };
 
   return (
     <>
       <div className="form-container">
         <form>
-        <MdClose />
-          <FaTimes onClick={handleOpenForm} />
+          <MdClose
+            onClick={() => {
+              setFormIsOpen(false);
+            }}
+          />
 
           <h1>Create a post</h1>
           {/* <select

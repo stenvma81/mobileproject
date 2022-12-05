@@ -7,12 +7,11 @@ import { PostList } from '../posts/PostList';
 import './styles.css';
 import { FaTimes } from 'react-icons/fa';
 
-
 export function MainView() {
   useEffect(() => {}, []);
- const [FormIsOpen, setIsOpen] = useState(false);
+  const [FormIsOpen, setIsOpen] = useState(false);
   const { usersPost } = usePosts();
-  
+
   const handleOpenForm = (event) => {
     event.preventDefault();
     if (event.target === event.currentTarget && FormIsOpen) {
@@ -20,28 +19,26 @@ export function MainView() {
     }
     !FormIsOpen && setIsOpen(!FormIsOpen);
   };
-  
 
   return (
     <div id="container">
-      <div className='buttons_container'>
-        <div className='button1'>
+      <div className="buttons_container">
+        <div className="button1">
           <button onClick={handleOpenForm}>Service Advice</button>
         </div>
-        <div className='button2'>
+        <div className="button2">
           <button onClick={handleOpenForm}>Feedback</button>
+        </div>
+        <div className="button3">
+          <button onClick={handleOpenForm}>Development Proposal</button>
+        </div>
+        <div className="button4">
+          <button onClick={handleOpenForm}>Question</button>
+        </div>
       </div>
-          <div className='button3'>
-      <button onClick={handleOpenForm}>Development Proposal</button>
-      </div>
-      <div className='button4'>
-      <button onClick={handleOpenForm}>Question</button>
-      </div>
-      </div> 
-      {(FormIsOpen && (<PostForm/>)) }
+      {FormIsOpen && <PostForm setFormIsOpen={setIsOpen} />}
       <h3>Previous posts:</h3>
       <PostList postArray={usersPost} />
     </div>
   );
 }
-
