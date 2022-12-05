@@ -6,4 +6,18 @@ const loginUrl = baseUrl + 'auth/login';
 const postUrl = baseUrl + 'post/';
 const messageUrl = baseUrl + 'message/';
 
-export {baseUrl, uploadsUrl, loginUrl, postUrl, testUrl, messageUrl};
+const postStates = {
+  open: { id: 0, title: 'Open' },
+  prosessing: { id: 1, title: 'Prosessing' },
+  closed: { id: 2, title: 'Closed' },
+};
+
+export {
+  baseUrl,
+  uploadsUrl,
+  loginUrl,
+  postUrl,
+  testUrl,
+  messageUrl,
+  postStates,
+};
