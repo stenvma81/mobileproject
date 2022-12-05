@@ -8,6 +8,7 @@ import logo from '../header/images/nokia.jpg';
 import MapModal from '../map-modal/MapModal';
 import classes from './smallCard.css';
 import { ModifyPostState } from '../admin/ModifyPostState';
+import { MdClose } from "react-icons/md";
 import { FaTimes, FaPen } from 'react-icons/fa';
 import { NewMessagesCount } from './NewMessagesCount';
 
@@ -46,7 +47,7 @@ export default function Card({ post }) {
 
   return (
     <div className="card" onClick={!isOpen ? handleParentClick : undefined}>
-      {isOpen && <FaTimes onClick={() => setIsOpen(false)} />}
+      {isOpen && <MdClose onClick={() => setIsOpen(false)} />}
       <div className="post-state">
         <div className="post-type">
           <TypeDot />

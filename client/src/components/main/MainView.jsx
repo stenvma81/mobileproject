@@ -7,9 +7,10 @@ import { PostList } from '../posts/PostList';
 import './styles.css';
 import { FaTimes } from 'react-icons/fa';
 
+
 export function MainView() {
   useEffect(() => {}, []);
-  const [FormIsOpen, setIsOpen] = useState(false);
+ const [FormIsOpen, setIsOpen] = useState(false);
   const { usersPost } = usePosts();
   
   const handleOpenForm = (event) => {
@@ -43,3 +44,4 @@ export function MainView() {
     </div>
   );
 }
+
