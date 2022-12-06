@@ -1,17 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { ModifieMessageField } from './ModifieMessageField';
 import { FaPen } from 'react-icons/fa';
 import { useMessage } from '../../hooks/MessageHooks';
+import { MainContext } from '../../context/MainContext';
+import './messages.css';
 
 export function MessageListItem({ message }) {
   const [isModifying, setIsModifying] = useState(false);
   const { addToViewedMessages } = useMessage(message.postid);
-
-  const userCanModify = () => {
-    const user = JSON.parse(sessionStorage.getItem('token')).user;
-    return user.id === message.userid || user.role === 1;
-  };
+  const { user } = useContext(MainContext);
 
   useEffect(() => {
     addToViewedMessages(message.id);
@@ -20,17 +18,17 @@ export function MessageListItem({ message }) {
 
   return (
     <div id="message-item">
-      <p>{message.user}</p>
-      <div id="message-text">
+      <p className="no-margin">{message.user}</p>
+      <div id="message-content">
         {isModifying ? (
           <ModifieMessageField
             message={message}
             setIsModifying={setIsModifying}
           />
         ) : (
-          <p>{message.text}</p>
+          <p id="message-text">{message.text}</p>
         )}
-        {userCanModify && (
+        {user.id === message.userid && (
           <FaPen className="modify-pen" onClick={() => setIsModifying(true)} />
         )}
       </div>

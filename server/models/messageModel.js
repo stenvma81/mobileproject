@@ -6,7 +6,7 @@ const promisePool = pool.promise();
 const getMessagesByPost = async (postid) => {
   try {
     const [rows] = await promisePool.execute(
-      `SELECT message.id, text, created_date, postid, user.employeeid as user FROM message
+      `SELECT message.id, text, created_date, postid, user.employeeid as user, message.userid FROM message
       INNER JOIN user ON userid = user.id WHERE postid = ?`,
       [postid]
     );
