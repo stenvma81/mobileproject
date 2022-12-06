@@ -6,7 +6,7 @@
     max-width: 700px;
     padding: 20px;
     margin-bottom: 20px;
-    text-align: justify;
+    /* text-align: justify; */
 }
 button{
     background-color: rgba(25, 43, 107, 1);
@@ -149,6 +149,6 @@ svg {
     height: 25px;
 }
 
-#new-messages-text {
+.no-margin {
     margin: 0;
 }
