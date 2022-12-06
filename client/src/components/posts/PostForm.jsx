@@ -1,14 +1,3 @@
-<<<<<<< HEAD
-import React from "react";
-import "./styles.css";
-import { useState } from "react";
-import { usePosts } from "../../hooks/ApiHooks";
-import MapModal from "../map-modal/MapModal";
-import { MdClose } from "react-icons/md";
-
-export function PostForm({ setFormIsOpen }) {
-  const [title, setTitle] = useState("");
-=======
 import React from 'react';
 import './styles.css';
 import { useState } from 'react';
@@ -19,7 +8,6 @@ import PropTypes from 'prop-types';
 
 export function PostForm({ postType, setFormIsOpen }) {
   const [title, setTitle] = useState('');
->>>>>>> 2c546f6ce6111be9b01346e077c27e25e71c6483
   // const [FormIsOpen, setIsOpen] = useState(false);
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
@@ -54,36 +42,14 @@ export function PostForm({ postType, setFormIsOpen }) {
     <>
       <div className='form-container'>
         <form>
-<<<<<<< HEAD
-          <div className='form-title'>
-          <h1>Create a post</h1>
-            <MdClose
-              onClick={() => {
-                setFormIsOpen(false);
-              }}
-            />
-          </div>
-=======
+        <div className='form-title'>
+        <h1>{postType.title}</h1>
           <MdClose
             onClick={() => {
               setFormIsOpen(false);
             }}
           />
-
-          <h1>{postType.title}</h1>
->>>>>>> 2c546f6ce6111be9b01346e077c27e25e71c6483
-          {/* <select
-            name="posttype"
-            id="posttype-select"
-            value={posttype}
-            onChange={(e) => setPosttype(e.target.value)}
-            >
-            <option value="">Please choose the type</option>
-            <option value="service advice">Service Advice</option>
-            <option value="feedback">Feedback</option>
-            <option value="development proposal">Development Proposal</option>
-            <option value="question">Question</option>
-          </select> */}
+          </div>
           <textarea
             placeholder='Title'
             type='text'
@@ -110,6 +76,7 @@ export function PostForm({ postType, setFormIsOpen }) {
             value={location}
             onChange={(e) => setLocation(e.target.value)}
           />
+          <div className='two-icons-message'>
           <div>
             <MapModal
               toggle={showModal}
@@ -134,6 +101,7 @@ export function PostForm({ postType, setFormIsOpen }) {
               id='photobutton'
               value='Add a photo'
             />
+          </div>
           </div>
           <input
             type='button'

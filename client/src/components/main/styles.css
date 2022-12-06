@@ -13,6 +13,11 @@
     left: 42px;
     
 }
+
+.button1 .button2 .button3 button:hover{
+    background-color: rgb(152, 162, 197);
+}
+
 .button2{
     position: absolute;
     top: 430px;
@@ -45,12 +50,17 @@ button{
     cursor: pointer;
 }       
 .buttons_container{
-
-height: 300px;
+height: 240px;
 background-color: rgba(25, 43, 107, 1);
 padding-bottom: 25px;
 }
 
+
 h3{
     color: white;
+    margin-bottom: 2px;
+}
+
+.form-container svg{
+    color: rgb(54, 54, 59);
 }

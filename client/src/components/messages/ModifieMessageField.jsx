@@ -28,8 +28,10 @@ export function ModifieMessageField({ message, setIsModifying }) {
         defaultValue={message.text}
         onChange={(e) => setText(e.target.value)}
       />
+      <div className='two-icons-message'>
       <FaCheck onClick={handleSubmit} />
       <FaTimes onClick={() => setIsModifying(false)} />
+      </div>
     </div>
   );
 }
