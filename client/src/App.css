@@ -20,48 +20,6 @@
   color: #61dafb;
 }
 
-#message-textfield {
-  border-radius: 15px;
-  padding: 15px;
-  margin-bottom: 10px;
-  max-width: 500px;
-  resize: none;
-  height: 100px;
-}
-
-#send-msg-btn {
-  color: white;
-  background-color: rgb(22, 27, 99);
-  font-size: 16px;
-  min-width: 100px;
-  height: 45px;
-  margin-top: 0px;
-  font-family: 'Open Sans', sans-serif;
-  padding: 0px;
-  margin-left: 13px;
-}
-
-#send-msg-btn text{
-  padding-bottom: 10px;
-}
-
-
-#message-text {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
-  width: 70%;
-  max-width: 500px;
-  color: white;
-  background-color: #68739c;
-  border-radius: 10px;
-}
-
-#send-message-div{
-  flex-direction: row;
-  display: flex;
-}
-
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

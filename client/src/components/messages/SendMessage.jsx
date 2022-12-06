@@ -1,23 +1,24 @@
-import { useState } from "react";
-import PropTypes from "prop-types";
-import { useMessage } from "../../hooks/MessageHooks";
-import { useContext } from "react";
-import { MainContext } from "../../context/MainContext";
-import { FaAngleDoubleRight } from "react-icons/fa";
+import { useState } from 'react';
+import PropTypes from 'prop-types';
+import { useMessage } from '../../hooks/MessageHooks';
+import { useContext } from 'react';
+import { MainContext } from '../../context/MainContext';
+import { FaAngleDoubleRight } from 'react-icons/fa';
+import './messages.css';
 
 export function SendMessage({ postid }) {
-  const [text, setText] = useState("empty");
+  const [text, setText] = useState('empty');
   const { uploadMessage } = useMessage(postid);
   const { update, setUpdate } = useContext(MainContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     e.stopPropagation();
-    const userInfo = JSON.parse(sessionStorage.getItem("token"));
+    const userInfo = JSON.parse(sessionStorage.getItem('token'));
     const msg = { text: text, userid: userInfo.user.id, postid: postid };
     const response = await uploadMessage(msg);
     if (response) {
-      setText("");
+      setText('');
       setUpdate(update + 1);
       alert('Message has been submitted');
     }
@@ -41,7 +42,6 @@ export function SendMessage({ postid }) {
               <FaAngleDoubleRight id="send-arrow" />
             </button>
           </div>
-
         </label>
       </form>
     </div>
