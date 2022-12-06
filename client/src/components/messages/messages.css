@@ -47,3 +47,8 @@
   #send-msg-btn text{
     padding-bottom: 10px;
   }
+
+  .two-icons-message{
+    display: flex;
+    flex-direction: row;
+  }

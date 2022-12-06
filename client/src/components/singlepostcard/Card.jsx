@@ -9,7 +9,7 @@ import MapModal from '../map-modal/MapModal';
 import classes from './smallCard.css';
 import { ModifyPostState } from '../admin/ModifyPostState';
 import { MdClose } from 'react-icons/md';
-import { FaTimes, FaPen } from 'react-icons/fa';
+import { FaPen } from 'react-icons/fa';
 import { NewMessagesCount } from './NewMessagesCount';
 
 export default function Card({ post }) {
@@ -47,7 +47,7 @@ export default function Card({ post }) {
 
   return (
     <div className="card" onClick={!isOpen ? handleParentClick : undefined}>
-      {isOpen && <MdClose onClick={() => setIsOpen(false)} />}
+      {isOpen && <MdClose className='close-x' onClick={() => setIsOpen(false)} />}
       <div className="post-state">
         <div className="column">
           <NewMessagesCount post={post} />
