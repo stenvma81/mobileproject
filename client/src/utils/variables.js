@@ -12,6 +12,12 @@ const postStates = {
   closed: { id: 2, title: 'Closed' },
 };
 
+const postTypes = {
+  feedback: { id: 1, title: 'Feedback' },
+  serviceAdvice: { id: 2, title: 'Service advice' },
+  safetyAdvice: { id: 3, title: 'Safety advice' },
+};
+
 export {
   baseUrl,
   uploadsUrl,
@@ -20,4 +26,5 @@ export {
   testUrl,
   messageUrl,
   postStates,
+  postTypes,
 };

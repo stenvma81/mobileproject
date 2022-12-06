@@ -25,9 +25,7 @@ export function NewMessagesCount({ post }) {
   return (
     messageArray.length - viewedMessagesCount > 0 && (
       <div id="new-message-count">
-        <p id="new-messages-text">
-          {messageArray.length - viewedMessagesCount}
-        </p>
+        <p className="no-margin">{messageArray.length - viewedMessagesCount}</p>
         <FaEnvelope id={'message-icon'} />
       </div>
     )
