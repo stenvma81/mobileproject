@@ -4,8 +4,9 @@ import { useState } from 'react';
 import { usePosts } from '../../hooks/ApiHooks';
 import MapModal from '../map-modal/MapModal';
 import { MdClose } from 'react-icons/md';
+import PropTypes from 'prop-types';
 
-export function PostForm({ setFormIsOpen }) {
+export function PostForm({ postType, setFormIsOpen }) {
   const [title, setTitle] = useState('');
   // const [FormIsOpen, setIsOpen] = useState(false);
   const [description, setDescription] = useState('');
@@ -23,7 +24,7 @@ export function PostForm({ setFormIsOpen }) {
     const userInfo = JSON.parse(sessionStorage.getItem('token'));
     const msg = {
       userid: userInfo.user.id,
-      type: 1,
+      type: postType.id,
       title: title,
       description: description,
       location: location,
@@ -37,15 +38,6 @@ export function PostForm({ setFormIsOpen }) {
     alert('Post has been submitted');
   };
 
-  // const handleOpenForm = (event) => {
-  //   event.preventDefault();
-  //   if (event.target === event.currentTarget && FormIsOpen) {
-  //     setIsOpen(!FormIsOpen);
-  //   }
-  //   !FormIsOpen && setIsOpen(!FormIsOpen);
-  //   setFormIsOpena(false);
-  // };
-
   return (
     <>
       <div className="form-container">
@@ -56,7 +48,7 @@ export function PostForm({ setFormIsOpen }) {
             }}
           />
 
-          <h1>Create a post</h1>
+          <h1>{postType.title}</h1>
           {/* <select
             name="posttype"
             id="posttype-select"
@@ -132,3 +124,8 @@ export function PostForm({ setFormIsOpen }) {
     </>
   );
 }
+
+PostForm.propTypes = {
+  postType: PropTypes.object.isRequired,
+  setFormIsOpen: PropTypes.func.isRequired,
+};
