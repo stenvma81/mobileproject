@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Moment from 'react-moment';
 import 'moment-timezone';
 import { MessageList } from '../messages/MessageList';
@@ -11,12 +11,14 @@ import { ModifyPostState } from '../admin/ModifyPostState';
 import { MdClose } from 'react-icons/md';
 import { FaPen } from 'react-icons/fa';
 import { NewMessagesCount } from './NewMessagesCount';
+import { MainContext } from '../../context/MainContext';
+import { userRoles } from '../../utils/variables';
 
 export default function Card({ post }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [isAdmin, setIsAdmin] = useState();
   const [showModal, setShowModal] = useState(false);
   const [markers, setMarkers] = useState([]);
+  const { user } = useContext(MainContext);
 
   function openModal() {
     console.log(post);
@@ -39,11 +41,6 @@ export default function Card({ post }) {
     }
     !isOpen && setIsOpen(!isOpen);
   };
-
-  useEffect(() => {
-    const userInfo = JSON.parse(sessionStorage.getItem('token'));
-    setIsAdmin(userInfo.user.role === 1);
-  }, []);
 
   return (
     <div className="card" onClick={!isOpen ? handleParentClick : undefined}>
@@ -92,7 +89,7 @@ export default function Card({ post }) {
               </button>
             </div>
           </div>
-          {isAdmin && <ModifyPostState post={post} />}
+          {user.role === userRoles.admin.id && <ModifyPostState post={post} />}
           <SendMessage postid={post.id} />
           <MessageList postid={post.id} />
         </div>
