@@ -24,9 +24,9 @@ export function SendMessage({ postid }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form id="send-message-form" onSubmit={handleSubmit}>
       <p className="no-margin">Message:</p>
-      <label id="send-message-div">
+      <div id="send-message-div" className="column">
         <textarea
           placeholder="message"
           className="message-textfield"
@@ -38,7 +38,7 @@ export function SendMessage({ postid }) {
           Send
           <FaAngleDoubleRight id="send-arrow" />
         </button>
-      </label>
+      </div>
     </form>
   );
 }

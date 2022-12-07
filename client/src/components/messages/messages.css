@@ -16,17 +16,18 @@
     width: 95%;
   }
 
+#send-message-form {
+  margin-bottom: 20px;
+}
+
   #send-message-div{
-    flex-direction: row;
-    display: flex;
     margin-top: 5px;
+    position: relative;
   }
 
   .message-textfield {
     border-radius: 15px;
     padding: 15px;
-    margin-bottom: 10px;
-    max-width: 500px;
     resize: none;
     height: 100px;
   }
@@ -41,6 +42,10 @@
     font-family: 'Open Sans', sans-serif;
     padding: 0px;
     margin-left: 13px;
+    position: absolute;
+    width: 50px;
+    bottom: 15px;
+    right: 15px;
   }
 
   #send-msg-btn text{
