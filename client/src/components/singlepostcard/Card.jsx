@@ -13,9 +13,11 @@ import { FaPen } from 'react-icons/fa';
 import { NewMessagesCount } from './NewMessagesCount';
 import { MainContext } from '../../context/MainContext';
 import { userRoles } from '../../utils/variables';
+import { ModifyPost } from '../posts/ModifyPost';
 
 export default function Card({ post }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isModifying, setIsModifying] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [markers, setMarkers] = useState([]);
   const { user } = useContext(MainContext);
@@ -41,6 +43,10 @@ export default function Card({ post }) {
     }
     !isOpen && setIsOpen(!isOpen);
   };
+
+  if (isModifying) {
+    return <ModifyPost post={post} setIsModifying={setIsModifying} />;
+  }
 
   return (
     <div className="card" onClick={!isOpen ? handleParentClick : undefined}>
@@ -84,9 +90,9 @@ export default function Card({ post }) {
               markers={markers}
               setMarkers={setMarkers}
             />
-            <div className="post-modify">
+            <div className="post-modify" onClick={() => setIsModifying(true)}>
               <button id="modify-button">
-                Modify <FaPen id="pen-icon" />{' '}
+                Modify <FaPen id="pen-icon" />
               </button>
             </div>
           </div>
