@@ -8,7 +8,14 @@ const addPost = async (post) => {
   try {
     const [rows] = await promisePool.execute(
       'INSERT INTO post (userid, description, type, title, location, areamarker) VALUES (?, ?, ?, ?, ?, ?)',
-      [post.userid, post.description, post.type, post.title, post.location, post.areamarker]
+      [
+        post.userid,
+        post.description,
+        post.type,
+        post.title,
+        post.location,
+        post.areamarker,
+      ]
     );
     return rows.insertId;
   } catch (error) {
@@ -112,13 +119,13 @@ const modifyPost = async (post) => {
   try {
     console.log('postModel: modifyPost ', post);
     const [rows] = await promisePool.execute(
-      `UPDATE post SET title = ?, description = ?, location = ?, type = ?, state = ? WHERE id = ?`,
+      `UPDATE post SET title = ?, description = ?, location = ?, type = ?, areamarker = ? WHERE id = ?`,
       [
         post.title,
         post.description,
         post.location,
         post.type,
-        post.state,
+        post.areamarker,
         post.id,
       ]
     );

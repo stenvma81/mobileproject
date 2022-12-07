@@ -4,6 +4,7 @@ import { ModifieMessageField } from './ModifieMessageField';
 import { FaPen } from 'react-icons/fa';
 import { useMessage } from '../../hooks/MessageHooks';
 import { MainContext } from '../../context/MainContext';
+import Moment from 'react-moment';
 import './messages.css';
 
 export function MessageListItem({ message }) {
@@ -19,6 +20,7 @@ export function MessageListItem({ message }) {
   return (
     <div id="message-item">
       <p className="no-margin">{message.user}</p>
+      <Moment date={message.closed_date} format="DD.MM.YYYY HH:mm" />
       <div id="message-content">
         {isModifying ? (
           <ModifieMessageField
