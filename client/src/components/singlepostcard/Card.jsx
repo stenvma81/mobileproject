@@ -57,11 +57,12 @@ export default function Card({ post }) {
           </div>
         </div>
 
-        <div id="card-date">
+        <div className="column">
           <Moment date={post.created_date} format="DD.MM.YYYY HH:mm" />
           {post.closed_date !== null && (
             <Moment date={post.closed_date} format="DD.MM.YYYY HH:mm" />
           )}
+          {post.state}
         </div>
       </div>
       <div className="post-text">
