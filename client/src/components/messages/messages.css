@@ -21,9 +21,10 @@
   #send-message-div{
     flex-direction: row;
     display: flex;
+    margin-top: 5px;
   }
 
-  #message-textfield {
+  .message-textfield {
     border-radius: 15px;
     padding: 15px;
     margin-bottom: 10px;
@@ -51,4 +52,5 @@
   .two-icons-message{
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
   }

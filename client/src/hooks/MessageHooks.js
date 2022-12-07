@@ -15,7 +15,7 @@ const useMessage = (postid) => {
         const messages = await loadMessagesByPostId(postid);
         // allMedia.reverse();
         if (messages === undefined) return;
-        setMessageArray(messages);
+        setMessageArray(messages.reverse());
       } catch (e) {
         console.log('usePosts useEffect error', e.message);
       }

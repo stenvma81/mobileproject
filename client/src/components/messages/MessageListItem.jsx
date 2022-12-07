@@ -26,7 +26,9 @@ export function MessageListItem({ message }) {
             setIsModifying={setIsModifying}
           />
         ) : (
-          <p id="message-text">{message.text}</p>
+          <p id="message-text" className="no-margin">
+            {message.text}
+          </p>
         )}
         {user.id === message.userid && (
           <FaPen className="modify-pen" onClick={() => setIsModifying(true)} />

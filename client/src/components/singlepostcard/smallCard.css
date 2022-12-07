@@ -89,11 +89,6 @@ button{
     align-items: center;
 }
 
-#card-date {
-    display: flex;
-    flex-direction: column;
-}
-
 svg {
     width: 35px;
     height: 35px;

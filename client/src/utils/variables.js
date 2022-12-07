@@ -18,6 +18,11 @@ const postTypes = {
   safetyAdvice: { id: 3, title: 'Safety advice' },
 };
 
+const userRoles = {
+  admin: { id: 1, title: 'admin' },
+  user: { id: 2, title: 'user' },
+};
+
 export {
   baseUrl,
   uploadsUrl,
@@ -27,4 +32,5 @@ export {
   messageUrl,
   postStates,
   postTypes,
+  userRoles,
 };
