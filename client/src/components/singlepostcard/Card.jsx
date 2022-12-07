@@ -51,7 +51,10 @@ export default function Card({ post }) {
   return (
     <div className="card" onClick={!isOpen ? handleParentClick : undefined}>
       {isOpen && (
+        <div className='form-title' id='post-x-close'>
+        <FaPen className='modify-pen2' onClick={() => setIsModifying(true)} />
         <MdClose className="close-x" onClick={() => setIsOpen(false)} />
+        </div>
       )}
       <div className="post-state">
         <div className="column">
@@ -74,12 +77,12 @@ export default function Card({ post }) {
       <div className="post-text">
         <div className="card-title">{post.title}</div>
         {isOpen && (
-          <div className="card-text">{`Location: ${post.location}`}</div>
+          <div className="place">{`${post.description}`}</div>
         )}
       </div>
       {isOpen && (
         <div>
-          <div className="place">{`${post.description}`}</div>
+          <div className="card-text">{`Location: ${post.location}`}</div>
           <div className="post-buttons">
             <div>
               <button onClick={openModal}>Show location</button>
@@ -90,11 +93,6 @@ export default function Card({ post }) {
               markers={markers}
               setMarkers={setMarkers}
             />
-            <div className="post-modify" onClick={() => setIsModifying(true)}>
-              <button id="modify-button">
-                Modify <FaPen id="pen-icon" />
-              </button>
-            </div>
           </div>
           {user.role === userRoles.admin.id && <ModifyPostState post={post} />}
           <SendMessage postid={post.id} />
