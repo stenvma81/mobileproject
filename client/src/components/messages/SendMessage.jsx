@@ -9,13 +9,12 @@ import './messages.css';
 export function SendMessage({ postid }) {
   const [text, setText] = useState('empty');
   const { uploadMessage } = useMessage(postid);
-  const { update, setUpdate } = useContext(MainContext);
+  const { update, setUpdate, user } = useContext(MainContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     e.stopPropagation();
-    const userInfo = JSON.parse(sessionStorage.getItem('token'));
-    const msg = { text: text, userid: userInfo.user.id, postid: postid };
+    const msg = { text: text, userid: user.id, postid: postid };
     const response = await uploadMessage(msg);
     if (response) {
       setText('');
@@ -25,26 +24,22 @@ export function SendMessage({ postid }) {
   };
 
   return (
-    <div className="send-message-wrapper">
-      <form onSubmit={handleSubmit}>
-        <label>
-          <p>Message:</p>
-          <div id="send-message-div">
-            <textarea
-              placeholder="message"
-              id="message-textfield"
-              name="text"
-              rows="6"
-              onChange={(e) => setText(e.target.value)}
-            />
-            <button id="send-msg-btn" type="send">
-              Send
-              <FaAngleDoubleRight id="send-arrow" />
-            </button>
-          </div>
-        </label>
-      </form>
-    </div>
+    <form onSubmit={handleSubmit}>
+      <p className="no-margin">Message:</p>
+      <label id="send-message-div">
+        <textarea
+          placeholder="message"
+          className="message-textfield"
+          name="text"
+          rows="6"
+          onChange={(e) => setText(e.target.value)}
+        />
+        <button id="send-msg-btn" type="send">
+          Send
+          <FaAngleDoubleRight id="send-arrow" />
+        </button>
+      </label>
+    </form>
   );
 }
 

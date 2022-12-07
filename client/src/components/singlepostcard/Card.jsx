@@ -6,7 +6,7 @@ import { SendMessage } from '../messages/SendMessage';
 import PropTypes from 'prop-types';
 import logo from '../header/images/nokia.jpg';
 import MapModal from '../map-modal/MapModal';
-import classes from './smallCard.css';
+import './smallCard.css';
 import { ModifyPostState } from '../admin/ModifyPostState';
 import { MdClose } from 'react-icons/md';
 import { FaPen } from 'react-icons/fa';
@@ -29,7 +29,7 @@ export default function Card({ post }) {
     let color = 'red';
     post.typeid === 1 && (color = 'rgba(0,135,255,1)');
     post.typeid === 3 && (color = 'yellow');
-    return <div className="dot" style={{ backgroundColor: color }}></div>;
+    return <div className="dot" style={{ backgroundColor: color }} />;
   };
 
   const handleParentClick = (event) => {
@@ -47,7 +47,9 @@ export default function Card({ post }) {
 
   return (
     <div className="card" onClick={!isOpen ? handleParentClick : undefined}>
-      {isOpen && <MdClose className='close-x' onClick={() => setIsOpen(false)} />}
+      {isOpen && (
+        <MdClose className="close-x" onClick={() => setIsOpen(false)} />
+      )}
       <div className="post-state">
         <div className="column">
           <NewMessagesCount post={post} />

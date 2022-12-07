@@ -24,13 +24,14 @@ export function ModifieMessageField({ message, setIsModifying }) {
   return (
     <div>
       <textarea
+        className="message-textfield"
         rows="4"
         defaultValue={message.text}
         onChange={(e) => setText(e.target.value)}
       />
-      <div className='two-icons-message'>
-      <FaCheck onClick={handleSubmit} />
-      <FaTimes onClick={() => setIsModifying(false)} />
+      <div className="two-icons-message">
+        <FaCheck onClick={handleSubmit} />
+        <FaTimes onClick={() => setIsModifying(false)} />
       </div>
     </div>
   );
