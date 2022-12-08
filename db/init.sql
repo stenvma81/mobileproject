@@ -1,32 +1,7 @@
--- phpMyAdmin SQL Dump
--- version 4.9.0.1
--- https://www.phpmyadmin.net/
---
--- Host: mysql
--- Generation Time: Jun 27, 2019 at 01:14 AM
--- Server version: 5.7.26
--- PHP Version: 7.2.19
-
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Database: `sampledb`
---
-
--- --------------------------------------------------------
-
---
--- Table structure for table `sample`
---
 
 CREATE TABLE `sample` (
   `id` int(255) NOT NULL,
@@ -67,8 +42,6 @@ CREATE TABLE `user` (
   FOREIGN KEY(role) REFERENCES role(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- INSERT INTO user VALUES (employeeid=1, email="email", password="passwod", role=1);
-
 CREATE TABLE `post` (
   `id` int(10) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `userid` int(10) NOT NULL,
@@ -105,10 +78,6 @@ CREATE TABLE `message_user_viewed` (
   FOREIGN KEY(messageid) REFERENCES message(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `sample`
---
-
 INSERT INTO `role` (`id`, `description`) VALUES (1, 'admin'), (2, 'user');
 INSERT INTO `posttype`(`id`, `title`) VALUES 
 (1, 'Feeback'),
@@ -131,27 +100,10 @@ INSERT INTO `post` (userid, description, type, title, location, areamarker) VALU
 INSERT INTO `post` (userid, description, type, title, location, areamarker) VALUES (4, 'Aulassa olevan sähköpistokkeen johdot roikkuvat.', 3, "Aulan sähköpistoke", "Kerros 3 aula", "{""top"":57.52162678350747,""left"":43.87596899224806}");
 
 INSERT INTO message(userid, postid, text) VALUES (1, 1, "Tarkentaisitko, mikä vessa on kyseessä?");
---
--- Indexes for dumped tables
---
 
---
--- Indexes for table `sample`
---
 ALTER TABLE `sample`
   ADD PRIMARY KEY (`id`);
 
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `sample`
---
 ALTER TABLE `sample`
   MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
