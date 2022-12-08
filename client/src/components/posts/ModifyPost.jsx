@@ -66,7 +66,7 @@ export function ModifyPost({ post, setIsModifying }) {
 
   return (
     <div className="form-container">
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="form-title">
           <h1>Modify</h1>
           <MdClose
@@ -88,6 +88,9 @@ export function ModifyPost({ post, setIsModifying }) {
           id="title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
+          required
+          minLength="1"
+          maxLength="50"
         />
 
         <textarea
@@ -97,6 +100,9 @@ export function ModifyPost({ post, setIsModifying }) {
           id="description"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
+          required
+          minLength="1"
+          maxLength="250"
         />
 
         <textarea
@@ -106,6 +112,9 @@ export function ModifyPost({ post, setIsModifying }) {
           id="location"
           value={location}
           onChange={(e) => setLocation(e.target.value)}
+          required
+          minLength="1"
+          maxLength="50"
         />
         <div className="column">
           <div>
@@ -134,13 +143,15 @@ export function ModifyPost({ post, setIsModifying }) {
             />
           </div>
         </div>
-        <input
-          type="button"
+        <button
+          type="send"
           name="sendbutton"
           id="sendbutton"
-          value="Send"
-          onClick={handleSubmit}
-        />
+          // value="Send"
+          // onClick={handleSubmit}
+        >
+          Send
+        </button>
       </form>
     </div>
   );

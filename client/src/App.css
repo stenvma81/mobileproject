@@ -33,3 +33,7 @@
   position: relative;
 
 }
+
+.flex {
+  display: flex;
+}

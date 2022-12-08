@@ -22,7 +22,7 @@ export function PostsByState({ poststate }) {
 
   return (
     <div id="posts-by-state">
-      <p>{poststate.title}</p>
+      <p>{`${poststate.title} (${postArray.length})`}</p>
       <PostList postArray={postArray} />
     </div>
   );
