@@ -8,6 +8,8 @@ import PropTypes from 'prop-types';
 
 export function PostForm({ postType, setFormIsOpen }) {
   const [title, setTitle] = useState('');
+  const [image, setImage] = useState(null);
+  const [FormIsOpen, setIsOpen] = useState(false);
   const [description, setDescription] = useState('');
   const [location, setLocation] = useState('');
   const { uploadPost } = usePosts();
@@ -21,6 +23,16 @@ export function PostForm({ postType, setFormIsOpen }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const userInfo = JSON.parse(sessionStorage.getItem('token'));
+    const formData = new FormData();
+    formData.append('media', image);
+    formData.append('title', title);
+    formData.append('description', description);
+    formData.append('location', location);
+    formData.append('areamarker', JSON.stringify(markers[0]));
+    formData.append('userid', userInfo.user.id);
+    formData.append('type', 1);
+    console.log('handleSubmit', image);
+    /*
     const msg = {
       userid: userInfo.user.id,
       type: postType.id,
@@ -28,16 +40,36 @@ export function PostForm({ postType, setFormIsOpen }) {
       description: description,
       location: location,
       areamarker: JSON.stringify(markers[0]),
+      media: image.data,
     };
-    console.log(msg);
-    const response = await uploadPost(msg);
-    if (response) {
-      setDescription('');
-      setTitle('');
-      setLocation('');
-      alert('Post has been submitted');
+    */
+    for (let pair of formData.entries()) {
+      console.log(pair[0]+ ' - ' + pair[1]); 
+  }
+    await uploadPost(formData);
+    setDescription('');
+    setTitle('');
+    setLocation('');
+    setMarkers([]);
+    setImage(null);
+    setIsOpen(!FormIsOpen);
+    alert('Post has been submitted');
+  };
+
+  const handleOpenForm = (event) => {
+    event.preventDefault();
+    if (event.target === event.currentTarget && FormIsOpen) {
+      setIsOpen(!FormIsOpen);
     }
   };
+
+  const handleFileChange = (e) => {
+    const img = {
+        preview: URL.createObjectURL(e.target.files[0]),
+        data: e.target.files[0],
+    }
+    setImage(e.target.files[0]);
+  }
 
   return (
     <div className="form-container">
@@ -93,14 +125,14 @@ export function PostForm({ postType, setFormIsOpen }) {
               onClick={openModal}
             />
           </div>
-
           <div>
-            <input
-              type="button"
-              name="photobutton"
-              id="photobutton"
-              value="Add a photo"
-            />
+          <input 
+            type="file" 
+            name="media" 
+            accept='image/*' 
+            multiple={false} 
+            onChange={handleFileChange}
+          />
           </div>
         </div>
         <input
