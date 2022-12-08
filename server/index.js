@@ -4,7 +4,6 @@ const express = require('express');
 const app = express();
 
 // define routes for http connections
-const testRoute = require('./routes/testRoute');
 const messageRoute = require('./routes/messageRoute');
 const postRoute = require('./routes/postRoute');
 const authRoute = require('./routes/authRoute');
@@ -19,7 +18,6 @@ app.use(express.urlencoded({ extended: true })); // for parsing application/x-ww
 
 app.use('/post', postRoute);
 app.use('/message', messageRoute);
-app.use('/test', testRoute);
 app.use('/auth', authRoute);
 
 // define the port the server listens for outside connection

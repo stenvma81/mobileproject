@@ -16,6 +16,7 @@ const addPost = async (post) => {
   }
 };
 
+// sql command to get posts with relations
 const getPostsSql = `
     SELECT post.id, user.employeeid as user, description, post.title, location, poststate.id as stateid, 
     poststate.title as state, posttype.title as type, posttype.id as typeid,created_date, closed_date, areamarker, mediafilename 
@@ -25,6 +26,7 @@ const getPostsSql = `
     INNER JOIN poststate ON state = poststate.id
 `;
 
+// fetch all posts
 const getAllPosts = async () => {
   try {
     const [rows] = await promisePool.execute(getPostsSql);
@@ -35,6 +37,7 @@ const getAllPosts = async () => {
   }
 };
 
+// get posts by specific id
 const getPostById = async (id) => {
   try {
     const [rows] = await promisePool.execute(
@@ -47,6 +50,7 @@ const getPostById = async (id) => {
   }
 };
 
+// get posts by specific type
 const getPostsByType = async (typeid) => {
   try {
     const [rows] = await promisePool.execute(
@@ -84,6 +88,7 @@ const getPostsByState = async (stateid) => {
   }
 };
 
+// add VET to a post
 const closePost = async (id) => {
   try {
     const [rows] = await promisePool.execute(
@@ -96,6 +101,7 @@ const closePost = async (id) => {
   }
 };
 
+// modify post state, add VET if type 2 (closed)
 const modifyPostState = async (post) => {
   let sql = `UPDATE post SET state = ?, closed_date = NULL WHERE id = ?`;
   if (post.state === '2') {
