@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './styles.css';
 import { useState } from 'react';
 import { usePosts } from '../../hooks/ApiHooks';
 import MapModal from '../map-modal/MapModal';
 import { MdClose } from 'react-icons/md';
 import PropTypes from 'prop-types';
+import { MainContext } from '../../context/MainContext';
 
 export function PostForm({ postType, setFormIsOpen }) {
   const [title, setTitle] = useState('');
@@ -13,6 +14,7 @@ export function PostForm({ postType, setFormIsOpen }) {
   const { uploadPost } = usePosts();
   const [showModal, setShowModal] = useState(false);
   const [markers, setMarkers] = useState([]);
+  const { update, setUpdate } = useContext(MainContext);
 
   function openModal() {
     setShowModal(!showModal);
@@ -36,6 +38,8 @@ export function PostForm({ postType, setFormIsOpen }) {
       setTitle('');
       setLocation('');
       alert('Post has been submitted');
+      setFormIsOpen(false);
+      setUpdate(update + 1);
     }
   };
 
