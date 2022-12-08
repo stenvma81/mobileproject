@@ -5,6 +5,7 @@ const uploadsUrl = baseUrl + 'uploads/';
 const loginUrl = baseUrl + 'auth/login';
 const postUrl = baseUrl + 'post/';
 const messageUrl = baseUrl + 'message/';
+const imageUrl = baseUrl + 'uploads/';
 
 const postStates = {
   open: { id: 0, title: 'Open' },
@@ -30,6 +31,7 @@ export {
   postUrl,
   testUrl,
   messageUrl,
+  imageUrl,
   postStates,
   postTypes,
   userRoles,

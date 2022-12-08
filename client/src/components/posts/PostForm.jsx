@@ -9,6 +9,7 @@ import { MainContext } from '../../context/MainContext';
 
 export function PostForm({ postType, setFormIsOpen }) {
   const [title, setTitle] = useState('');
+  const [image, setImage] = useState(null);
   const [description, setDescription] = useState('');
   const [location, setLocation] = useState('');
   const { uploadPost } = usePosts();
@@ -23,24 +24,39 @@ export function PostForm({ postType, setFormIsOpen }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const userInfo = JSON.parse(sessionStorage.getItem('token'));
-    const msg = {
-      userid: userInfo.user.id,
-      type: postType.id,
-      title: title,
-      description: description,
-      location: location,
-      areamarker: JSON.stringify(markers[0]),
-    };
-    console.log(msg);
-    const response = await uploadPost(msg);
+    const formData = new FormData();
+    formData.append('media', image);
+    formData.append('title', title);
+    formData.append('description', description);
+    formData.append('location', location);
+    formData.append('areamarker', JSON.stringify(markers[0]));
+    formData.append('userid', userInfo.user.id);
+    formData.append('type', 1);
+    console.log('handleSubmit', image);
+
+    for (let pair of formData.entries()) {
+      console.log(pair[0] + ' - ' + pair[1]);
+    }
+
+    const response = await uploadPost(formData);
     if (response) {
       setDescription('');
       setTitle('');
       setLocation('');
+      setMarkers([]);
+      setImage(null);
       alert('Post has been submitted');
       setFormIsOpen(false);
       setUpdate(update + 1);
     }
+  };
+
+  const handleFileChange = (e) => {
+    const img = {
+      preview: URL.createObjectURL(e.target.files[0]),
+      data: e.target.files[0],
+    };
+    setImage(e.target.files[0]);
   };
 
   return (
@@ -97,13 +113,13 @@ export function PostForm({ postType, setFormIsOpen }) {
               onClick={openModal}
             />
           </div>
-
           <div>
             <input
-              type="button"
-              name="photobutton"
-              id="photobutton"
-              value="Add a photo"
+              type="file"
+              name="media"
+              accept="image/*"
+              multiple={false}
+              onChange={handleFileChange}
             />
           </div>
         </div>

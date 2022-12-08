@@ -7,15 +7,8 @@ const addPost = async (post) => {
   console.log('postModel: addPost', post);
   try {
     const [rows] = await promisePool.execute(
-      'INSERT INTO post (userid, description, type, title, location, areamarker) VALUES (?, ?, ?, ?, ?, ?)',
-      [
-        post.userid,
-        post.description,
-        post.type,
-        post.title,
-        post.location,
-        post.areamarker,
-      ]
+      'INSERT INTO post (userid, description, type, title, location, areamarker, mediafilename) VALUES (?, ?, ?, ?, ?, ?, ?)',
+      [post.userid, post.description, post.type, post.title, post.location, post.areamarker, post.file.filename]
     );
     return rows.insertId;
   } catch (error) {
@@ -25,7 +18,7 @@ const addPost = async (post) => {
 
 const getPostsSql = `
     SELECT post.id, user.employeeid as user, description, post.title, location, poststate.id as stateid, 
-    poststate.title as state, posttype.title as type, posttype.id as typeid,created_date, closed_date, areamarker 
+    poststate.title as state, posttype.title as type, posttype.id as typeid,created_date, closed_date, areamarker, mediafilename 
     FROM post
     INNER JOIN user ON userid = user.id 
     INNER JOIN posttype ON type = posttype.id
@@ -35,7 +28,7 @@ const getPostsSql = `
 const getAllPosts = async () => {
   try {
     const [rows] = await promisePool.execute(getPostsSql);
-    // console.log('postModel getAllPosts: ', rows);
+    console.log('postModel getAllPosts: ', rows);
     return rows;
   } catch (e) {
     console.error('testModel:', e.message);
@@ -84,6 +77,7 @@ const getPostsByState = async (stateid) => {
       `${getPostsSql} WHERE post.state = ?`,
       [stateid]
     );
+    console.log('postModel getPostsByState: ', rows);
     return rows;
   } catch (error) {
     console.error('getPostsByState', error.message);
