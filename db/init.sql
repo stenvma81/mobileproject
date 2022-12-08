@@ -19,21 +19,6 @@ SET time_zone = "+00:00";
 -- Table structure for table `sample`
 --
 
-CREATE TABLE `sample` (
-  `id` int(255) NOT NULL,
-  `name` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-INSERT INTO `sample` (`id`, `name`) VALUES
-(1, 'This'),
-(2, 'is'),
-(3, 'a'),
-(4, 'sample'),
-(5, 'database'),
-(6, 'for'),
-(7, 'our'),
-(8, 'app');
-
 CREATE TABLE `role` (
   `id` int(10) NOT NULL PRIMARY KEY,
   `description` varchar(20)
@@ -120,26 +105,6 @@ INSERT INTO `user`(employeeid, email, password, role) VALUES ('654321', 'user@te
 INSERT INTO `post` (userid, description, type, title, location, areamarker) VALUES (1, 'Some desc', 1, "Vessa rikki", "Vessa kerros 2", "{}");
 
 INSERT INTO message(userid, postid, text) VALUES (1, 1, "This is a message");
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `sample`
---
-ALTER TABLE `sample`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `sample`
---
-ALTER TABLE `sample`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
