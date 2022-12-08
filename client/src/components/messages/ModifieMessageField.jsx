@@ -22,7 +22,7 @@ export function ModifieMessageField({ message, setIsModifying }) {
   };
 
   return (
-    <div>
+    <div className="column">
       <textarea
         className="message-textfield"
         rows="4"
