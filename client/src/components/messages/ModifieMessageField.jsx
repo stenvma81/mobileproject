@@ -22,12 +22,15 @@ export function ModifieMessageField({ message, setIsModifying }) {
   };
 
   return (
-    <div>
+    <div className="column">
       <textarea
         className="message-textfield"
         rows="4"
         defaultValue={message.text}
         onChange={(e) => setText(e.target.value)}
+        required
+        minLength="1"
+        maxLength="250"
       />
       <div className="two-icons-message">
         <FaCheck onClick={handleSubmit} />
