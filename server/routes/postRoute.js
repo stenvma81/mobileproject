@@ -29,6 +29,7 @@ const fileFilter = (req, file, cb) => {
   }
 };
 
+// test if uploaded file is an image
 const testFile = (req, res, next) => {
   if (req.file) {
     console.log('testFile reporting: ', req.file);
@@ -38,6 +39,7 @@ const testFile = (req, res, next) => {
   }
 };
 
+// define info needed for uploading an image
 const storage = multer.diskStorage({
   destination: function(req, file, cb) {
       cb(null, './uploads');
@@ -50,16 +52,15 @@ const storage = multer.diskStorage({
 const upload = multer({storage: storage});
 
 router.route('/').get(posts_get);
-router.post('/', upload.single('media'), testFile, make_thumbnail, body('description').isLength({min: 3}).blacklist(';'), post_post);
-
+router.post('/',
+  upload.single('media'),
+  testFile, make_thumbnail,
+  body('description').isLength({min: 3}).blacklist(';'),
+  post_post);
 router.route('/:id').get(post_get_by_id).put(post_modify);
-
 router.route('/close/:id').put(post_close);
-
 router.route('/user/:id').get(posts_get_by_user);
-
 router.route('/type/:id').get(posts_get_by_type);
-
 router.route('/state/:id').get(posts_get_by_state).put(post_modify_state);
 
 module.exports = router;
