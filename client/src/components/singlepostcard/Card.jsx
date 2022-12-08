@@ -6,27 +6,33 @@ import { SendMessage } from '../messages/SendMessage';
 import PropTypes from 'prop-types';
 import logo from '../header/images/nokia.jpg';
 import MapModal from '../map-modal/MapModal';
+import {ImageModal} from '../image-modal/ImageModal';
 import './smallCard.css';
 import { ModifyPostState } from '../admin/ModifyPostState';
 import { MdClose } from 'react-icons/md';
 import { FaPen } from 'react-icons/fa';
 import { NewMessagesCount } from './NewMessagesCount';
 import { MainContext } from '../../context/MainContext';
-import { userRoles } from '../../utils/variables';
+import { userRoles, imageUrl } from '../../utils/variables';
 import { ModifyPost } from '../posts/ModifyPost';
 
 export default function Card({ post }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isModifying, setIsModifying] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [showImageModal, setShowImageModal] = useState(false);
   const [markers, setMarkers] = useState([]);
   const { user } = useContext(MainContext);
 
-  function openModal() {
-    console.log(post);
+
+  const openModal = () => {
     const marker = JSON.parse(post.areamarker);
     setMarkers([...markers.splice(0, marker), marker]);
     setShowModal(!showModal);
+  }
+
+  const openImage = () => {
+    setShowImageModal(!showImageModal);
   }
 
   const TypeDot = () => {
@@ -84,11 +90,19 @@ export default function Card({ post }) {
             <div>
               <button onClick={openModal}>Show location</button>
             </div>
+            <div>
+              <button onClick={openImage}>Show image</button>
+            </div>
             <MapModal
               toggle={showModal}
               action={openModal}
               markers={markers}
               setMarkers={setMarkers}
+            />
+            <ImageModal
+              toggle={showImageModal}
+              action={openImage}
+              url={imageUrl + post.mediafilename}
             />
             <div className="post-modify" onClick={() => setIsModifying(true)}>
               <button id="modify-button">

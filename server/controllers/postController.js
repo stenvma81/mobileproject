@@ -12,12 +12,18 @@ const {
   modifyPostState,
 } = require('../models/postModel');
 const { httpError } = require('../utils/errors');
+const {makeThumbnail} = require('../utils/resize');
 
 const post_post = async (req, res) => {
-  console.log('postController: post_post', req.method);
-  const post = req.body;
-  const id = await addPost(post);
-  res.json({ message: `Post created with id: ${id}` });
+  console.log('postController: post_post', req.file);
+  if(req.body != {}) {
+    const post = req.body;
+    post.file = req.file;
+    const id = await addPost(post);
+    res.json({ message: `Post created with id: ${id}` });
+  } else {
+    console.log('post_post content error, req.body: ', req.body);
+  }
 };
 
 const posts_get = async (req, res, next) => {
@@ -98,6 +104,18 @@ const post_modify = async (req, res) => {
   }
 };
 
+const make_thumbnail = async (req, res, next) => {
+  try {
+    const thumbnail = await makeThumbnail(req.file.path, req.file.filename);
+    if (thumbnail) {
+      console.log('make_thumbnail we get here', req.file.filename)
+      next();
+    }
+  } catch (e) {
+    res.status(400).json({error: e.message});
+  }
+};
+
 module.exports = {
   post_post,
   posts_get,
@@ -108,4 +126,5 @@ module.exports = {
   posts_get_by_type,
   posts_get_by_user,
   posts_get_by_state,
+  make_thumbnail,
 };
