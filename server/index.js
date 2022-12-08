@@ -10,8 +10,8 @@ const postRoute = require('./routes/postRoute');
 const authRoute = require('./routes/authRoute');
 
 app.use(express.static('public')); // Define public folder
-app.use(express.static('uploads')); // Define uploads folder
-app.use('/thumbnails', express.static('thumbnails')); // Define thumbnails folder
+app.use('/uploads', express.static('uploads')); // Define and expose uploads folder
+app.use('/thumbnails', express.static('thumbnails')); // Define and expose thumbnails folder
 
 app.use(cors());
 app.use(express.json()); // for parsing application/json

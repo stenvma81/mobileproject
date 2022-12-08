@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Moment from 'react-moment';
 import 'moment-timezone';
 import { MessageList } from '../messages/MessageList';
@@ -6,31 +6,40 @@ import { SendMessage } from '../messages/SendMessage';
 import PropTypes from 'prop-types';
 import logo from '../header/images/nokia.jpg';
 import MapModal from '../map-modal/MapModal';
-import classes from './smallCard.css';
+import {ImageModal} from '../image-modal/ImageModal';
+import './smallCard.css';
 import { ModifyPostState } from '../admin/ModifyPostState';
-import { FaTimes, FaPen } from 'react-icons/fa';
+import { MdClose } from 'react-icons/md';
+import { FaPen } from 'react-icons/fa';
 import { NewMessagesCount } from './NewMessagesCount';
-// import { post_modify_state } from '../../../../server/controllers/postController';
+import { MainContext } from '../../context/MainContext';
+import { userRoles, imageUrl } from '../../utils/variables';
+import { ModifyPost } from '../posts/ModifyPost';
 
 export default function Card({ post }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [isAdmin, setIsAdmin] = useState();
+  const [isModifying, setIsModifying] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [showImageModal, setShowImageModal] = useState(false);
   const [markers, setMarkers] = useState([]);
+  const { user } = useContext(MainContext);
 
-  function openModal() {
-    console.log(post);
-    console.log('mediamodelmadlem ', post.mediafilename)
+
+  const openModal = () => {
     const marker = JSON.parse(post.areamarker);
     setMarkers([...markers.splice(0, marker), marker]);
     setShowModal(!showModal);
+  }
+
+  const openImage = () => {
+    setShowImageModal(!showImageModal);
   }
 
   const TypeDot = () => {
     let color = 'red';
     post.typeid === 1 && (color = 'rgba(0,135,255,1)');
     post.typeid === 3 && (color = 'yellow');
-    return <div className="dot" style={{ backgroundColor: color }}></div>;
+    return <div className="dot" style={{ backgroundColor: color }} />;
   };
 
   const handleParentClick = (event) => {
@@ -41,26 +50,31 @@ export default function Card({ post }) {
     !isOpen && setIsOpen(!isOpen);
   };
 
-  useEffect(() => {
-    const userInfo = JSON.parse(sessionStorage.getItem('token'));
-    setIsAdmin(userInfo.user.role === 1);
-  }, []);
+  if (isModifying) {
+    return <ModifyPost post={post} setIsModifying={setIsModifying} />;
+  }
 
   return (
     <div className="card" onClick={!isOpen ? handleParentClick : undefined}>
-      {isOpen && <FaTimes onClick={() => setIsOpen(false)} />}
+      {isOpen && (
+        <MdClose className="close-x" onClick={() => setIsOpen(false)} />
+      )}
       <div className="post-state">
-        <div className="post-type">
-          <TypeDot />
-          <div>{post.type}</div>
-          <br></br>
+        <div className="column">
           <NewMessagesCount post={post} />
+          <div className="post-type">
+            <TypeDot />
+            <div>{post.type}</div>
+            {/* <NewMessagesCount post={post} /> */}
+          </div>
         </div>
-        <div id="card-date">
+
+        <div className="column">
           <Moment date={post.created_date} format="DD.MM.YYYY HH:mm" />
           {post.closed_date !== null && (
             <Moment date={post.closed_date} format="DD.MM.YYYY HH:mm" />
           )}
+          {post.state}
         </div>
       </div>
       <div className="post-text">
@@ -71,11 +85,13 @@ export default function Card({ post }) {
       </div>
       {isOpen && (
         <div>
-          <img src={'http://localhost:8000/thumbnails/' + post.mediafilename} />
           <div className="place">{`${post.description}`}</div>
           <div className="post-buttons">
             <div>
               <button onClick={openModal}>Show location</button>
+            </div>
+            <div>
+              <button onClick={openImage}>Show image</button>
             </div>
             <MapModal
               toggle={showModal}
@@ -83,13 +99,18 @@ export default function Card({ post }) {
               markers={markers}
               setMarkers={setMarkers}
             />
-            <div className="post-modify">
+            <ImageModal
+              toggle={showImageModal}
+              action={openImage}
+              url={imageUrl + post.mediafilename}
+            />
+            <div className="post-modify" onClick={() => setIsModifying(true)}>
               <button id="modify-button">
-                Modify <FaPen id="pen-icon" />{' '}
+                Modify <FaPen id="pen-icon" />
               </button>
             </div>
           </div>
-          {isAdmin && <ModifyPostState post={post} />}
+          {user.role === userRoles.admin.id && <ModifyPostState post={post} />}
           <SendMessage postid={post.id} />
           <MessageList postid={post.id} />
         </div>

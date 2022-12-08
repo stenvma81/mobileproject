@@ -7,22 +7,17 @@ import { Header } from '../../header/Header';
 // import { Onepost } from './post-list';
 import { PostsByState } from './PostsByState';
 import { AdminHeader } from './admin-header/admin-header';
+import { postStates } from '../../utils/variables';
 
 export function AdminMainView() {
   return (
-  
-      <div className="Allcontainer">
-         <AdminHeader/>
-        <div className="Admincontainer">
-         
-          {/* <Onepost name="New posts: " /> */}
-          <PostsByState poststate={{ id: 0, title: 'Open:' }} />
-          <PostsByState poststate={{ id: 1, title: 'Prosessing:' }} />
-          <PostsByState poststate={{ id: 2, title: 'Closed:' }} />
-          {/* <Onepost name="Old posts: " />
-          <Onepost name="Done: " /> */}
-        </div>
+    <div className="Allcontainer">
+      <AdminHeader />
+      <div className="Admincontainer">
+        <PostsByState poststate={postStates.open} />
+        <PostsByState poststate={postStates.prosessing} />
+        <PostsByState poststate={postStates.closed} />
       </div>
-      
+    </div>
   );
 }

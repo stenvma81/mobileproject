@@ -1,87 +1,86 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './styles.css';
 import { useState } from 'react';
 import { usePosts } from '../../hooks/ApiHooks';
 import MapModal from '../map-modal/MapModal';
 import { MdClose } from 'react-icons/md';
 import PropTypes from 'prop-types';
+import { useEffect } from 'react';
+import { postTypes } from '../../utils/variables';
+import { MainContext } from '../../context/MainContext';
 
-export function PostForm({ postType, setFormIsOpen }) {
-  const [title, setTitle] = useState('');
-  const [image, setImage] = useState(null);
-  const [FormIsOpen, setIsOpen] = useState(false);
-  const [description, setDescription] = useState('');
-  const [location, setLocation] = useState('');
-  const { uploadPost } = usePosts();
+export function ModifyPost({ post, setIsModifying }) {
+  const [title, setTitle] = useState(post.title);
+  const [description, setDescription] = useState(post.description);
+  const [location, setLocation] = useState(post.location);
+  const [postType, setPostType] = useState(post.typeid);
+
+  const { update, setUpdate } = useContext(MainContext);
+
+  const { modifyPost } = usePosts();
   const [showModal, setShowModal] = useState(false);
   const [markers, setMarkers] = useState([]);
 
   function openModal() {
+    // const marker = JSON.parse(post.areamarker);
+    // setMarkers([...markers.splice(0, marker), marker]);
     setShowModal(!showModal);
   }
 
+  const TypeRadioButton = ({ type }) => (
+    <label>
+      <input
+        type="radio"
+        value={`${type.id}`}
+        onChange={() => setPostType(type.id)}
+        checked={postType === type.id}
+      />
+      {type.title}
+    </label>
+  );
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const userInfo = JSON.parse(sessionStorage.getItem('token'));
-    const formData = new FormData();
-    formData.append('media', image);
-    formData.append('title', title);
-    formData.append('description', description);
-    formData.append('location', location);
-    formData.append('areamarker', JSON.stringify(markers[0]));
-    formData.append('userid', userInfo.user.id);
-    formData.append('type', 1);
-    console.log('handleSubmit', image);
-    /*
-    const msg = {
-      userid: userInfo.user.id,
-      type: postType.id,
+    const data = {
       title: title,
       description: description,
       location: location,
       areamarker: JSON.stringify(markers[0]),
-      media: image.data,
+      type: postType,
     };
-    */
-    for (let pair of formData.entries()) {
-      console.log(pair[0]+ ' - ' + pair[1]); 
-  }
-    await uploadPost(formData);
-    setDescription('');
-    setTitle('');
-    setLocation('');
-    setMarkers([]);
-    setImage(null);
-    setIsOpen(!FormIsOpen);
-    alert('Post has been submitted');
-  };
-
-  const handleOpenForm = (event) => {
-    event.preventDefault();
-    if (event.target === event.currentTarget && FormIsOpen) {
-      setIsOpen(!FormIsOpen);
+    console.log(data);
+    const response = await modifyPost(data, post.id);
+    if (response) {
+      alert('Post has been modified');
+      setIsModifying(false);
+      setUpdate(update + 1);
     }
   };
 
-  const handleFileChange = (e) => {
-    const img = {
-        preview: URL.createObjectURL(e.target.files[0]),
-        data: e.target.files[0],
+  useEffect(() => {
+    if (markers.length === 0) {
+      const marker = JSON.parse(post.areamarker);
+      setMarkers([...markers.splice(0, marker), marker]);
     }
-    setImage(e.target.files[0]);
-  }
+  }, [post.areamarker]);
 
   return (
     <div className="form-container">
       <form>
         <div className="form-title">
-          <h1>{postType.title}</h1>
+          <h1>Modify</h1>
           <MdClose
             onClick={() => {
-              setFormIsOpen(false);
+              setIsModifying(false);
             }}
           />
         </div>
+        <div className="column">
+          <TypeRadioButton type={postTypes.serviceAdvice} />
+          <TypeRadioButton type={postTypes.feedback} />
+          <TypeRadioButton type={postTypes.safetyAdvice} />
+        </div>
+
         <textarea
           placeholder="Title"
           type="text"
@@ -108,7 +107,7 @@ export function PostForm({ postType, setFormIsOpen }) {
           value={location}
           onChange={(e) => setLocation(e.target.value)}
         />
-        <div className="two-icons-message">
+        <div className="column">
           <div>
             <MapModal
               toggle={showModal}
@@ -125,14 +124,14 @@ export function PostForm({ postType, setFormIsOpen }) {
               onClick={openModal}
             />
           </div>
+
           <div>
-          <input 
-            type="file" 
-            name="media" 
-            accept='image/*' 
-            multiple={false} 
-            onChange={handleFileChange}
-          />
+            <input
+              type="button"
+              name="photobutton"
+              id="photobutton"
+              value="Add a photo"
+            />
           </div>
         </div>
         <input
@@ -147,7 +146,7 @@ export function PostForm({ postType, setFormIsOpen }) {
   );
 }
 
-PostForm.propTypes = {
-  postType: PropTypes.object.isRequired,
-  setFormIsOpen: PropTypes.func.isRequired,
+ModifyPost.propTypes = {
+  post: PropTypes.object.isRequired,
+  setIsModifying: PropTypes.func.isRequired,
 };

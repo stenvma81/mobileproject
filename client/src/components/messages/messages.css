@@ -1,0 +1,59 @@
+#message-item {
+    margin-bottom: 20px;
+}
+
+#message-content {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    color: white;
+    background-color: #68739c;
+    border-radius: 10px;
+    margin-top: 3px;
+  }
+
+  #message-text {
+    width: 95%;
+  }
+
+#send-message-form {
+  margin-bottom: 20px;
+}
+
+  #send-message-div{
+    margin-top: 5px;
+    position: relative;
+  }
+
+  .message-textfield {
+    border-radius: 15px;
+    padding: 15px;
+    resize: none;
+    height: 100px;
+  }
+
+  #send-msg-btn {
+    color: white;
+    background-color: rgb(22, 27, 99);
+    font-size: 16px;
+    min-width: 100px;
+    height: 45px;
+    margin-top: 0px;
+    font-family: 'Open Sans', sans-serif;
+    padding: 0px;
+    margin-left: 13px;
+    position: absolute;
+    width: 50px;
+    bottom: 15px;
+    right: 15px;
+  }
+
+  #send-msg-btn text{
+    padding-bottom: 10px;
+  }
+
+  .two-icons-message{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }

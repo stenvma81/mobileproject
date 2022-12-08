@@ -5,39 +5,52 @@ import { usePosts } from '../../hooks/ApiHooks';
 import { PostForm } from '../posts/PostForm';
 import { PostList } from '../posts/PostList';
 import './styles.css';
-import { FaTimes } from 'react-icons/fa';
+import { postTypes } from '../../utils/variables';
 
 export function MainView() {
   useEffect(() => {}, []);
-  const [FormIsOpen, setIsOpen] = useState(false);
+  const [formIsOpen, setFormIsOpen] = useState(false);
+  const [postType, setPostType] = useState();
   const { usersPost } = usePosts();
-  
-  const handleOpenForm = (event) => {
+
+  const handleOpenForm = (event, postType) => {
     event.preventDefault();
-    if (event.target === event.currentTarget && FormIsOpen) {
-      setIsOpen(!FormIsOpen);
-    }
-    !FormIsOpen && setIsOpen(!FormIsOpen);
+    setPostType(postType);
+    setFormIsOpen(!formIsOpen);
   };
-  
+
+  const FormButtons = () => {
+    return (
+      <div className="buttons_container">
+        <div className="button1">
+          <button onClick={(e) => handleOpenForm(e, postTypes.serviceAdvice)}>
+            Service Advice
+          </button>
+        </div>
+        <div className="button2">
+          <button onClick={(e) => handleOpenForm(e, postTypes.feedback)}>
+            Feedback
+          </button>
+        </div>
+        <div className="button3">
+          <button onClick={(e) => handleOpenForm(e, postTypes.safetyAdvice)}>
+            Safety Advice
+          </button>
+        </div>
+        {/* <div className="button4">
+      <button onClick={handleOpenForm}>Question</button>
+    </div> */}
+      </div>
+    );
+  };
 
   return (
     <div id="container">
-      <div className='buttons_container'>
-        <div className='button1'>
-          <button onClick={handleOpenForm}>Service Advice</button>
-        </div>
-        <div className='button2'>
-          <button onClick={handleOpenForm}>Feedback</button>
-      </div>
-          <div className='button3'>
-      <button onClick={handleOpenForm}>Development Proposal</button>
-      </div>
-      <div className='button4'>
-      <button onClick={handleOpenForm}>Question</button>
-      </div>
-      </div> 
-      {(FormIsOpen && (<PostForm/>)) }
+      {formIsOpen ? (
+        <PostForm setFormIsOpen={setFormIsOpen} postType={postType} />
+      ) : (
+        <FormButtons />
+      )}
       <h3>Previous posts:</h3>
       <PostList postArray={usersPost} />
     </div>

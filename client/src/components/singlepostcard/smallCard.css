@@ -3,14 +3,14 @@
     box-shadow: 5px 5px 5px black;
     border-radius: 15px;
     width: auto;
-    max-width: 500px;
+    max-width: 700px;
     padding: 20px;
     margin-bottom: 20px;
-    text-align: justify;
+    /* text-align: justify; */
 }
 button{
     background-color: rgba(25, 43, 107, 1);
-    border-radius: 15px;
+    border-radius: 10px;
     border: 0px;
     height: 38px;
     padding: 10px;
@@ -19,7 +19,7 @@ button{
 
 }
 .post-state {
-    padding-bottom: 10px;
+    padding-bottom: 20px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -89,16 +89,10 @@ button{
     align-items: center;
 }
 
-#card-date {
-    display: flex;
-    flex-direction: column;
-}
-
 svg {
-    color: rgb(58, 58, 78);
     width: 35px;
     height: 35px;
-    padding-left: 85%;
+    color: rgb(241,245,255);
 }
 
 .place{
@@ -134,8 +128,28 @@ svg {
     height: 25px;
     width: 25px;
     padding-left: 0px;
+    color: rgb(241,245,255);
 }
 
 #new-message-count {
-    background-color: red;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+#message-icon {
+    padding: 0%;
+    margin-left: 10px;
+    width: 25px;
+    height: 25px;
+}
+
+.no-margin {
+    margin: 0;
+}
+
+.close-x{
+    padding-left: 87%;
+    margin-bottom: 10px;
+    color: rgb(54, 54, 59);
 }

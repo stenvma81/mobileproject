@@ -21,8 +21,6 @@
     
 }
 
-
-
 .Postlistcontainer{
     height: 500px;
     margin-top: 20px;
@@ -45,13 +43,12 @@
 }
 
 #posts-by-state {
-    width: 90%;
+    width: 100%;
 }
 
 .column {
     display: flex;
     flex-direction: column;
-    margin-top: 8px;
 }
 #allcont{
     display: block;
