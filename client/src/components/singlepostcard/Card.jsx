@@ -8,8 +8,8 @@ import logo from '../header/images/nokia.jpg';
 import MapModal from '../map-modal/MapModal';
 import './smallCard.css';
 import { ModifyPostState } from '../admin/ModifyPostState';
-import { MdClose } from 'react-icons/md';
-import { FaPen } from 'react-icons/fa';
+import { MdClose, MdCreate, MdSocialDistance } from 'react-icons/md';
+import { FaPen, FaStarOfLife } from 'react-icons/fa';
 import { NewMessagesCount } from './NewMessagesCount';
 import { MainContext } from '../../context/MainContext';
 import { userRoles } from '../../utils/variables';
@@ -30,10 +30,10 @@ export default function Card({ post }) {
   }
 
   const TypeDot = () => {
-    let color = 'red';
-    post.typeid === 1 && (color = 'rgba(0,135,255,1)');
-    post.typeid === 3 && (color = 'yellow');
-    return <div className="dot" style={{ backgroundColor: color }} />;
+    let color = 'rgba(6,177,169,1)';
+    post.typeid === 1 && (color = 'rgba(135,110,255,1)');
+    post.typeid === 3 && (color = 'rgba(246,13,13,1)');
+    return <div className="dot" style={{ backgroundColor: color}} />;
   };
 
   const handleParentClick = (event) => {
@@ -50,17 +50,19 @@ export default function Card({ post }) {
 
   return (
     <div className="card" onClick={!isOpen ? handleParentClick : undefined}>
-      {isOpen && (
-        <div className='form-title' id='post-x-close'>
-        <FaPen className='modify-pen2' onClick={() => setIsModifying(true)} />
+      <div className='form-title'>
+        <NewMessagesCount post={post} />
+        {isOpen && (
+        <div className='close-modify'>
+        <MdCreate className='close-x' onClick={() => setIsModifying(true)} />
         <MdClose className="close-x" onClick={() => setIsOpen(false)} />
         </div>
       )}
+      </div>
       <div className="post-state">
         <div className="column">
-          <NewMessagesCount post={post} />
           <div className="post-type">
-            <TypeDot />
+            <TypeDot className='dot-border'/>
             <div>{post.type}</div>
             {/* <NewMessagesCount post={post} /> */}
           </div>
