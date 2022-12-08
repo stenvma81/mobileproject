@@ -32,6 +32,9 @@ export function SendMessage({ postid }) {
           className="message-textfield"
           name="text"
           rows="6"
+          required
+          minLength="1"
+          maxLength="250"
           onChange={(e) => setText(e.target.value)}
         />
         <button id="send-msg-btn" type="send">

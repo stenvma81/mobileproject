@@ -28,6 +28,9 @@ export function ModifieMessageField({ message, setIsModifying }) {
         rows="4"
         defaultValue={message.text}
         onChange={(e) => setText(e.target.value)}
+        required
+        minLength="1"
+        maxLength="250"
       />
       <div className="two-icons-message">
         <FaCheck onClick={handleSubmit} />

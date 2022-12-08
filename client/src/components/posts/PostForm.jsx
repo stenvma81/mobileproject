@@ -40,15 +40,19 @@ export function PostForm({ postType, setFormIsOpen }) {
 
     const response = await uploadPost(formData);
     if (response) {
-      setDescription('');
-      setTitle('');
-      setLocation('');
-      setMarkers([]);
-      setImage(null);
-      alert('Post has been submitted');
-      setFormIsOpen(false);
-      setUpdate(update + 1);
+      afterSubmit();
     }
+  };
+
+  const afterSubmit = () => {
+    setDescription('');
+    setTitle('');
+    setLocation('');
+    setMarkers([]);
+    setImage(null);
+    alert('Post has been submitted');
+    setFormIsOpen(false);
+    setUpdate(update + 1);
   };
 
   const handleFileChange = (e) => {
@@ -61,7 +65,7 @@ export function PostForm({ postType, setFormIsOpen }) {
 
   return (
     <div className="form-container">
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="form-title">
           <h1>{postType.title}</h1>
           <MdClose
@@ -77,6 +81,9 @@ export function PostForm({ postType, setFormIsOpen }) {
           id="title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
+          required
+          minLength="1"
+          maxLength="50"
         />
 
         <textarea
@@ -86,6 +93,9 @@ export function PostForm({ postType, setFormIsOpen }) {
           id="description"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
+          required
+          minLength="1"
+          maxLength="250"
         />
 
         <textarea
@@ -95,6 +105,9 @@ export function PostForm({ postType, setFormIsOpen }) {
           id="location"
           value={location}
           onChange={(e) => setLocation(e.target.value)}
+          required
+          minLength="1"
+          maxLength="50"
         />
         <div className="two-icons-message">
           <div>
@@ -123,13 +136,15 @@ export function PostForm({ postType, setFormIsOpen }) {
             />
           </div>
         </div>
-        <input
-          type="button"
+        <button
+          type="send"
           name="sendbutton"
           id="sendbutton"
-          value="Send"
-          onClick={handleSubmit}
-        />
+          // value="Send"
+          // onClick={handleSubmit}
+        >
+          Send
+        </button>
       </form>
     </div>
   );
