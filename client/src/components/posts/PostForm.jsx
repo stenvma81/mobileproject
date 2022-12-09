@@ -41,7 +41,9 @@ export function PostForm({ postType, setFormIsOpen }) {
     const response = await uploadPost(formData);
     if (response) {
       afterSubmit();
+      return;
     }
+    alert('Failed to submit post');
   };
 
   const afterSubmit = () => {
