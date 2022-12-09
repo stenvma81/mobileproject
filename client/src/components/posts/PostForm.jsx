@@ -70,8 +70,8 @@ export function PostForm({ postType, setFormIsOpen }) {
   };
 
   return (
-    <div className="form-container">
-      <form onSubmit={handleSubmit}>
+    <div className="form-container column">
+      <form className="column" onSubmit={handleSubmit}>
         <div className="form-title">
           <h1>{postType.title}</h1>
           <MdClose
@@ -85,6 +85,7 @@ export function PostForm({ postType, setFormIsOpen }) {
           type="text"
           name="title"
           id="title"
+          className="no-resize"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           required
@@ -97,6 +98,7 @@ export function PostForm({ postType, setFormIsOpen }) {
           type="text"
           name="description"
           id="description"
+          className="no-resize"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           required
@@ -109,13 +111,14 @@ export function PostForm({ postType, setFormIsOpen }) {
           type="text"
           name="location"
           id="location"
+          className="no-resize"
           value={location}
           onChange={(e) => setLocation(e.target.value)}
           required
           minLength="1"
           maxLength="50"
         />
-        <div className="two-icons-message">
+        <div className="two-icons-message column">
           <div>
             <MapModal
               toggle={showModal}
