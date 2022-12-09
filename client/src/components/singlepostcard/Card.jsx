@@ -111,11 +111,6 @@ export default function Card({ post }) {
               action={openImage}
               url={imageUrl + post.mediafilename}
             />
-            <div className="post-modify" onClick={() => setIsModifying(true)}>
-              <button id="modify-button">
-                Modify <FaPen id="pen-icon" />
-              </button>
-            </div>
           </div>
           {user.role === userRoles.admin.id && <ModifyPostState post={post} />}
           <SendMessage postid={post.id} />

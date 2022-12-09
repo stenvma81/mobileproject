@@ -11,7 +11,9 @@
     position: absolute;
     top: 350px;
     left: 42px;
-    
+}
+.mainViewButton{
+    box-shadow: 4px 4px 4px rgb(0, 0, 0);
 }
 
 .button1 .button2 .button3 button:hover{
@@ -39,7 +41,7 @@
 }
 button{
     height: 57px;
-    box-shadow: 4px 4px 4px rgb(13, 16, 36);
+    box-shadow: 4px 4px 4px rgb(76, 79, 107);
     background-color: rgb(226 226 227);
     margin-top: 15px;
     padding: 15px;

@@ -1,7 +1,10 @@
 .UserMainView{
     background-color: rgba(25, 43, 107, 1);
     align-items: center;
+    max-width: 420px;
     height: 100%;
-    display: flex;
+    display: block;
+    margin: 0 auto;
     flex-direction: column;
+    position: relative;
 }
