@@ -19,8 +19,10 @@ export function MessageListItem({ message }) {
 
   return (
     <div id="message-item">
+      <div style={{'display':'flex' , 'justify-content': 'space-between'}}>
       <p className="no-margin">{message.user}</p>
       <Moment date={message.closed_date} format="DD.MM.YYYY HH:mm" />
+      </div>
       <div id="message-content">
         {isModifying ? (
           <ModifieMessageField

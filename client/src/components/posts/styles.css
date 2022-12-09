@@ -4,8 +4,9 @@
   justify-content: center;
   padding: 24px;
   box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
-  border-radius: 20px;
+  border-radius: 10px;
   background-color: rgb(231, 234, 241, 0.99);
+  max-width: 350px;
 }
 
 label {
