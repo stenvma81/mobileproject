@@ -29,6 +29,11 @@ export function PostForm({ postType, setFormIsOpen }) {
     formData.append('title', title);
     formData.append('description', description);
     formData.append('location', location);
+
+    markers.length > 0
+      ? formData.append('areamarker', JSON.stringify(markers[0]))
+      : formData.append('areamarker', '{}');
+
     formData.append('areamarker', JSON.stringify(markers[0]));
     formData.append('userid', userInfo.user.id);
     formData.append('type', 1);
