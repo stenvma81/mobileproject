@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { ModifieMessageField } from './ModifieMessageField';
+import { ModifyMessageField } from './ModifyMessageField';
 import { FaPen } from 'react-icons/fa';
 import { useMessage } from '../../hooks/MessageHooks';
 import { MainContext } from '../../context/MainContext';
@@ -25,7 +25,7 @@ export function MessageListItem({ message }) {
       </div>
       <div id="message-content" className="column">
         {isModifying ? (
-          <ModifieMessageField
+          <ModifyMessageField
             message={message}
             setIsModifying={setIsModifying}
           />

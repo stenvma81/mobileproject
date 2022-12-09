@@ -5,7 +5,7 @@ import { MainContext } from '../../context/MainContext';
 import { useMessage } from '../../hooks/MessageHooks';
 import { FaTimes, FaCheck } from 'react-icons/fa';
 
-export function ModifieMessageField({ message, setIsModifying }) {
+export function ModifyMessageField({ message, setIsModifying }) {
   const [text, setText] = useState('');
   const { modifyMessage } = useMessage(message.postid);
   const { update, setUpdate } = useContext(MainContext);
@@ -18,7 +18,9 @@ export function ModifieMessageField({ message, setIsModifying }) {
       setUpdate(update + 1);
       setIsModifying(false);
       alert('Message has been modified');
+      return;
     }
+    alert('Failed to modify message');
   };
 
   return (
@@ -40,7 +42,7 @@ export function ModifieMessageField({ message, setIsModifying }) {
   );
 }
 
-ModifieMessageField.propTypes = {
+ModifyMessageField.propTypes = {
   message: PropTypes.object.isRequired,
   setIsModifying: PropTypes.func.isRequired,
 };
