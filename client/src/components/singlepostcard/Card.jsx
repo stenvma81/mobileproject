@@ -94,9 +94,12 @@ export default function Card({ post }) {
         <div>
           <div className="card-text">{`Location: ${post.location}`}</div>
           <div className="post-buttons">
-            <div>
-              <button onClick={openModal}>Show location</button>
-            </div>
+            {post.areamarker !== '{}' && (
+              <div>
+                <button onClick={openModal}>Show location</button>
+              </div>
+            )}
+
             <div>
               <button onClick={openImage}>Show image</button>
             </div>

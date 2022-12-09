@@ -32,9 +32,8 @@ export function PostForm({ postType, setFormIsOpen }) {
 
     markers.length > 0
       ? formData.append('areamarker', JSON.stringify(markers[0]))
-      : formData.append('areamarker', '{}');
+      : formData.append('areamarker', ['{}']);
 
-    formData.append('areamarker', JSON.stringify(markers[0]));
     formData.append('userid', userInfo.user.id);
     formData.append('type', 1);
     console.log('handleSubmit', image);
