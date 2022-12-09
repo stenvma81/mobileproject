@@ -6,11 +6,11 @@ import { SendMessage } from '../messages/SendMessage';
 import PropTypes from 'prop-types';
 import logo from '../header/images/nokia.jpg';
 import MapModal from '../map-modal/MapModal';
-import {ImageModal} from '../image-modal/ImageModal';
+import { ImageModal } from '../image-modal/ImageModal';
 import './smallCard.css';
 import { ModifyPostState } from '../admin/ModifyPostState';
-import { MdClose } from 'react-icons/md';
-import { FaPen } from 'react-icons/fa';
+import { MdClose, MdCreate, MdSocialDistance } from 'react-icons/md';
+import { FaPen, FaStarOfLife } from 'react-icons/fa';
 import { NewMessagesCount } from './NewMessagesCount';
 import { MainContext } from '../../context/MainContext';
 import { userRoles, imageUrl } from '../../utils/variables';
@@ -24,21 +24,20 @@ export default function Card({ post }) {
   const [markers, setMarkers] = useState([]);
   const { user } = useContext(MainContext);
 
-
   const openModal = () => {
     const marker = JSON.parse(post.areamarker);
     setMarkers([...markers.splice(0, marker), marker]);
     setShowModal(!showModal);
-  }
+  };
 
   const openImage = () => {
     setShowImageModal(!showImageModal);
-  }
+  };
 
   const TypeDot = () => {
-    let color = 'red';
-    post.typeid === 1 && (color = 'rgba(0,135,255,1)');
-    post.typeid === 3 && (color = 'yellow');
+    let color = 'rgba(6,177,169,1)';
+    post.typeid === 1 && (color = 'rgba(135,110,255,1)');
+    post.typeid === 3 && (color = 'rgba(246,13,13,1)');
     return <div className="dot" style={{ backgroundColor: color }} />;
   };
 
@@ -56,15 +55,26 @@ export default function Card({ post }) {
 
   return (
     <div className="card" onClick={!isOpen ? handleParentClick : undefined}>
-      {isOpen && (
-        <MdClose className="close-x" onClick={() => setIsOpen(false)} />
-      )}
+      <div className="form-title">
+        <NewMessagesCount post={post} />
+        {isOpen && (
+          <div className="close-modify">
+            <MdCreate
+              className="close-x"
+              onClick={() => setIsModifying(true)}
+            />
+            <MdClose className="close-x" onClick={() => setIsOpen(false)} />
+          </div>
+        )}
+      </div>
       <div className="post-state">
         <div className="column">
-          <NewMessagesCount post={post} />
           <div className="post-type">
-            <TypeDot />
-            <div>{post.type}</div>
+            <div>
+              <TypeDot className="dot-border" />
+              {post.type}
+            </div>
+            <div style={{ 'padding-top': '5px' }}>{post.state}</div>
             {/* <NewMessagesCount post={post} /> */}
           </div>
         </div>
@@ -74,18 +84,15 @@ export default function Card({ post }) {
           {post.closed_date !== null && (
             <Moment date={post.closed_date} format="DD.MM.YYYY HH:mm" />
           )}
-          {post.state}
         </div>
       </div>
       <div className="post-text">
         <div className="card-title">{post.title}</div>
-        {isOpen && (
-          <div className="card-text">{`Location: ${post.location}`}</div>
-        )}
+        {isOpen && <div className="place">{`${post.description}`}</div>}
       </div>
       {isOpen && (
         <div>
-          <div className="place">{`${post.description}`}</div>
+          <div className="card-text">{`Location: ${post.location}`}</div>
           <div className="post-buttons">
             <div>
               <button onClick={openModal}>Show location</button>
