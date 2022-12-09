@@ -63,7 +63,7 @@ export default function Card({ post }) {
               className="close-x"
               onClick={() => setIsModifying(true)}
             />
-            <MdClose className="close-x" onClick={() => setIsOpen(false)} />
+            <MdClose className="close-x" onClick={() => setIsModifying(true)} />
           </div>
         )}
       </div>
@@ -94,9 +94,12 @@ export default function Card({ post }) {
         <div>
           <div className="card-text">{`Location: ${post.location}`}</div>
           <div className="post-buttons">
-            <div>
-              <button onClick={openModal}>Show location</button>
-            </div>
+            {post.areamarker !== '{}' && (
+              <div>
+                <button onClick={openModal}>Show location</button>
+              </div>
+            )}
+
             <div>
               <button onClick={openImage}>Show image</button>
             </div>
@@ -111,11 +114,6 @@ export default function Card({ post }) {
               action={openImage}
               url={imageUrl + post.mediafilename}
             />
-            <div className="post-modify" onClick={() => setIsModifying(true)}>
-              <button id="modify-button">
-                Modify <FaPen id="pen-icon" />
-              </button>
-            </div>
           </div>
           {user.role === userRoles.admin.id && <ModifyPostState post={post} />}
           <SendMessage postid={post.id} />

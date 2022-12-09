@@ -1,6 +1,6 @@
 .form-container {
   display: flex;
-  align-items: baseline;
+  /* align-items: baseline; */
   justify-content: center;
   padding: 24px;
   box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
@@ -87,7 +87,7 @@ ul {
   outline: none;
   padding: 15px;
   margin-bottom: 5px;
-  margin-left: 30%;
+  /* margin-left: 30%; */
   margin-top: 30px;
   font-size: 20px;
   font-weight: 100;
@@ -98,11 +98,17 @@ ul {
   cursor: pointer;
   font-family: "Open Sans", sans-serif;
   font-weight: 340;
+  width: 100px;
+  align-self: center;
 }
 
 form h1 {
   margin-top: 0px;
   padding-bottom: 15px;
+}
+
+.no-resize {
+  resize: none;
 }
 
 .form-title{
@@ -112,7 +118,7 @@ form h1 {
 }
 
 .two-icons-message{
-    display: flex;
-    flex-direction: row;
+    /* display: flex;
+    flex-direction: row; */
     justify-content: space-between;
   }
