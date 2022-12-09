@@ -1,12 +1,3 @@
--- phpMyAdmin SQL Dump
--- version 4.9.0.1
--- https://www.phpmyadmin.net/
---
--- Host: mysql
--- Generation Time: Jun 27, 2019 at 01:14 AM
--- Server version: 5.7.26
--- PHP Version: 7.2.19
-
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
@@ -27,21 +18,6 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `sample`
 --
-
-CREATE TABLE `sample` (
-  `id` int(255) NOT NULL,
-  `name` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-INSERT INTO `sample` (`id`, `name`) VALUES
-(1, 'This'),
-(2, 'is'),
-(3, 'a'),
-(4, 'sample'),
-(5, 'database'),
-(6, 'for'),
-(7, 'our'),
-(8, 'app');
 
 CREATE TABLE `role` (
   `id` int(10) NOT NULL PRIMARY KEY,
@@ -81,6 +57,7 @@ CREATE TABLE `post` (
   `state` int DEFAULT(0),
   FOREIGN KEY(state) REFERENCES poststate(id),
   `areamarker` varchar(100),
+  `mediafilename` text,
   `created_date` datetime DEFAULT(CURRENT_TIMESTAMP),
   `closed_date` datetime
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -130,26 +107,6 @@ INSERT INTO `post` (userid, description, type, title, location, areamarker) VALU
 INSERT INTO `post` (userid, description, type, title, location, areamarker) VALUES (4, 'Aulassa olevan sähköpistokkeen johdot roikkuvat.', 3, "Aulan sähköpistoke", "Kerros 3 aula", "{""top"":57.52162678350747,""left"":43.87596899224806}");
 
 INSERT INTO message(userid, postid, text) VALUES (1, 1, "Tarkentaisitko, mikä vessa on kyseessä?");
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `sample`
---
-ALTER TABLE `sample`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `sample`
---
-ALTER TABLE `sample`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -7,15 +7,8 @@ const addPost = async (post) => {
   console.log('postModel: addPost', post);
   try {
     const [rows] = await promisePool.execute(
-      'INSERT INTO post (userid, description, type, title, location, areamarker) VALUES (?, ?, ?, ?, ?, ?)',
-      [
-        post.userid,
-        post.description,
-        post.type,
-        post.title,
-        post.location,
-        post.areamarker,
-      ]
+      'INSERT INTO post (userid, description, type, title, location, areamarker, mediafilename) VALUES (?, ?, ?, ?, ?, ?, ?)',
+      [post.userid, post.description, post.type, post.title, post.location, post.areamarker, post.file.filename]
     );
     return rows.insertId;
   } catch (error) {
@@ -23,25 +16,28 @@ const addPost = async (post) => {
   }
 };
 
+// sql command to get posts with relations
 const getPostsSql = `
     SELECT post.id, user.employeeid as user, description, post.title, location, poststate.id as stateid, 
-    poststate.title as state, posttype.title as type, posttype.id as typeid,created_date, closed_date, areamarker 
+    poststate.title as state, posttype.title as type, posttype.id as typeid,created_date, closed_date, areamarker, mediafilename 
     FROM post
     INNER JOIN user ON userid = user.id 
     INNER JOIN posttype ON type = posttype.id
     INNER JOIN poststate ON state = poststate.id
 `;
 
+// fetch all posts
 const getAllPosts = async () => {
   try {
     const [rows] = await promisePool.execute(getPostsSql);
-    // console.log('postModel getAllPosts: ', rows);
+    console.log('postModel getAllPosts: ', rows);
     return rows;
   } catch (e) {
     console.error('testModel:', e.message);
   }
 };
 
+// get posts by specific id
 const getPostById = async (id) => {
   try {
     const [rows] = await promisePool.execute(
@@ -54,6 +50,7 @@ const getPostById = async (id) => {
   }
 };
 
+// get posts by specific type
 const getPostsByType = async (typeid) => {
   try {
     const [rows] = await promisePool.execute(
@@ -84,12 +81,14 @@ const getPostsByState = async (stateid) => {
       `${getPostsSql} WHERE post.state = ?`,
       [stateid]
     );
+    console.log('postModel getPostsByState: ', rows);
     return rows;
   } catch (error) {
     console.error('getPostsByState', error.message);
   }
 };
 
+// add VET to a post
 const closePost = async (id) => {
   try {
     const [rows] = await promisePool.execute(
@@ -102,6 +101,7 @@ const closePost = async (id) => {
   }
 };
 
+// modify post state, add VET if type 2 (closed)
 const modifyPostState = async (post) => {
   let sql = `UPDATE post SET state = ?, closed_date = NULL WHERE id = ?`;
   if (post.state === '2') {

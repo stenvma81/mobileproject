@@ -15,7 +15,7 @@ services:
     # platform: linux/arm64/v8
     container_name: mysql-db-container
     # TODO: figure out authentication issue between versions.
-    # This line allows the use of native db login (check for alternatives)
+    # This line allows the use of native db login (check for alternatives, this is not very safe)
     command: --default-authentication-plugin=mysql_native_password
     environment:
       <<: *common-variables
@@ -46,7 +46,7 @@ services:
     restart: always
 
   server:
-  # defines the folder (with a Dockerfile) from which the image will be built
+    # defines the folder (with a Dockerfile) from which the image will be built
     build: ./server
     container_name: node_server_container
     depends_on:
@@ -60,7 +60,7 @@ services:
       - ./server:/app
     links:
       - mysql-db
-    # command: npm start
+    # command: npm start (command not needed, done in dockerfile)
 
   client:
     build: ./client

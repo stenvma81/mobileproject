@@ -23,19 +23,24 @@ export function MessageListItem({ message }) {
       <p className="no-margin">{message.user}</p>
       <Moment date={message.closed_date} format="DD.MM.YYYY HH:mm" />
       </div>
-      <div id="message-content">
+      <div id="message-content" className="column">
         {isModifying ? (
           <ModifieMessageField
             message={message}
             setIsModifying={setIsModifying}
           />
         ) : (
-          <p id="message-text" className="no-margin">
-            {message.text}
-          </p>
-        )}
-        {user.id === message.userid && (
-          <FaPen className="modify-pen" onClick={() => setIsModifying(true)} />
+          <div id="message-div" className="flex">
+            <p id="message-text" className="no-margin">
+              {message.text}
+            </p>
+            {user.id === message.userid && (
+              <FaPen
+                className="modify-pen"
+                onClick={() => setIsModifying(true)}
+              />
+            )}
+          </div>
         )}
       </div>
     </div>
