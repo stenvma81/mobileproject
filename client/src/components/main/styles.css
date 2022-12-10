@@ -1,16 +1,20 @@
 
+:root {
+    --content-padding: 12px;
+}
+
 #container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-right: 12px;
-    padding-left: 12px;
+    padding-right: var(--content-padding);
+    padding-left: var(--content-padding);
     
 }
 .button1{
     position: absolute;
     top: 350px;
-    left: 42px;
+    left: var(--content-padding);
 }
 .mainViewButton{
     box-shadow: 4px 4px 4px rgb(0, 0, 0);
@@ -23,21 +27,21 @@
 .button2{
     position: absolute;
     top: 430px;
-    right: 42px;
+    right: var(--content-padding);
     
     
 }
 .button3{
     position: absolute;
     top: 510px;
-    left: 42px;
+    left: var(--content-padding);
     
     
 }
 .button4{
     position: absolute;
     top: 590px;
-    right: 42px;
+    right: var(--content-padding);
 }
 button{
     height: 57px;
