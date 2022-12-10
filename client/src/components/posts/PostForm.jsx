@@ -135,20 +135,23 @@ export function PostForm({ postType, setFormIsOpen }) {
               onClick={openModal}
             />
           </div>
-         {/* </div>*/}
-          <div>
-            <input id='UploadPhoto'
-              type="file"
-              name="media"
-              accept="image/*"
-              multiple={false}
-              ref={inputFile} 
-              onChange={handleFileChange}
-            />
-            <button id='AddPhotoButton'
-              onClick={() => inputFile.current.click()}>Add Photo<MdAddPhotoAlternate id='photo-icon' /></button>
-          </div>
-        
+        </div>
+        <div>
+          <input
+            id="UploadPhoto"
+            type="file"
+            name="media"
+            accept="image/*"
+            multiple={false}
+            ref={inputFile}
+            onChange={handleFileChange}
+          />
+          <button id="AddPhotoButton" onClick={() => inputFile.current.click()}>
+            Add Photo
+            <MdAddPhotoAlternate id="photo-icon" />
+          </button>
+        </div>
+
         <button
           type="send"
           name="sendbutton"
