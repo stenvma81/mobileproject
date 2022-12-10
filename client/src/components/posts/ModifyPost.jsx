@@ -66,7 +66,7 @@ export function ModifyPost({ post, setIsModifying }) {
 
   return (
     <div className="form-container">
-      <form className="column" onSubmit={handleSubmit}>
+      <form className="post-form column max-width" onSubmit={handleSubmit}>
         <div className="form-title">
           <h1>Modify</h1>
           <MdClose

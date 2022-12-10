@@ -71,7 +71,7 @@ export function PostForm({ postType, setFormIsOpen }) {
 
   return (
     <div className="form-container column">
-      <form className="column" onSubmit={handleSubmit}>
+      <form className="post-form column" onSubmit={handleSubmit}>
         <div className="form-title">
           <h1>{postType.title}</h1>
           <MdClose

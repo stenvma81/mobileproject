@@ -63,7 +63,7 @@ export default function Card({ post }) {
               className="close-x"
               onClick={() => setIsModifying(true)}
             />
-            <MdClose className="close-x" onClick={() => setIsModifying(true)} />
+            <MdClose className="close-x" onClick={() => setIsOpen(false)} />
           </div>
         )}
       </div>

@@ -2,11 +2,21 @@
   display: flex;
   /* align-items: baseline; */
   justify-content: center;
-  padding: 24px;
+  /* padding: 24px; */
   box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
   border-radius: 10px;
   background-color: rgb(231, 234, 241, 0.99);
-  max-width: 350px;
+  /* max-width: 350px; */
+  width: 100%;
+}
+
+.post-form {
+  /* width: 100%; */
+  padding: 25px;
+}
+
+.max-width {
+  width: 100%;
 }
 
 label {
@@ -18,7 +28,7 @@ label {
 
 textarea[type="text"] {
   border: 1px solid rgb(37, 8, 28);
-  width: 300px;
+  /* width: 300px; */
   height: 30px;
   outline: none;
   padding-left: 10px;
