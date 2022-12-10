@@ -1,9 +1,9 @@
-import React, { useContext } from 'react';
+import React, { useContext, useRef } from 'react';
 import './styles.css';
 import { useState } from 'react';
 import { usePosts } from '../../hooks/ApiHooks';
 import MapModal from '../map-modal/MapModal';
-import { MdClose } from 'react-icons/md';
+import { MdClose, MdAddPhotoAlternate } from 'react-icons/md';
 import PropTypes from 'prop-types';
 import { MainContext } from '../../context/MainContext';
 
@@ -16,7 +16,7 @@ export function PostForm({ postType, setFormIsOpen }) {
   const [showModal, setShowModal] = useState(false);
   const [markers, setMarkers] = useState([]);
   const { update, setUpdate } = useContext(MainContext);
-
+  const inputFile = useRef(null);
   function openModal() {
     setShowModal(!showModal);
   }
@@ -135,16 +135,20 @@ export function PostForm({ postType, setFormIsOpen }) {
               onClick={openModal}
             />
           </div>
+         {/* </div>*/}
           <div>
-            <input
+            <input id='UploadPhoto'
               type="file"
               name="media"
               accept="image/*"
               multiple={false}
+              ref={inputFile} 
               onChange={handleFileChange}
             />
+            <button id='AddPhotoButton'
+              onClick={() => inputFile.current.click()}>Add Photo<MdAddPhotoAlternate id='photo-icon' /></button>
           </div>
-        </div>
+        
         <button
           type="send"
           name="sendbutton"

@@ -23,17 +23,17 @@ export function MainView() {
     return (
       <div className="buttons_container">
         <div className="button1">
-          <button onClick={(e) => handleOpenForm(e, postTypes.serviceAdvice)}>
+          <button className='mainViewButton' onClick={(e) => handleOpenForm(e, postTypes.serviceAdvice)}>
             Service Advice
           </button>
         </div>
         <div className="button2">
-          <button onClick={(e) => handleOpenForm(e, postTypes.feedback)}>
+          <button className='mainViewButton'  onClick={(e) => handleOpenForm(e, postTypes.feedback)}>
             Feedback
           </button>
         </div>
         <div className="button3">
-          <button onClick={(e) => handleOpenForm(e, postTypes.safetyAdvice)}>
+          <button className='mainViewButton'  onClick={(e) => handleOpenForm(e, postTypes.safetyAdvice)}>
             Safety Advice
           </button>
         </div>
