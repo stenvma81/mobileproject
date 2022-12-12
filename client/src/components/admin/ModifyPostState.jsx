@@ -2,6 +2,7 @@ import './admin.css';
 import React, { useContext } from 'react';
 import { usePosts } from '../../hooks/ApiHooks';
 import { MainContext } from '../../context/MainContext';
+import { postStates } from '../../utils/variables';
 
 export function ModifyPostState({ post }) {
   const { modifyPostState } = usePosts();
@@ -22,25 +23,25 @@ export function ModifyPostState({ post }) {
     return post.stateid === stateid;
   };
 
-  const StateRadioButton = ({ label, stateid }) => {
+  const StateRadioButton = ({ postState }) => {
     return (
       <label>
         <input
           type="radio"
-          value={`${stateid}`}
+          value={`${postState.id}`}
           onChange={(e) => handleModifyState(e.target.value, e)}
-          checked={isSelected(`${stateid}`)}
+          checked={isSelected(`${postState.id}`)}
         />
-        {label}
+        {postState.title}
       </label>
     );
   };
 
   return (
     <div className="column">
-      <StateRadioButton label={'Open'} stateid={0} />
-      <StateRadioButton label={'Prosessing'} stateid={1} />
-      <StateRadioButton label={'Closed'} stateid={2} />
+      <StateRadioButton postState={postStates.open} />
+      <StateRadioButton postState={postStates.prosessing} />
+      <StateRadioButton postState={postStates.closed} />
     </div>
   );
 }

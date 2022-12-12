@@ -41,7 +41,7 @@ export default function Card({ post }) {
     return <div className="dot" style={{ backgroundColor: color }} />;
   };
 
-  const handleParentClick = (event) => {
+  const openCard = (event) => {
     event.preventDefault();
     if (event.target === event.currentTarget && isOpen) {
       setIsOpen(!isOpen);
@@ -54,7 +54,7 @@ export default function Card({ post }) {
   }
 
   return (
-    <div className="card" onClick={!isOpen ? handleParentClick : undefined}>
+    <div className="card" onClick={!isOpen ? openCard : undefined}>
       <div className="form-title">
         <NewMessagesCount post={post} />
         {isOpen && (
