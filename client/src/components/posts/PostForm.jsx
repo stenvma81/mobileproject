@@ -35,7 +35,7 @@ export function PostForm({ postType, setFormIsOpen }) {
       : formData.append('areamarker', ['{}']);
 
     formData.append('userid', userInfo.user.id);
-    formData.append('type', 1);
+    formData.append('type', postType.id);
     console.log('handleSubmit', image);
 
     for (let pair of formData.entries()) {

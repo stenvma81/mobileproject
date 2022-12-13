@@ -9,16 +9,15 @@ export function PostsByState({ poststate }) {
   const { update } = useContext(MainContext);
   const [postArray, setPostArray] = useState([]);
 
+  const fetchPosts = async () => {
+    const posts = await loadPostByState(poststate.id);
+    setPostArray(posts);
+  };
+
   useEffect(() => {
-    const fetchPosts = async () => {
-      const posts = await loadPostByState(poststate.id);
-      if (posts === undefined) {
-        return;
-      }
-      posts && setPostArray(posts);
-    };
     fetchPosts();
-  }, [update]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [update, poststate]);
 
   return (
     <div id="posts-by-state">

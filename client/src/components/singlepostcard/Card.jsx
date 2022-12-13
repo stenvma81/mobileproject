@@ -13,7 +13,7 @@ import { MdClose, MdCreate, MdSocialDistance } from 'react-icons/md';
 import { FaPen, FaStarOfLife } from 'react-icons/fa';
 import { NewMessagesCount } from './NewMessagesCount';
 import { MainContext } from '../../context/MainContext';
-import { userRoles, imageUrl } from '../../utils/variables';
+import { userRoles, imageUrl, postTypes } from '../../utils/variables';
 import { ModifyPost } from '../posts/ModifyPost';
 
 export default function Card({ post }) {
@@ -36,12 +36,12 @@ export default function Card({ post }) {
 
   const TypeDot = () => {
     let color = 'rgba(6,177,169,1)';
-    post.typeid === 1 && (color = 'rgba(135,110,255,1)');
-    post.typeid === 3 && (color = 'rgba(246,13,13,1)');
+    post.typeid === postTypes.feedback.id && (color = 'rgba(135,110,255,1)');
+    post.typeid === postTypes.safetyAdvice.id && (color = 'rgba(246,13,13,1)');
     return <div className="dot" style={{ backgroundColor: color }} />;
   };
 
-  const handleParentClick = (event) => {
+  const openCard = (event) => {
     event.preventDefault();
     if (event.target === event.currentTarget && isOpen) {
       setIsOpen(!isOpen);
@@ -54,7 +54,7 @@ export default function Card({ post }) {
   }
 
   return (
-    <div className="card" onClick={!isOpen ? handleParentClick : undefined}>
+    <div className="card" onClick={!isOpen ? openCard : undefined}>
       <div className="form-title">
         <NewMessagesCount post={post} />
         {isOpen && (
