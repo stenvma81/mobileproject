@@ -1,5 +1,6 @@
 import { useContext, useEffect } from 'react';
 import { MainContext } from '../context/MainContext';
+import { userRoles } from '../utils/variables';
 import { AdminMainView } from './admin/AdminMainView';
 import { UserMainView } from './user-components/UserMainView';
 
@@ -16,5 +17,9 @@ export function ContentView() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return <div>{user.role === 1 ? <AdminMainView /> : <UserMainView />}</div>;
+  return (
+    <div>
+      {user.role === userRoles.admin.id ? <AdminMainView /> : <UserMainView />}
+    </div>
+  );
 }
