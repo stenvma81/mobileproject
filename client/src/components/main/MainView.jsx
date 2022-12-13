@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-pascal-case */
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import React from 'react';
 import { usePosts } from '../../hooks/ApiHooks';
 import { PostForm } from '../posts/PostForm';
@@ -8,7 +8,6 @@ import './styles.css';
 import { postTypes } from '../../utils/variables';
 
 export function MainView() {
-  useEffect(() => {}, []);
   const [formIsOpen, setFormIsOpen] = useState(false);
   const [postType, setPostType] = useState();
   const { usersPost } = usePosts();
@@ -19,30 +18,25 @@ export function MainView() {
     setFormIsOpen(!formIsOpen);
   };
 
-  const FormButtons = () => {
-    return (
-      <div className="buttons_container">
-        <div className="button1">
-          <button className='mainViewButton' onClick={(e) => handleOpenForm(e, postTypes.serviceAdvice)}>
-            Service Advice
-          </button>
-        </div>
-        <div className="button2">
-          <button className='mainViewButton'  onClick={(e) => handleOpenForm(e, postTypes.feedback)}>
-            Feedback
-          </button>
-        </div>
-        <div className="button3">
-          <button className='mainViewButton'  onClick={(e) => handleOpenForm(e, postTypes.safetyAdvice)}>
-            Safety Advice
-          </button>
-        </div>
-        {/* <div className="button4">
-      <button onClick={handleOpenForm}>Question</button>
-    </div> */}
+  const FormButton = ({ type }) => (
+    <button className="mainViewButton" onClick={(e) => handleOpenForm(e, type)}>
+      {type.title}
+    </button>
+  );
+
+  const FormButtons = () => (
+    <div className="buttons_container">
+      <div className="button1">
+        <FormButton type={postTypes.serviceAdvice} />
       </div>
-    );
-  };
+      <div className="button2">
+        <FormButton type={postTypes.feedback} />
+      </div>
+      <div className="button3">
+        <FormButton type={postTypes.safetyAdvice} />
+      </div>
+    </div>
+  );
 
   return (
     <div id="container">

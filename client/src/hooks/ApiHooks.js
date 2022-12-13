@@ -5,7 +5,6 @@ import { postUrl } from '../utils/variables';
 
 const usePosts = () => {
   const [postArray, setPostArray] = useState([]);
-  // const [postsByState, setPostsByState] = useState([]);
   const [usersPost, setUsersPost] = useState([]);
   const [loading, setLoading] = useState(false);
   const { update } = useContext(MainContext);
@@ -47,7 +46,7 @@ const usePosts = () => {
     }
   };
 
-  const loadPostByUserId = async (/* userid */) => {
+  const loadPostByUserId = async () => {
     try {
       const userdata = JSON.parse(sessionStorage.getItem('token'));
       const userid = userdata.user.id;
@@ -62,9 +61,9 @@ const usePosts = () => {
 
   const loadPostByState = async (stateid) => {
     try {
-      console.log('loadPostsByState: ', stateid)
+      console.log('loadPostsByState: ', stateid);
       const postdata = await doFetch(postUrl + 'state/' + stateid);
-      console.log('loadPostsByState: ', postdata)
+      console.log('loadPostsByState: ', postdata);
       return postdata;
     } catch (error) {
       console.error('ApiHooks: loadPostByState: ', error.message);
@@ -180,16 +179,5 @@ const usePosts = () => {
     uploadPost2,
   };
 };
-
-// const usePostState = () => {
-//   const [stateArray, setStateArray] = useState([]);
-
-//   const getPostStates = async () => {
-//     try {
-//     } catch (error) {
-//       console.error('Hook: getPostStates', error.message);
-//     }
-//   };
-// };
 
 export { usePosts };

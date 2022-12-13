@@ -12,30 +12,21 @@ export function ModifyPostState({ post }) {
     e.preventDefault();
     const response = await modifyPostState(post.id, stateid);
     if (response) {
-      console.log('post state modified');
       setUpdate(update + 1);
     }
   };
 
-  // Check if it's the post's current state
-  const isSelected = (value) => {
-    const stateid = parseInt(value);
-    return post.stateid === stateid;
-  };
-
-  const StateRadioButton = ({ postState }) => {
-    return (
-      <label>
-        <input
-          type="radio"
-          value={`${postState.id}`}
-          onChange={(e) => handleModifyState(e.target.value, e)}
-          checked={isSelected(`${postState.id}`)}
-        />
-        {postState.title}
-      </label>
-    );
-  };
+  const StateRadioButton = ({ postState }) => (
+    <label>
+      <input
+        type="radio"
+        value={`${postState.id}`}
+        onChange={(e) => handleModifyState(e.target.value, e)}
+        checked={post.stateid === postState.id}
+      />
+      {postState.title}
+    </label>
+  );
 
   return (
     <div className="column">
