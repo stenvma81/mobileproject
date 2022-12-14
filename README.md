@@ -8,6 +8,14 @@ As an admin you can modify the tickets you received from the users, set their st
 
 This project uses ReactJS(Client), NodeJS/Express(Server), MySQL(Database) and myPhpAdmin(DB Admin).
 
+## Project state
+
+The project will not be receiving further updates (from the student team) after week 50 2022. Some promised features that were not implemented in time include:
+
+Filtering maintenance tickets, adding videos to tickets, adding affected location inside a building (with floor plan), viewing the employee client on a native mobile platform etc.
+
+Some/all features may be implemented later in forked projects by individual students.
+
 ## Installation
 
 To use test the app as intended, you should download and install Docker Desktop. If you don't know what Docker is and what it's used for, check the links below.
@@ -28,15 +36,37 @@ docker-compose up
 
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-Check the init.sql in the db-folder for login credentials.
+Check the init.sql in the db-folder for login credentials. By default, the login-names are...
+
+Admin view:
+* Pirjo Mäkinen
+
+Employee view: 
+* Merili Elnadi 
+* Matti Stenvall
+* Tatu Ihaksi
+
+...which all use the same password (somePW).
+
+New users can be added by modifying init.sql and rebuilding the docker images with
+
+```bash
+docker-compose down
+```
+
+```bash
+docker-compose build
+```
 
 ### Database Admin (default)
 
 Open [http://localhost:8080](http://localhost:8080) to view it in your browser.
 
-Check docker-compose.yml for user credentials.
+DB ser credentials are found in docker-compose.yml.
 
 ## Contributing
+
+For changes, please open an issue first to discuss what you would like to change.
 
 ## The Team (TMNS)
 * Merili Elnadi

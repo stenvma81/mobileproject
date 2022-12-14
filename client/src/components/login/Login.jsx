@@ -27,7 +27,7 @@ export function Login({ setToken }) {
           <input type="password" className="inputfield" onChange={(e) => handleInputChange('password', e.target.value)}/>
         </label>
         <div>
-          <button type="submit">Submit</button>
+          <button type="submit" className="submit">Submit</button>
         </div>
       </form>
     </div>
