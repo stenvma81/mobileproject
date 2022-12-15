@@ -5,6 +5,7 @@ const multer = require('multer');
 const { body } = require('express-validator');
 const {
   post_post,
+  post_post_without_image,
   posts_get,
   post_modify,
   post_get_by_id,
@@ -30,7 +31,6 @@ const fileFilter = (req, file, cb) => {
   }
 };
 
-// test if uploaded file is an image
 const testFile = (req, res, next) => {
   if (req.file) {
     console.log('testFile reporting: ', req.file);
@@ -53,14 +53,12 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 router.route('/').get(posts_get);
-router.post(
-  '/',
+router.post('/withimage',
   upload.single('media'),
-  testFile,
-  make_thumbnail,
-  body('description').isLength({ min: 3 }).blacklist(';'),
-  post_post
-);
+  testFile, make_thumbnail,
+  body('description').isLength({min: 3}).blacklist(';'),
+  post_post);
+router.post('/', upload.none(), post_post_without_image);
 router.route('/:id').get(post_get_by_id).put(post_modify);
 router.route('/user/:id').get(posts_get_by_user);
 router.route('/type/:id').get(posts_get_by_type);

@@ -17,7 +17,8 @@ export function PostForm({ postType, setFormIsOpen }) {
   const [markers, setMarkers] = useState([]);
   const { update, setUpdate } = useContext(MainContext);
   const inputFile = useRef(null);
-  function openModal() {
+
+  const openModal = () => {
     setShowModal(!showModal);
   }
 
@@ -36,7 +37,6 @@ export function PostForm({ postType, setFormIsOpen }) {
 
     formData.append('userid', userInfo.user.id);
     formData.append('type', postType.id);
-    console.log('handleSubmit', image);
 
     for (let pair of formData.entries()) {
       console.log(pair[0] + ' - ' + pair[1]);
@@ -142,7 +142,7 @@ export function PostForm({ postType, setFormIsOpen }) {
             ref={inputFile}
             onChange={handleFileChange}
           />
-          <button id="AddPhotoButton" onClick={() => inputFile.current.click()}>
+          <button type="button" id="AddPhotoButton" onClick={() => inputFile.current.click()}>
             Add Photo
             <MdAddPhotoAlternate id="photo-icon" />
           </button>

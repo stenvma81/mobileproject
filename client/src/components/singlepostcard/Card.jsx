@@ -25,10 +25,12 @@ export default function Card({ post }) {
   const openModal = () => {
     const marker = JSON.parse(post.areamarker);
     setMarkers([...markers.splice(0, marker), marker]);
+    if (showImageModal === true) setShowImageModal(false);
     setShowModal(!showModal);
   };
 
   const openImage = () => {
+    if (showModal === true) setShowModal(false);
     setShowImageModal(!showImageModal);
   };
 
@@ -107,10 +109,11 @@ export default function Card({ post }) {
                 <button onClick={openModal}>Show location</button>
               </div>
             )}
-
-            <div>
-              <button onClick={openImage}>Show image</button>
-            </div>
+            {post.mediafilename !== null && (
+              <div>
+                <button onClick={openImage}>Show image</button>
+              </div>
+            )}
             <MapModal
               toggle={showModal}
               action={openModal}
