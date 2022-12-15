@@ -10,17 +10,34 @@ const {
   getPostsByUser,
   getPostsByState,
   modifyPostState,
+  addPostWithoutImage,
 } = require('../models/postModel');
 const { httpError } = require('../utils/errors');
 const {makeThumbnail} = require('../utils/resize');
 
 // adds a new post
 const post_post = async (req, res) => {
-  console.log('postController: post_post', req.file);
+  // console.log('postController: post_post', req.file);
   if(req.body != {}) {
+    let id;
     const post = req.body;
     post.file = req.file;
-    const id = await addPost(post);
+    id = await addPost(post);
+
+    res.json({ message: `Post created with id: ${id}` });
+  } else {
+    console.log('post_post content error, req.body: ', req.body);
+  }
+};
+
+const post_post_without_image = async (req, res) => {
+  // console.log('postController: post_post', req.file);
+  console.log("post_post_without_image: ", req.body);
+  if(req.body != {}) {
+    let id;
+    const post = req.body;
+    id = await addPostWithoutImage(post);
+
     res.json({ message: `Post created with id: ${id}` });
   } else {
     console.log('post_post content error, req.body: ', req.body);
@@ -127,6 +144,7 @@ const make_thumbnail = async (req, res, next) => {
 
 module.exports = {
   post_post,
+  post_post_without_image,
   posts_get,
   post_close,
   post_modify_state,

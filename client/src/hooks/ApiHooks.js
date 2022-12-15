@@ -78,8 +78,17 @@ const usePosts = () => {
         method: 'POST',
         body: formData,
       };
-      console.log('ApiHooks: uploadPost ', options.body);
-      const result = await doFetch(postUrl, options);
+      const tester = options.body.get('media');
+      console.log('uploadPost tester', tester);
+      let url;
+      if (tester === 'null') {
+        console.log("namnam");
+        url = postUrl;
+      } else {
+        console.log("hyhhyh");
+        url = postUrl + 'withimage/';
+      }
+      const result = await doFetch(url, options);
       return result;
     } catch (e) {
       console.log('uploadPost error', e);

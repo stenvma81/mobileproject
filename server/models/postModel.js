@@ -4,11 +4,23 @@ const pool = require('../database/db');
 const promisePool = pool.promise();
 
 const addPost = async (post) => {
-  console.log('postModel: addPost', post);
   try {
     const [rows] = await promisePool.execute(
       'INSERT INTO post (userid, description, type, title, location, areamarker, mediafilename) VALUES (?, ?, ?, ?, ?, ?, ?)',
       [post.userid, post.description, post.type, post.title, post.location, post.areamarker, post.file.filename]
+    );
+    return rows.insertId;
+  } catch (error) {
+    console.error('model addPost', error.message);
+  }
+};
+
+const addPostWithoutImage = async (post) => {
+  try {
+    console.log("addPostWithoutImage: ", post);
+    const [rows] = await promisePool.execute(
+      'INSERT INTO post (userid, description, type, title, location, areamarker, mediafilename) VALUES (?, ?, ?, ?, ?, ?, ?)',
+      [post.userid, post.description, post.type, post.title, post.location, post.areamarker, null]
     );
     return rows.insertId;
   } catch (error) {
@@ -30,10 +42,10 @@ const getPostsSql = `
 const getAllPosts = async () => {
   try {
     const [rows] = await promisePool.execute(getPostsSql);
-    console.log('postModel getAllPosts: ', rows);
+    // console.log('postModel getAllPosts: ', rows);
     return rows;
   } catch (e) {
-    console.error('testModel:', e.message);
+    console.error('getAllPosts:', e.message);
   }
 };
 
@@ -145,4 +157,5 @@ module.exports = {
   getPostsByType,
   getPostsByUser,
   getPostsByState,
+  addPostWithoutImage
 };
