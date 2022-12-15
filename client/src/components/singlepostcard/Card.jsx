@@ -99,10 +99,11 @@ export default function Card({ post }) {
                 <button onClick={openModal}>Show location</button>
               </div>
             )}
-
-            <div>
-              <button onClick={openImage}>Show image</button>
-            </div>
+            {post.mediafilename !== null && (
+              <div>
+                <button onClick={openImage}>Show image</button>
+              </div>
+            )}
             <MapModal
               toggle={showModal}
               action={openModal}
