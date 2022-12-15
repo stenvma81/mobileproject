@@ -7,7 +7,7 @@ import { FaAngleDoubleRight } from 'react-icons/fa';
 import './messages.css';
 
 export function SendMessage({ postid }) {
-  const [text, setText] = useState('empty');
+  const [text, setText] = useState('');
   const { uploadMessage } = useMessage(postid);
   const { update, setUpdate, user } = useContext(MainContext);
 
@@ -34,6 +34,7 @@ export function SendMessage({ postid }) {
           required
           minLength="1"
           maxLength="250"
+          value={text}
           onChange={(e) => setText(e.target.value)}
         />
         <button id="send-msg-btn" type="send">

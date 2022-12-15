@@ -24,7 +24,7 @@ export function ModifyMessageField({ message, setIsModifying }) {
   };
 
   return (
-    <div className="column">
+    <form className="column" onSubmit={handleSubmit}>
       <textarea
         className="message-textfield"
         rows="4"
@@ -35,10 +35,12 @@ export function ModifyMessageField({ message, setIsModifying }) {
         maxLength="250"
       />
       <div className="two-icons-message">
-        <FaCheck onClick={handleSubmit} />
+        <button id="modify-post-btn">
+          <FaCheck />
+        </button>
         <FaTimes onClick={() => setIsModifying(false)} />
       </div>
-    </div>
+    </form>
   );
 }
 

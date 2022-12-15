@@ -55,11 +55,10 @@ export default function Card({ post }) {
 
   return (
     <div className="card" onClick={!isOpen ? openCard : undefined}>
-      
       <div className="post-state">
         <div className="column">
           <div className="post-type">
-            <div id='post-type-text'>
+            <div id="post-type-text">
               <TypeDot className="dot-border" />
               {post.type}
             </div>
@@ -69,23 +68,23 @@ export default function Card({ post }) {
         </div>
 
         <div className="column">
-        <div className="form-title">
-        <NewMessagesCount post={post} />
-        {isOpen && (
-          <div className="close-modify">
-            <MdCreate
-              className="icon-pen"
-              onClick={() => setIsModifying(true)}
-            />
-            <MdClose className="close-x" onClick={() => setIsOpen(false)} />
+          <div className="form-title">
+            <NewMessagesCount post={post} />
+            {isOpen && (
+              <div className="close-modify">
+                <MdCreate
+                  className="icon-pen"
+                  onClick={() => setIsModifying(true)}
+                />
+                <MdClose className="close-x" onClick={() => setIsOpen(false)} />
+              </div>
+            )}
           </div>
-        )}
-      </div>
-      <div id='time'>
-          <Moment date={post.created_date} format="DD.MM.YYYY HH:mm" />
-          {post.closed_date !== null && (
-            <Moment date={post.closed_date} format="DD.MM.YYYY HH:mm" />
-          )}
+          <div id="time" className="column">
+            <Moment date={post.created_date} format="DD.MM.YYYY HH:mm" />
+            {post.closed_date !== null && (
+              <Moment date={post.closed_date} format="DD.MM.YYYY HH:mm" />
+            )}
           </div>
         </div>
       </div>
