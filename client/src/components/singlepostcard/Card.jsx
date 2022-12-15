@@ -27,10 +27,12 @@ export default function Card({ post }) {
   const openModal = () => {
     const marker = JSON.parse(post.areamarker);
     setMarkers([...markers.splice(0, marker), marker]);
+    if (showImageModal === true) setShowImageModal(false);
     setShowModal(!showModal);
   };
 
   const openImage = () => {
+    if (showModal === true) setShowModal(false);
     setShowImageModal(!showImageModal);
   };
 

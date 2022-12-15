@@ -11,7 +11,7 @@ const addPost = async (post) => {
   try {
     const [rows] = await promisePool.execute(
       'INSERT INTO post (userid, description, type, title, location, areamarker, mediafilename) VALUES (?, ?, ?, ?, ?, ?, ?)',
-      [post.userid, post.description, post.type, "höhöhö", post.location, post.areamarker, post.file.filename]
+      [post.userid, post.description, post.type, post.title, post.location, post.areamarker, post.file.filename]
     );
     return rows.insertId;
   } catch (error) {
