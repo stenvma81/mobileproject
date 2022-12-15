@@ -4,13 +4,11 @@ import 'moment-timezone';
 import { MessageList } from '../messages/MessageList';
 import { SendMessage } from '../messages/SendMessage';
 import PropTypes from 'prop-types';
-import logo from '../header/images/nokia.jpg';
 import MapModal from '../map-modal/MapModal';
 import { ImageModal } from '../image-modal/ImageModal';
 import './smallCard.css';
 import { ModifyPostState } from '../admin/ModifyPostState';
-import { MdClose, MdCreate, MdSocialDistance } from 'react-icons/md';
-import { FaPen, FaStarOfLife } from 'react-icons/fa';
+import { MdClose, MdCreate } from 'react-icons/md';
 import { NewMessagesCount } from './NewMessagesCount';
 import { MainContext } from '../../context/MainContext';
 import { userRoles, imageUrl, postTypes } from '../../utils/variables';
@@ -88,7 +86,14 @@ export default function Card({ post }) {
       </div>
       <div className="post-text">
         <div className="card-title">{post.title}</div>
-        {isOpen && <div className="place">{`${post.description}`}</div>}
+        {isOpen && (
+          <div className="place">
+            <p
+              id="description-text"
+              className="no-margin"
+            >{`${post.description}`}</p>
+          </div>
+        )}
       </div>
       {isOpen && (
         <div>
