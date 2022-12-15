@@ -50,6 +50,13 @@
     display: flex;
     flex-direction: column;
 }
+.post_state_column{
+    display: flex;
+    justify-content: space-between;
+    margin-right: 70px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
 #allcont{
     display: block;
     margin-left: auto;

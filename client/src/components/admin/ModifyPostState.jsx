@@ -29,7 +29,7 @@ export function ModifyPostState({ post }) {
   );
 
   return (
-    <div className="column">
+    <div className="post_state_column">
       <StateRadioButton postState={postStates.open} />
       <StateRadioButton postState={postStates.prosessing} />
       <StateRadioButton postState={postStates.closed} />
