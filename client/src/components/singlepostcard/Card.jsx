@@ -86,7 +86,14 @@ export default function Card({ post }) {
       </div>
       <div className="post-text">
         <div className="card-title">{post.title}</div>
-        {isOpen && <div className="place">{`${post.description}`}</div>}
+        {isOpen && (
+          <div className="place">
+            <p
+              id="description-text"
+              className="no-margin"
+            >{`${post.description}`}</p>
+          </div>
+        )}
       </div>
       {isOpen && (
         <div>

@@ -50,9 +50,9 @@ button{
     align-items: flex-start;
 }
 
-.post-buttons{
+/* .post-buttons{
 
-}
+} */
 
 .post-buttons button{
   border: 1px solid rgb(22, 27, 99);
@@ -169,4 +169,8 @@ svg {
 .dot-border{
     border: solid;
     border-color: rgba(92,80,80,1);
+}
+
+#description-text {
+    word-wrap: anywhere;
 }
