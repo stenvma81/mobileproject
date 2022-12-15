@@ -146,7 +146,7 @@ export function PostForm({ postType, setFormIsOpen }) {
             ref={inputFile}
             onChange={handleFileChange}
           />
-          <button id="AddPhotoButton" onClick={() => inputFile.current.click()}>
+          <button type="button" id="AddPhotoButton" onClick={() => inputFile.current.click()}>
             Add Photo
             <MdAddPhotoAlternate id="photo-icon" />
           </button>
