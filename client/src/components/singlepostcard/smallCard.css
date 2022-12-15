@@ -50,10 +50,6 @@ button{
     align-items: flex-start;
 }
 
-.post-buttons{
-
-}
-
 .post-buttons button{
   border: 1px solid rgb(22, 27, 99);
   height: 50px;
@@ -80,10 +76,15 @@ button{
     display: inline-block;
     margin-right: 10px;
 }
+#time{
+    margin-top: 5px;
+}
+
 
 .post-type {
     display: flex;
     flex-direction: column;
+    margin-top: 5px;
 }
 
 svg {
@@ -95,10 +96,10 @@ svg {
 .place{
     font-size: larger;
     margin-bottom: 15px;
+    margin-top: 15px;
 }
 
 .card-title{
-    margin-bottom: 15px;
     font-weight: bold;
     font-size: x-large;
 }
@@ -108,10 +109,6 @@ svg {
     width: 16px;
     padding-left: 12px;
     color: aliceblue;
-}
-
-.card-text{
-    margin-bottom: 15px;
 }
 
 .modify-pen{
@@ -142,31 +139,37 @@ svg {
 }
 
 .close-x{
-    margin-bottom: 10px;
+    
     width: 34px;
     height: 34px;
     color: rgb(54, 54, 59);
 }
 
-.modify-pen2{
-    margin-bottom: 10px;
-    width: 28px;
-    height: 28px;
+.icon-pen{
+    height: 30px;
     color: rgb(54, 54, 59);
+    margin-right: 5px;
 }
 
 #post-x-close{
     justify-content: flex-end;
 }
-
+#post-type-text{
+    font-size: 20px;
+    font-weight: 500;
+}
 .close-modify{
     width: 100%;
     display: flex;
     justify-content: flex-end;
-    padding-bottom: 5px;
+   
 }  
 
 .dot-border{
     border: solid;
     border-color: rgba(92,80,80,1);
+}
+
+#description-text {
+    word-wrap: anywhere;
 }

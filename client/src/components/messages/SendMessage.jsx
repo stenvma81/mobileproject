@@ -25,10 +25,9 @@ export function SendMessage({ postid }) {
 
   return (
     <form id="send-message-form" onSubmit={handleSubmit}>
-      <p className="no-margin">Message:</p>
+      <p className="no-margin">Write Message:</p>
       <div id="send-message-div" className="column">
         <textarea
-          placeholder="message"
           className="message-textfield"
           name="text"
           rows="6"

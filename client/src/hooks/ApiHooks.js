@@ -115,22 +115,6 @@ const usePosts = () => {
     }
   };
 
-  const closePost = async (id) => {
-    try {
-      setLoading(true);
-      const options = {
-        method: 'PUT',
-      };
-      const result = await doFetch(postUrl + 'close/' + id, options);
-      return result;
-    } catch (e) {
-      console.log('closePost error', e);
-      throw new Error(e.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   const modifyPostState = async (postid, stateid) => {
     try {
       setLoading(true);
@@ -180,7 +164,6 @@ const usePosts = () => {
     loadSinglePost,
     loadPostByState,
     uploadPost,
-    closePost,
     modifyPostState,
     modifyPost,
     loadPostByUserId,

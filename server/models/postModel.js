@@ -11,7 +11,15 @@ const addPost = async (post) => {
   try {
     const [rows] = await promisePool.execute(
       'INSERT INTO post (userid, description, type, title, location, areamarker, mediafilename) VALUES (?, ?, ?, ?, ?, ?, ?)',
-      [post.userid, post.description, post.type, post.title, post.location, post.areamarker, post.file.filename]
+      [
+        post.userid,
+        post.description,
+        post.type,
+        post.title,
+        post.location,
+        post.areamarker,
+        post.file.filename,
+      ]
     );
     return rows.insertId;
   } catch (error) {
@@ -104,19 +112,6 @@ const getPostsByState = async (stateid) => {
   }
 };
 
-// add VET to a post
-const closePost = async (id) => {
-  try {
-    const [rows] = await promisePool.execute(
-      `UPDATE post SET closed_date = CURRENT_TIMESTAMP, state = 2 WHERE id = ?`,
-      [id]
-    );
-    return rows.affectedRows === 1;
-  } catch (error) {
-    console.error('postModel closePost', error.message);
-  }
-};
-
 // modify post state, add VET if type 2 (closed)
 const modifyPostState = async (post) => {
   let sql = `UPDATE post SET state = ?, closed_date = NULL WHERE id = ?`;
@@ -154,7 +149,6 @@ const modifyPost = async (post) => {
 module.exports = {
   addPost,
   getAllPosts,
-  closePost,
   modifyPostState,
   modifyPost,
   getPostById,

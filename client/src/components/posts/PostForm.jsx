@@ -62,10 +62,6 @@ export function PostForm({ postType, setFormIsOpen }) {
   };
 
   const handleFileChange = (e) => {
-    const img = {
-      preview: URL.createObjectURL(e.target.files[0]),
-      data: e.target.files[0],
-    };
     setImage(e.target.files[0]);
   };
 

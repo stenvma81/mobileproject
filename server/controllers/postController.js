@@ -3,7 +3,6 @@
 const {
   addPost,
   getAllPosts,
-  closePost,
   modifyPost,
   getPostById,
   getPostsByType,
@@ -13,7 +12,7 @@ const {
   addPostWithoutImage,
 } = require('../models/postModel');
 const { httpError } = require('../utils/errors');
-const {makeThumbnail} = require('../utils/resize');
+const { makeThumbnail } = require('../utils/resize');
 
 // adds a new post
 const post_post = async (req, res) => {
@@ -97,17 +96,6 @@ const posts_get_by_state = async (req, res, next) => {
   next(httpError('Posts not found', 404));
 };
 
-// closes a post with specific id
-const post_close = async (req, res) => {
-  try {
-    const id = req.params.id;
-    const postClosed = await closePost(id);
-    res.json({ message: `Post closed: ${postClosed}` });
-  } catch (error) {
-    console.error(`postController: ${error.message}`);
-  }
-};
-
 // change the state of a post (open/processing/closed)
 const post_modify_state = async (req, res) => {
   const post = req.body;
@@ -134,11 +122,11 @@ const make_thumbnail = async (req, res, next) => {
   try {
     const thumbnail = await makeThumbnail(req.file.path, req.file.filename);
     if (thumbnail) {
-      console.log('make_thumbnail we get here', req.file.filename)
+      console.log('make_thumbnail we get here', req.file.filename);
       next();
     }
   } catch (e) {
-    res.status(400).json({error: e.message});
+    res.status(400).json({ error: e.message });
   }
 };
 
@@ -146,7 +134,6 @@ module.exports = {
   post_post,
   post_post_without_image,
   posts_get,
-  post_close,
   post_modify_state,
   post_modify,
   post_get_by_id,

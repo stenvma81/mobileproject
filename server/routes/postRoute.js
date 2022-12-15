@@ -7,7 +7,6 @@ const {
   post_post,
   post_post_without_image,
   posts_get,
-  post_close,
   post_modify,
   post_get_by_id,
   posts_get_by_type,
@@ -19,10 +18,12 @@ const {
 const router = express.Router();
 
 const fileFilter = (req, file, cb) => {
-  if (file.mimetype === 'image/jpeg' ||
-      file.mimetype === 'image/png' ||
-      file.mimetype === 'image/gif') {
-    console.log('fileFilter reporting true: ', file.mimetype);
+  if (
+    file.mimetype === 'image/jpeg' ||
+    file.mimetype === 'image/png' ||
+    file.mimetype === 'image/gif'
+  ) {
+    console.log('fileFilter reporting true: ', req.body);
     return cb(null, true);
   } else {
     console.log('fileFilter reporting false');
@@ -35,21 +36,21 @@ const testFile = (req, res, next) => {
     console.log('testFile reporting: ', req.file);
     next();
   } else {
-    res.status(400).json({errors: 'file is not image'});
+    res.status(400).json({ errors: 'file is not image' });
   }
 };
 
 // define info needed for uploading an image
 const storage = multer.diskStorage({
-  destination: function(req, file, cb) {
-      cb(null, './uploads');
-   },
+  destination: function (req, file, cb) {
+    cb(null, './uploads');
+  },
   filename: function (req, file, cb) {
-      cb(null , file.originalname);
-  }
+    cb(null, file.originalname);
+  },
 });
 
-const upload = multer({storage: storage});
+const upload = multer({ storage: storage });
 
 router.route('/').get(posts_get);
 router.post('/withimage',
@@ -59,7 +60,6 @@ router.post('/withimage',
   post_post);
 router.post('/', upload.none(), post_post_without_image);
 router.route('/:id').get(post_get_by_id).put(post_modify);
-router.route('/close/:id').put(post_close);
 router.route('/user/:id').get(posts_get_by_user);
 router.route('/type/:id').get(posts_get_by_type);
 router.route('/state/:id').get(posts_get_by_state).put(post_modify_state);
