@@ -62,3 +62,12 @@
   #message-div {
     justify-content: space-between;
   }
+
+  #modify-post-btn {
+    background-color: transparent;
+    height: auto;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+    min-width: auto;
+  }
