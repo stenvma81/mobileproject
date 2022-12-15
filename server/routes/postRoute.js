@@ -57,7 +57,7 @@ router.post('/withimage',
   testFile, make_thumbnail,
   body('description').isLength({min: 3}).blacklist(';'),
   post_post);
-router.post('/', post_post_without_image);
+router.post('/', upload.none(), post_post_without_image);
 router.route('/:id').get(post_get_by_id).put(post_modify);
 router.route('/close/:id').put(post_close);
 router.route('/user/:id').get(posts_get_by_user);

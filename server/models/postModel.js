@@ -4,10 +4,14 @@ const pool = require('../database/db');
 const promisePool = pool.promise();
 
 const addPost = async (post) => {
+  console.log("addpost ", post)
+  if (post.file) {
+    console.log("ehtaa tavaraa");
+  }
   try {
     const [rows] = await promisePool.execute(
       'INSERT INTO post (userid, description, type, title, location, areamarker, mediafilename) VALUES (?, ?, ?, ?, ?, ?, ?)',
-      [post.userid, post.description, post.type, post.title, post.location, post.areamarker, post.file.filename]
+      [post.userid, post.description, post.type, "höhöhö", post.location, post.areamarker, post.file.filename]
     );
     return rows.insertId;
   } catch (error) {
@@ -20,7 +24,7 @@ const addPostWithoutImage = async (post) => {
     console.log("addPostWithoutImage: ", post);
     const [rows] = await promisePool.execute(
       'INSERT INTO post (userid, description, type, title, location, areamarker, mediafilename) VALUES (?, ?, ?, ?, ?, ?, ?)',
-      [post.userid, post.description, post.type, post.title, post.location, post.areamarker, null]
+      [post.userid, post.description, post.type, post.title, post.location, post.areamarker, "nulliko"]
     );
     return rows.insertId;
   } catch (error) {

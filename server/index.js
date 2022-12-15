@@ -7,6 +7,7 @@ const app = express();
 const messageRoute = require('./routes/messageRoute');
 const postRoute = require('./routes/postRoute');
 const authRoute = require('./routes/authRoute');
+const multer = require('multer');
 
 app.use(express.static('public')); // Define public folder
 app.use('/uploads', express.static('uploads')); // Define and expose uploads folder
