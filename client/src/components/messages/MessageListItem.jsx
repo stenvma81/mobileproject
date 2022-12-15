@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { ModifyMessageField } from './ModifyMessageField';
-import { FaPen } from 'react-icons/fa';
+import {MdCreate} from 'react-icons/md';
 import { useMessage } from '../../hooks/MessageHooks';
 import { MainContext } from '../../context/MainContext';
 import Moment from 'react-moment';
@@ -35,7 +35,7 @@ export function MessageListItem({ message }) {
               {message.text}
             </p>
             {user.id === message.userid && (
-              <FaPen
+              <MdCreate
                 className="modify-pen"
                 onClick={() => setIsModifying(true)}
               />
