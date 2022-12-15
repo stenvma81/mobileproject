@@ -169,3 +169,7 @@ svg {
     border: solid;
     border-color: rgba(92,80,80,1);
 }
+
+#description-text {
+    word-wrap: anywhere;
+}
