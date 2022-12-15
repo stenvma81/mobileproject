@@ -55,35 +55,38 @@ export default function Card({ post }) {
 
   return (
     <div className="card" onClick={!isOpen ? openCard : undefined}>
-      <div className="form-title">
+      
+      <div className="post-state">
+        <div className="column">
+          <div className="post-type">
+            <div id='post-type-text'>
+              <TypeDot className="dot-border" />
+              {post.type}
+            </div>
+            <div style={{ 'padding-top': '10px' }}>{post.state}</div>
+            {/* <NewMessagesCount post={post} /> */}
+          </div>
+        </div>
+
+        <div className="column">
+        <div className="form-title">
         <NewMessagesCount post={post} />
         {isOpen && (
           <div className="close-modify">
             <MdCreate
-              className="close-x"
+              className="icon-pen"
               onClick={() => setIsModifying(true)}
             />
             <MdClose className="close-x" onClick={() => setIsOpen(false)} />
           </div>
         )}
       </div>
-      <div className="post-state">
-        <div className="column">
-          <div className="post-type">
-            <div>
-              <TypeDot className="dot-border" />
-              {post.type}
-            </div>
-            <div style={{ 'padding-top': '5px' }}>{post.state}</div>
-            {/* <NewMessagesCount post={post} /> */}
-          </div>
-        </div>
-
-        <div className="column">
+      <div id='time'>
           <Moment date={post.created_date} format="DD.MM.YYYY HH:mm" />
           {post.closed_date !== null && (
             <Moment date={post.closed_date} format="DD.MM.YYYY HH:mm" />
           )}
+          </div>
         </div>
       </div>
       <div className="post-text">
