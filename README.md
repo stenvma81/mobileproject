@@ -66,7 +66,7 @@ Admin view:
 * Pirjo Mäkinen
 
 <img
-  src="screenshots/screenshots/adminmain.png"
+  src="screenshots/adminmain.png"
   alt="Admin main view with some maintenance tickets"
   title="Admin main view"
   style="display: inline-block; margin: 0 auto; width: 640px">
