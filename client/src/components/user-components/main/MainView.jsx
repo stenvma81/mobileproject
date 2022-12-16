@@ -1,11 +1,11 @@
 /* eslint-disable react/jsx-pascal-case */
 import { useState } from 'react';
 import React from 'react';
-import { usePosts } from '../../hooks/ApiHooks';
-import { PostForm } from '../posts/PostForm';
-import { PostList } from '../posts/PostList';
+import { usePosts } from '../../../hooks/ApiHooks';
+import { PostForm } from '../../posts/PostForm';
+import { PostList } from '../../posts/PostList';
 import './styles.css';
-import { postTypes } from '../../utils/variables';
+import { postTypes } from '../../../utils/variables';
 
 export function MainView() {
   const [formIsOpen, setFormIsOpen] = useState(false);

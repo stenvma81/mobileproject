@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import { useContext } from 'react';
 import { useState } from 'react';
-import { MainContext } from '../../context/MainContext';
-import { useMessage } from '../../hooks/MessageHooks';
 import { FaTimes, FaCheck } from 'react-icons/fa';
+import { MainContext } from '../../../context/MainContext';
+import { useMessage } from '../../../hooks/MessageHooks';
 
 export function ModifyMessageField({ message, setIsModifying }) {
   const [text, setText] = useState('');

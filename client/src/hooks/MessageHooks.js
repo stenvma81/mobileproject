@@ -5,7 +5,6 @@ import { messageUrl } from '../utils/variables';
 
 const useMessage = (postid) => {
   const [messageArray, setMessageArray] = useState([]);
-  const [loading, setLoading] = useState(false);
   const { update, user } = useContext(MainContext);
 
   useEffect(() => {
@@ -25,7 +24,6 @@ const useMessage = (postid) => {
   const uploadMessage = async (formData) => {
     try {
       console.log('we get here');
-      setLoading(true);
       const options = {
         method: 'POST',
         headers: {
@@ -54,7 +52,6 @@ const useMessage = (postid) => {
 
   const modifyMessage = async (message) => {
     try {
-      setLoading(true);
       const options = {
         method: 'PUT',
         headers: {
@@ -71,7 +68,6 @@ const useMessage = (postid) => {
 
   const closeMessage = async (id) => {
     try {
-      setLoading(true);
       const options = {
         method: 'PUT',
       };
@@ -80,8 +76,6 @@ const useMessage = (postid) => {
     } catch (e) {
       console.log('closeMessage error', e);
       throw new Error(e.message);
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -93,8 +87,6 @@ const useMessage = (postid) => {
     } catch (e) {
       console.log('getViewedMessages error', e);
       return [];
-    } finally {
-      setLoading(false);
     }
   };
 

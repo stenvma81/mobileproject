@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useMessage } from '../../hooks/MessageHooks';
+import { useMessage } from '../../../hooks/MessageHooks';
 import { MessageListItem } from './MessageListItem';
 
 export function MessageList({ postid }) {

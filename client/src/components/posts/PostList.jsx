@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import Card from '../singlepostcard/Card';
+import Card from './singlepostcard/Card';
 import PropTypes from 'prop-types';
 import { useMessage } from '../../hooks/MessageHooks';
 
