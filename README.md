@@ -86,14 +86,11 @@ Employee view:
   alt="Employee view"
   title="Employee main view"
   style="display: inline-block; margin: 0 auto; width: 200px">
-
 <img
   src="screenshots/employeeopen.png"
   alt="Employee view with an open ticket"
   title="Admin main view"
   style="display: inline-block; margin: 0 auto; width: 200px">
-
-
 <img
   src="screenshots/employeeform.png"
   alt="Employee view with add ticket form"
