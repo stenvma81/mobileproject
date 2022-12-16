@@ -72,7 +72,7 @@ Admin view:
   style="display: inline-block; margin: 0 auto; width: 350px">
 <img
   src="screenshots/adminopen.png"
-  alt="Admin main view with some maintenance tickets"
+  alt="Admin main view with and open maintenance ticket"
   title="Admin main view"
   style="display: inline-block; margin: 0 auto; width: 350px">
 
@@ -80,6 +80,25 @@ Employee view:
 * Merili Elnadi 
 * Matti Stenvall
 * Tatu Ihaksi
+
+<img
+  src="screenshots/employeemain.png"
+  alt="Employee view"
+  title="Employee main view"
+  style="display: inline-block; margin: 0 auto; width: 200px">
+
+<img
+  src="screenshots/employeeopen.png"
+  alt="Employee view with an open ticket"
+  title="Admin main view"
+  style="display: inline-block; margin: 0 auto; width: 200px">
+
+
+<img
+  src="screenshots/employeeform.png"
+  alt="Employee view with add ticket form"
+  title="Admin main view"
+  style="display: inline-block; margin: 0 auto; width: 200px">
 
 ...which all use the same password (somePW).
 
