@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { useMessage } from '../../hooks/MessageHooks';
+import { useMessage } from '../../../hooks/MessageHooks';
 import { FaEnvelope } from 'react-icons/fa';
 
 export function NewMessagesCount({ post }) {

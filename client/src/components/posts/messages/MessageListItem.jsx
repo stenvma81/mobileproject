@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { ModifyMessageField } from './ModifyMessageField';
-import {MdCreate} from 'react-icons/md';
-import { useMessage } from '../../hooks/MessageHooks';
-import { MainContext } from '../../context/MainContext';
+import { MdCreate } from 'react-icons/md';
 import Moment from 'react-moment';
 import './messages.css';
+import { MainContext } from '../../../context/MainContext';
+import { useMessage } from '../../../hooks/MessageHooks';
 
 export function MessageListItem({ message }) {
   const [isModifying, setIsModifying] = useState(false);
@@ -19,9 +19,9 @@ export function MessageListItem({ message }) {
 
   return (
     <div id="message-item">
-      <div style={{'display':'flex' , 'justify-content': 'space-between'}}>
-      <p className="no-margin">{message.user}</p>
-      <Moment date={message.closed_date} format="DD.MM.YYYY HH:mm" />
+      <div style={{ display: 'flex', 'justify-content': 'space-between' }}>
+        <p className="no-margin">{message.user}</p>
+        <Moment date={message.closed_date} format="DD.MM.YYYY HH:mm" />
       </div>
       <div id="message-content" className="column">
         {isModifying ? (

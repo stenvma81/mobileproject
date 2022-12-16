@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import { useMessage } from '../../hooks/MessageHooks';
 import { useContext } from 'react';
-import { MainContext } from '../../context/MainContext';
 import { FaAngleDoubleRight } from 'react-icons/fa';
 import './messages.css';
+import { useMessage } from '../../../hooks/MessageHooks';
+import { MainContext } from '../../../context/MainContext';
 
 export function SendMessage({ postid }) {
   const [text, setText] = useState('');

@@ -1,18 +1,18 @@
 import React, { useContext, useState } from 'react';
 import Moment from 'react-moment';
 import 'moment-timezone';
-import { MessageList } from '../messages/MessageList';
-import { SendMessage } from '../messages/SendMessage';
 import PropTypes from 'prop-types';
-import MapModal from '../map-modal/MapModal';
-import { ImageModal } from '../image-modal/ImageModal';
+import MapModal from '../../map-modal/MapModal';
+import { ImageModal } from '../../image-modal/ImageModal';
 import './smallCard.css';
-import { ModifyPostState } from '../admin/ModifyPostState';
+import { ModifyPostState } from '../../admin/ModifyPostState';
 import { MdClose, MdCreate } from 'react-icons/md';
 import { NewMessagesCount } from './NewMessagesCount';
-import { MainContext } from '../../context/MainContext';
-import { userRoles, imageUrl, postTypes } from '../../utils/variables';
-import { ModifyPost } from '../posts/ModifyPost';
+import { MainContext } from '../../../context/MainContext';
+import { userRoles, imageUrl, postTypes } from '../../../utils/variables';
+import { ModifyPost } from '../ModifyPost';
+import { SendMessage } from '../messages/SendMessage';
+import { MessageList } from '../messages/MessageList';
 
 export default function Card({ post }) {
   const [isOpen, setIsOpen] = useState(false);

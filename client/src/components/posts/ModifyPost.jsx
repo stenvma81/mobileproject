@@ -62,6 +62,7 @@ export function ModifyPost({ post, setIsModifying }) {
       const marker = JSON.parse(post.areamarker);
       setMarkers([...markers.splice(0, marker), marker]);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [post.areamarker]);
 
   return (
