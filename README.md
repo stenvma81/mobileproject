@@ -1,28 +1,52 @@
 # Maintenance ticket plugin for an employee app
 
-This is a student project for Metropolia UAC Mobile Project course.
+This is a student project for Metropolia UAC Mobile Project course. The goal of the course was to work in tandem with a corporate client to produce a mobile and/or desktop based application or tool.
+
+## Table of Contents
+
+- Overview
+- App features
+- Tech stack
+- Back-end and API service
+- Installation
+- Usage & screenshots
+- The team
+
+## Overview
 
 Through the plugin the user can create a maintenance/safety/feedback ticket and pass it on to be reviewed by the admin.
 
 As an admin you can modify the tickets you received from the users, set their state (open, processing, closed) and send messages to request more info from the person who posted the ticket.
 
-This project uses ReactJS(Client), NodeJS/Express(Server), MySQL(Database) and myPhpAdmin(DB Admin).
+## Features:
 
-## Project state
+- Add and view maintenance tickets
+- Attach an image and/or an on-site location to a ticket
+- Send/receive messages
+- Review and change ticket state (open/processing/closed)
+- Modify tickets/messages
 
-The project will not be receiving further updates (from the student team) after week 50 2022. Some promised features that were not implemented in time include:
+## Tech Stack:
 
-Filtering maintenance tickets, adding videos to tickets, adding affected location inside a building (with floor plan), viewing the employee client on a native mobile platform etc.
+- React (employee & user client)
+- NodeJS/Express (API server)
+- MySQL (database)
+- PhpMyAdmin (database interface)
+- Docker (local deployment)
 
-Some/all features may be implemented later in forked projects by individual students.
+## Backend and API doc:
+
+The app stores users and postsin a mySQL database. Post-related images are stored on the server.  
+
+Api documentation can be found [here](https://documenter.getpostman.com/view/19111686/2s8YzUxMFN) and is created with Postman.
 
 ## Installation
 
-To use test the app as intended, you should download and install Docker Desktop. If you don't know what Docker is and what it's used for, check the links below.
+To use test the app as intended, you should download and install [Docker Desktop](https://www.docker.com/products/docker-desktop/). More info on Docker and its functions can be found at [Docker docs](https://docs.docker.com/).
 
 The DB/Server/Client services run in separate containers from which specific ports are exposed for easy testing with localhost.
 
-Clone the repository.
+Clone this repository (main branch).
 
 After making sure that Docker Desktop is running, navigate to the root of the project (where docker-compose.yml is located), open a terminal and type...
 
@@ -40,6 +64,12 @@ Check the init.sql in the db-folder for login credentials. By default, the login
 
 Admin view:
 * Pirjo Mäkinen
+
+<img
+  src="https://github.com/stenvma81/mobileproject/tree/main/screenshots/adminmain.png"
+  alt="Admin main view with some maintenance tickets"
+  title="Admin main view"
+  style="display: inline-block; margin: 0 auto; width: 640px">
 
 Employee view: 
 * Merili Elnadi 
@@ -66,12 +96,11 @@ DB ser credentials are found in docker-compose.yml.
 
 ## Contributing
 
-For changes, please open an issue first to discuss what you would like to change.
+Open an issue to discuss contributing to the repo.
 
 ## The Team (TMNS)
+
 * Merili Elnadi
 * Maiju Himberg [@maijuhimberg](https://github.com/maijuhimberg)
 * Tatu Ihaksi [@taaatu](https://github.com/taaatu)
 * Matti Stenvall [@stenvma81](https://github.com/stenvma81)
-
-## License
