@@ -66,7 +66,7 @@ Admin view:
 * Pirjo Mäkinen
 
 <img
-  src="https://github.com/stenvma81/mobileproject/tree/main/screenshots/adminmain.png"
+  src="https://github.com/stenvma81/mobileproject/tree/TMNS-140_Final_code_checkup/screenshots/adminmain.png"
   alt="Admin main view with some maintenance tickets"
   title="Admin main view"
   style="display: inline-block; margin: 0 auto; width: 640px">
