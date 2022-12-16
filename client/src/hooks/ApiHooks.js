@@ -6,7 +6,6 @@ import { postUrl } from '../utils/variables';
 const usePosts = () => {
   const [postArray, setPostArray] = useState([]);
   const [usersPost, setUsersPost] = useState([]);
-  const [loading, setLoading] = useState(false);
   const { update } = useContext(MainContext);
 
   useEffect(() => {
@@ -16,7 +15,6 @@ const usePosts = () => {
         const allPosts = await loadPosts();
         const userPosts = await loadPostByUserId();
         setUsersPost(userPosts);
-        // allMedia.reverse();
         setPostArray(allPosts);
       } catch (e) {
         console.log('usePosts useEffect error', e.message);
@@ -73,7 +71,6 @@ const usePosts = () => {
 
   const uploadPost = async (formData) => {
     try {
-      setLoading(true);
       const options = {
         method: 'POST',
         body: formData,
@@ -82,10 +79,10 @@ const usePosts = () => {
       console.log('uploadPost tester', tester);
       let url;
       if (tester === 'null') {
-        console.log("namnam");
+        console.log('namnam');
         url = postUrl;
       } else {
-        console.log("hyhhyh");
+        console.log('hyhhyh');
         url = postUrl + 'withimage/';
       }
       const result = await doFetch(url, options);
@@ -93,14 +90,11 @@ const usePosts = () => {
     } catch (e) {
       console.log('uploadPost error', e);
       throw new Error(e.message);
-    } finally {
-      setLoading(false);
     }
   };
 
   const uploadPost2 = async (formData) => {
     try {
-      setLoading(true);
       const options = {
         method: 'POST',
         body: formData,
@@ -110,14 +104,11 @@ const usePosts = () => {
     } catch (e) {
       console.log('uploadMedia error', e);
       throw new Error(e.message);
-    } finally {
-      setLoading(false);
     }
   };
 
   const modifyPostState = async (postid, stateid) => {
     try {
-      setLoading(true);
       const options = {
         method: 'PUT',
         headers: {
@@ -131,14 +122,11 @@ const usePosts = () => {
     } catch (e) {
       console.log('modifyPostState error', e);
       throw new Error(e.message);
-    } finally {
-      setLoading(false);
     }
   };
 
   const modifyPost = async (formData, id) => {
     try {
-      setLoading(true);
       const options = {
         method: 'PUT',
         headers: {
@@ -152,14 +140,11 @@ const usePosts = () => {
     } catch (e) {
       console.log('modifyPost error', e);
       throw new Error(e.message);
-    } finally {
-      setLoading(false);
     }
   };
 
   return {
     postArray,
-    loading,
     loadPosts,
     loadSinglePost,
     loadPostByState,
