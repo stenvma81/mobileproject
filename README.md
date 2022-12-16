@@ -69,7 +69,12 @@ Admin view:
   src="screenshots/adminmain.png"
   alt="Admin main view with some maintenance tickets"
   title="Admin main view"
-  style="display: inline-block; margin: 0 auto; width: 640px">
+  style="display: inline-block; margin: 0 auto; width: 350px">
+<img
+  src="screenshots/adminopen.png"
+  alt="Admin main view with some maintenance tickets"
+  title="Admin main view"
+  style="display: inline-block; margin: 0 auto; width: 350px">
 
 Employee view: 
 * Merili Elnadi 
